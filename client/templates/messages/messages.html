@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+<template name="messages">
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-center text-muted small">{{todaysDate}}</p>
+        </div>
+    </div>
+    {{#each messages}}
+        {{> message}}
+    {{/each}}
+</template>
 
-</body>
-</html>
+<template name="message">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle height-40" src="{{picture}}" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{user}}
+                        <small class="small pull-right">{{time}}</small>
+                    </h4>
+                    <p>{{msg}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</template>

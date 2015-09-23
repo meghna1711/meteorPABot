@@ -1,3 +1,3 @@
-AccountsTemplates.configureRoute('signIn', {layoutTemplate: 'appLayout'});
-AccountsTemplates.configureRoute('signUp', {layoutTemplate: 'appLayout'});
-AccountsTemplates.configureRoute('ensureSignedIn', {layoutTemplate: 'appLayout'});
+AccountsTemplates.configureRoute('signIn', {layoutTemplate: 'mainLayout'});
+AccountsTemplates.configureRoute('signUp', {layoutTemplate: 'mainLayout'});
+AccountsTemplates.configureRoute('ensureSignedIn', {layoutTemplate: 'mainLayout'});

@@ -1,6 +1,5 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -22,6 +21,7 @@ body {
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
+  color : #E86971;
 }
 
 /* Custom page footer */
@@ -77,3 +77,4 @@ body {
     border-bottom: 0;
   }
 }
+

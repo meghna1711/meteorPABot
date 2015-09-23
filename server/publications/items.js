@@ -13,3 +13,14 @@ Meteor.publishComposite("items", function() {
     // ]
   }
 });
+
+Meteor.publish("rooms", function () {
+  return Rooms.find();
+});
+Meteor.publish("messages", function () {
+  return Messages.find({}, {sort: {ts: 1}});
+});
+
+Meteor.publish("profile" , function(){
+  return Profile.find({});
+})

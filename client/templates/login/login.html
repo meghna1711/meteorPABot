@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+<template name="login">
+<div class="userLogin portlet-body">
+    <form accept-charset="UTF-8" role="form">
+        <fieldset>
+            <div class="form-group">
+                <input class="form-control" id='email' placeholder="E-mail/Username" name="email" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+            </div>
+        </fieldset>
+        <br>
+        <button type="submit" class="btn btn-lg btn-green btn-block">Sign In</button>
 
-</body>
-</html>
+        <div class="checkbox">
+            <label>
+                <input name="remember" type="checkbox" value="Remember Me"> Remember Me
+            </label>
+        </div>
+    </form>
+    <hr>
+    <div>
+        <a class="btn btn-block btn-social btn-google-plus login-google">
+            <i class="fa fa-google-plus"></i> Sign in with Google
+        </a>
+        <a class="btn btn-block btn-social btn-github login-github">
+            <i class="fa fa-github"></i> Sign in with GitHub
+        </a>
+        <br>
+        <p class="small">
+            <a class="recovery" href="">Forgot your password?</a>
+        </p>
+    </div>
+</div>
+
+</template>

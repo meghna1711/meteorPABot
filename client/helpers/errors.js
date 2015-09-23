@@ -1,3 +1,5 @@
-/**
- * Created by meghna on 17/9/15.
- */
+Errors = new Meteor.Collection(null);
+
+throwError = function(message) {
+    Errors.insert({message: message})
+};

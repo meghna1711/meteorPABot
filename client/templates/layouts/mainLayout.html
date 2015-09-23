@@ -1,8 +1,14 @@
 <template name="mainLayout">
-
+    <div>
     {{> _header}}
+        {{> _errors}}
+    </div>
+    <div>
+        {{> yield}}
+    </div>
+    <div>
 
     {{> _footer}}
-
+        </div>
 
 </template>

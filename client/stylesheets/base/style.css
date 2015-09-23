@@ -29,7 +29,18 @@ h5,
 h6 {
     font-family: "Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 400;
+    text-transform:none;
 }
+
+
+.sides a {
+    color : #AAB0B5;
+}
+
+.sides a:hover , a:active , a:focus {
+    color : #34495e;
+}
+
 
 a,
 a:hover,
@@ -42,6 +53,10 @@ a:focus {
     body {
         background: #34495e;
     }
+}
+
+.btn{
+    text-transform:none ;
 }
 
 /* Helper Classes
@@ -109,6 +124,10 @@ a:focus {
     color: #34495e;
 }
 
+ .text-white{
+     color : whitesmoke;
+ }
+
 .text-green {
     color: #16a085;
 }
@@ -131,6 +150,10 @@ a:focus {
 
 .text-faded {
     color: rgba(255,255,255,0.7);
+}
+
+.padding-left-80{
+    padding-left : 80px;
 }
 
 /* Wrappers
@@ -497,7 +520,7 @@ a:focus {
     display: block;
     width: 100%;
     padding: 15px;
-    border-top: none !important;
+    border-top: 1px solid darkslategray !important;
     border-bottom: 1px solid #142638;
     text-align: center;
 }
@@ -514,11 +537,17 @@ a:focus {
     color: #9aa4af;
 }
 
+.welcome {
+    margin: 0;
+    font-style: italic;
+    color: #9aa4af;
+}
+
 .navbar-side .side-user .welcome .fa {
     padding-right: 0;
 }
 
-.navbar-side .side-user .name {
+.navbar-side .side-user{
     margin: 0;
     font-family: "Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 20px;
@@ -526,7 +555,28 @@ a:focus {
     color: #ccd1d7;
 }
 
-.navbar-side .side-user .name .last-name {
+.name {
+    margin: 0;
+    font-family: "Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ccd1d7;
+}
+
+.last-name {
+    font-weight: 400;
+    color: #fff;
+}
+
+.height-65{
+    height:150px;
+}
+
+.height-40{
+    height:40px;
+}
+
+.navbar-side .side-user .name {
     font-weight: 400;
     color: #fff;
 }
@@ -1022,22 +1072,22 @@ a:focus {
 /* -- These image backgrounds are set to change automatically depending on the time of day. */
 
 .morning {
-    background: url(../img/widget-bg-morning.jpg) center bottom no-repeat;
+    background: url(/images/widget-bg-morning.jpg) center bottom no-repeat;
     background-size: cover;
 }
 
 .afternoon {
-    background: url(../img/widget-bg-afternoon.jpg) center bottom no-repeat;
+    background: url(/images/widget-bg-afternoon.jpg) center bottom no-repeat;
     background-size: cover;
 }
 
 .evening {
-    background: url(../img/widget-bg-evening.jpg) center bottom no-repeat;
+    background: url(/images/widget-bg-evening.jpg) center bottom no-repeat;
     background-size: cover;
 }
 
 .midnight {
-    background: url(../img/widget-bg-midnight.jpg) center bottom no-repeat;
+    background: url(/images/widget-bg-midnight.jpg) center bottom no-repeat;
     background-size: cover;
 }
 
@@ -1970,7 +2020,7 @@ input[type="checkbox"]:hover,
 input[type="checkbox"]:checked::after,
 .checkbox input[type="checkbox"]:checked::after,
 .checkbox-inline input[type="checkbox"]:checked::after {
-    content: url(../img/checkmark.png);
+    content: url(/images/checkmark.png);
     display: block;
     position: absolute;
     top: -6px;
@@ -2065,4 +2115,41 @@ input[type="checkbox"]:checked::after,
         margin-bottom: -2px;
         margin-left: 0;
     }
+}
+
+@keyframes fadeOut {
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.alert {
+      animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  }
+
+.errors{
+    position: fixed;
+    z-index: 10000;
+    padding: 10px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    pointer-events: none;
+
+}
+
+.alert {
+    animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    width: 250px;
+    float: right;
+    clear: both;
+    margin-bottom: 5px;pointer-events: auto;
+    font-size: large;
+    color : darkred;
+    border : 1px solid black;
+    background-color: white;
 }

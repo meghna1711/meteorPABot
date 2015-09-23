@@ -28,7 +28,7 @@
 
 .flot-chart {
     display: block;
-    height: 200px;
+    height: 250px;
 }
 
 .flot-chart-content {
@@ -325,7 +325,7 @@ transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 .easy-pie-chart {
     display: inline-block;
     position: relative;
-    width: 110px;
+    width: 190px;
     height: 110px;
     margin: 15px 0;
     text-align: center;
