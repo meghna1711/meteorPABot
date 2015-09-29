@@ -1,0 +1,184 @@
+<template name="addProject">
+    <div id="page-wrapper">
+    <div class="page-content page-content-ease-in">
+
+        <!-- begin PAGE TITLE AREA -->
+        <!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-title">
+                    <h1>Add Project
+                        <small>Overview</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- end PAGE TITLE AREA -->
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="portlet-body">
+                    <h4>Project Information</h4>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <input class="form-control"  type="text" id="project-name"
+                                   placeholder="Name of the Project">
+                        </div>
+                        <div class="form-group">
+                        <textarea class="form-control" id="project-description"
+                                  placeholder="Description of the Project"></textarea>
+                        </div>
+                    </form>
+                    <h4>Client Information</h4>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="client-name"
+                                   placeholder="Name of the Client">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="client-email"
+                                   placeholder="Email-ID of the Client">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portlet-body">
+                    <h4>Add User and Permission</h4>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <select class="form-control" id="UserId">
+                                <option value="-1" selected="true">Select User</option>
+                                {{#each users}}
+                                    <option value="{{this.userId}}">{{this.full_name}}</option>
+                                {{/each}}
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="permissionfield" class="form-control">
+                                <option value="-1" selected="true">Select Permission</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Viewer">Viewer</option>
+                                <option value="Developer">Developer</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+                    </form>
+                    <br/>
+                    <h4>GitHub Repository </h4>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="repo-name"
+                                   placeholder="Name of Git Repository">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="repo-url"
+                                   placeholder="Git Repository URL">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portlet-body">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success btn-xs addUserAndPermission">Add User in List
+                        </button>
+                    </div>
+                    {{> usersWithPermission}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-offset-2">
+                <button type="button" class="btn btn-green btn-block fa fa-arrow-circle-o-right fa-lg submit"> Submit
+                </button>
+                <br><br><a class="btn btn-warning btn-block" href="#"> <i class="fa fa-ban fa-lg"></i> Cancel</a>
+
+            </div>
+        </div>
+    </div>
+        {{#if showModal}}
+            {{> popUpModal}}
+        {{/if}}
+    </div>
+</template>
+
+
+<template name="usersWithPermission">
+    <div class="form-group">
+        <div class="portlet portlet-default">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h4>User List</h4>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User Name</th>
+                                <th>Permission</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each indexedArray permissionTable}}
+                            <tr>
+                                <td>{{_index}}</td>
+                                <td>{{this.user}}</td>
+                                <td>{{this.permission}}</td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="popUpModal">
+    <div id="projectKeyModalPopup" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Congrats Your Project Created Successfully.</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- https://github.com/kashishgupta1990/HookDemo/settings/hooks -->
+                    <b>Your Unique Project Hook URL</b><br>
+
+                    {{#if projectData}}
+                    <p>You have to copy <b> {{projectData.projectKey}}</b> URL to your
+                        <b> {{projectData.repoUrl}} </b> Git-Repository</p>
+                        {{else}}
+                        <p>You have to copy <b> {{projectKey}}</b> URL to your
+                            <b> {{projectData.repoUrl}} </b> Git-Repository</p>
+                    {{/if}}
+
+                    <p class="text-warning">
+                        <small>If you need any help please <a target="_blank" href="http://git-scm.com/docs/githooks.html">Click
+                            Me</a> .
+                        </small>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" click="clearForm()" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

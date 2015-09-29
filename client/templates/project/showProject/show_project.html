@@ -1,0 +1,144 @@
+<template name="showProject">
+    <div id="page-wrapper">
+        <div class="page-content page-content-ease-in">
+
+            <!-- begin PAGE TITLE AREA -->
+            <!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-title">
+                        <h1>View  Project
+                            <small>Overview</small>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- end PAGE TITLE AREA -->
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="portlet-body">
+                        <h3>Project Information</h3>
+
+                        <div class="form-group">
+                            <br>
+                            <h4> <b>Project Name </b> :  &nbsp; {{project.name}}</h4>
+
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <h4><b> Project Description </b> :  &nbsp; {{project.description}} </h4>
+
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <h4><b> Project Status </b> :  &nbsp; {{project.status}}</h4>
+
+                        </div>
+                        <h3>Project Versions info</h3>
+
+                        <div class="form-group">
+                            <br>
+                            <h4><b> Project VersionNo </b> :  &nbsp; {{project.release.[0].versionNo}} </h4>
+
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <h4><b> Description </b> :  &nbsp; {{project.release.[0].description}}</h4>
+
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <h4><b>Relese Date</b> :  &nbsp; {{project.release.[0].date}}</h4>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="portlet-body">
+                        <h3>Client Information</h3>
+
+                        <div class="form-group">
+                            <br>
+                            <h4><b>  Client Name </b> :  &nbsp; {{project.clientName}}</h4>
+
+                        </div>
+
+                        <div class="form-group">
+                            <br>
+                            <h4><b>  Client Email-ID </b> :  &nbsp; {{project.clientEmail}}</h4>
+
+                        </div>
+
+
+                        <br>
+                        <h3>GitHub Repository </h3>
+
+
+                        <div class="form-group">
+                            <br>
+                            <h4><b>  Name </b> :  &nbsp; {{project.repositories.[0].name}}</h4>
+
+                        </div>
+
+                        <div class="form-group">
+                            <br>
+                            <h4><b>  Repository URL </b> :  &nbsp; {{project.repositories.[0].repoUrl}}</h4>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                <div class="form-group">
+                    <div class="portlet portlet-default">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h4>User List</h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User Name</th>
+                                        <th>Permission</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each indexedArray permissionTable}}
+                                        <tr>
+                                            <td>{{_index}}</td>
+                                            <td>{{this.user}}</td>
+                                            <td>{{this.permission}}</td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-offset-2">
+                    <a class="btn btn-warning btn-block" href="{{pathFor 'viewProject'}}"> <i class="fa fa-caret-left fa-lg"></i> Back</a>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+</template>

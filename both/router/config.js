@@ -1,8 +1,9 @@
 Router.configure({
   loadingTemplate: 'loading',
   notFoundTemplate : '404',
-  waitOn : function(){return Meteor.subscribe('profile')}
-
+  waitOn : function(){
+    console.log('waiton is running!!');
+    return Meteor.subscribe('profile')}
 });
 
 // Router.plugin('loading', {loadingTemplate: 'loading'});

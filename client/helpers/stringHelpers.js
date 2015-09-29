@@ -1,4 +1,8 @@
-Template.registerHelper('truncate', function(string, length) {
-  var cleanString = s(string).stripTags();
-  return s(cleanString).truncate(length);
+Template.registerHelper('indexedArray', function(context, options) {
+  if (context) {
+    return context.map(function(item, index) {
+      item._index = index + 1;
+      return item;
+    });
+  }
 });

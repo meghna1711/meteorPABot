@@ -23,4 +23,8 @@ Meteor.publish("messages", function () {
 
 Meteor.publish("profile" , function(){
   return Profile.find({});
-})
+});
+
+Meteor.publish('project' , function(){
+  return Project.find({});
+});

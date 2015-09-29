@@ -1,0 +1,90 @@
+<template name="viewProject">
+    <div id="page-wrapper">
+        <!-- begin MAIN PAGE CONTENT -->
+
+        <div class="page-content page-content-ease-in">
+
+            <!-- begin PAGE TITLE ROW -->
+            <div class="row">
+
+                <div class="page-content">
+
+                    <!-- begin PAGE TITLE AREA -->
+                    <!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="page-title">
+                                <h1>View All Projects
+                                    <small>Overview</small>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <!-- end PAGE TITLE ROW -->
+
+                <!-- begin ADVANCED TABLES ROW -->
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <div class="portlet portlet-default">
+                            <div class="portlet-heading">
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-responsive bodycontainer scrollable">
+                                    <table id="example-table" class="table table-striped table-bordered table-hover table-green table-scrollable">
+                                        <thead>
+                                        <tr>
+                                            <th>SNo.</th>
+                                            <th>Project Name</th>
+                                            <th>Client Name</th>
+                                            <th>No. of user</th>
+                                            <th>Status</th>
+                                            <th>Details</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {{#each indexedArray project}}
+                                        <tr>
+                                            <td>{{_index}}</td>
+                                            <td>{{this.name}} </td>
+                                            <td>{{this.clientName}} </td>
+                                            <td>{{this.noOfusers}}</td>
+                                            <td>{{this.status}} </td>
+                                            <td><a class="btn btn-info" href="{{pathFor 'showProject' projectKey = this.projectKey}}"> <i class="fa fa-desktop fa-lg"></i> More</a></td>
+                                            <td><a class="btn btn-warning" href="{{pathFor 'editProject' projectKey = this.projectKey}}"> <i class="fa fa-pencil-square-o fa-lg"></i> Edit</a></td>
+                                            <td><a class="btn btn-danger" href="{{pathFor 'removeProject' projectKey = this.projectKey}}"> <i class="fa fa-trash-o fa-lg"></i> Delete</a></td>
+                                        </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.portlet-body -->
+                        </div>
+                        <!-- /.portlet -->
+
+                    </div>
+                    <!-- /.col-lg-12 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.page-content -->
+
+        </div>
+
+
+    </div>
+</template>

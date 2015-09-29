@@ -522,17 +522,32 @@
                     <!-- begin CHARTS DROPDOWN -->
                     <li class="panel">
                         <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
-                            <i class="fa fa-bar-chart-o"></i> Charts <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-bar-chart-o"></i> Project <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="collapse nav" id="charts">
                             <li>
-                                <a href="flot.html">
-                                    <i class="fa fa-angle-double-right"></i> Flot Charts
+                                <a href="{{pathFor 'addProject'}}">
+                                    <i class="fa fa-angle-double-right"></i> Add Project
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{pathFor 'editAnyProject'}}">
+                                    <i class="fa fa-angle-double-right"></i> Edit Project
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{pathFor 'viewProject'}}">
+                                    <i class="fa fa-angle-double-right"></i> View Project
                                 </a>
                             </li>
                             <li>
                                 <a href="morris.html">
-                                    <i class="fa fa-angle-double-right"></i> Morris.js
+                                    <i class="fa fa-angle-double-right"></i> Assign User to Project
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{pathFor 'removeAnyProject'}}">
+                                    <i class="fa fa-angle-double-right"></i> Remove Project
                                 </a>
                             </li>
                         </ul>

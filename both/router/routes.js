@@ -2,6 +2,7 @@ Router.route('/', {
   name: 'login',
   layoutTemplate : 'loginTemplate'
 });
+
 Router.route('/github-signin' ,{
   name:'githubData',
   layoutTemplate : 'loginTemplate'
@@ -19,20 +20,94 @@ Router.route('/dashboard/profile', {
   layoutTemplate : 'mainLayout'
 });
 
+Router.route('/project/addproject' , {
+  name : 'addProject',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
+/**
+ * edit project when project key is passed
+ * */
+Router.route('/project/editProject/:projectKey' , {
+  name : 'editProject',
+  layoutTemplate : 'mainLayout',
+  data : function(){return Project.findOne({projectKey : this.params.projectKey})},
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
+
+/**
+ * edit project when project key is not passed
+ * */
+Router.route('/project/editProject' , {
+  name : 'editAnyProject',
+  template : 'editProject',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+
+});
+
+Router.route('/project/viewProject',{
+  name : 'viewProject',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
+Router.route('/project/viewProject/showProject/:projectKey',{
+  name : 'showProject',
+  layoutTemplate : 'mainLayout',
+  data : function(){return Project.findOne({projectKey : this.params.projectKey})},
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
+Router.route('/project/removeProject',{
+  name : 'removeAnyProject',
+  layoutTemplate : 'mainLayout',
+  template : 'removeProject',
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
+Router.route('/project/removeProject/:projectKey',{
+  name : 'removeProject',
+  layoutTemplate : 'mainLayout',
+  data : function(){
+    return Project.findOne({projectKey : this.params.projectKey});
+  },
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
+/**
+ * Routes for generating Report
+ * */
+Router.route('/report/dateReport' , {
+  name : 'dateReport',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return Meteor.subscribe('project');
+  }
+});
+
 Router.route('/payload', function(){
   var eventobj = this.request.body;
-  this.response.end(JSON.stringify(eventobj));
+  this.response.end("Good Work Github");
   console.log(eventobj);
 }, {
   where : 'server'
-}).get(function(){
-  var eventObj = this.request.query;
-  this.response.end(JSON.stringify(eventObj));
-  console.log(eventObj);
-}).post(function(){
-  var eventObj = this.request.body;
-  this.response.end(JSON.stringify(eventObj));
-  console.log(eventObj);
 });
 
 Router.plugin('ensureSignedIn', {

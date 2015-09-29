@@ -128,11 +128,8 @@
                                         </div>
                                         <div class="col-lg-3 col-md-4">
                                             <h3>Contact Details</h3>
-                                            <p><i class="fa fa-globe fa-muted fa-fw"></i>  <a href="#">{{user.website}}</a>
-                                            </p>
                                             <p><i class="fa fa-phone fa-muted fa-fw"></i> {{user.number}}</p>
-                                            <p><i class="fa fa-building-o fa-muted fa-fw"></i> {{user.residence_address}}
-                                                <br>{{user.state}}&nbsp; {{user.zip}}</p>
+                                            <p><i class="fa fa-building-o fa-muted fa-fw"></i> {{user.residence_address}}</p>
                                             <p><i class="fa fa-envelope-o fa-muted fa-fw"></i>  <a href="#">{{user.address}}</a>
                                             </p>
                                             <ul class="list-inline">
@@ -177,59 +174,19 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Address</label>
-                                                            <input type="text" id="address" class="form-control" value="{{user.residence_address}}">
-                                                        </div>
-                                                        <div class="form-inline">
-                                                            <div class="form-group">
-                                                                <label>City</label>
-                                                                <input type="text" id="city" class="form-control" value="{{user.city}}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>State</label>
-                                                                <input type="text" id="state" class="form-control" value="{{user.state}}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>ZIP</label>
-                                                                <input type="text" id="zip" class="form-control" value="{{user.zip}}">
-                                                            </div>
+                                                            <textarea type="text" id="address" class="form-control" value="{{user.residence_address}}"></textarea>
                                                         </div>
                                                         <h4 class="page-header">Contact Details:</h4>
                                                         <div class="form-group">
                                                             <label><i class="fa fa-envelope-o fa-fw"></i> Email Address</label>
                                                             <input type="email" id="email" class="form-control" value="{{user.address}}">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label><i class="fa fa-globe fa-fw"></i> Website</label>
-                                                            <input type="url" id="website" class="form-control" value="{{user.website}}">
-                                                        </div>
                                                         <h4 class="page-header">Profile Information:</h4>
                                                         <div class="form-group">
                                                             <label><i class="fa fa-info fa-fw"></i> About</label>
                                                             <textarea class="form-control" id="about" rows="3">{{user.about}}</textarea>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label><i class="fa fa-building-o fa-fw"></i> Departments</label>
-                                                            <select multiple class="form-control">
-                                                                <option>Accounting</option>
-                                                                <option>Customer Support</option>
-                                                                <option>Human Resources</option>
-                                                                <option selected>Management</option>
-                                                                <option selected>Marketing</option>
-                                                                <option>Production</option>
-                                                                <option>Quality Assurance</option>
-                                                                <option selected>Sales</option>
-                                                            </select>
 
-                                                        </div>
-                                                        <h4 class="page-header">Social Profiles:</h4>
-                                                        <div class="form-group">
-                                                            <label><i class="fa fa-google-plus fa-fw"></i> Google+ Profile URL</label>
-                                                            <input type="text" class="form-control" value="{{user.address}}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label><i class="fa fa-twitter fa-fw"></i> Github Username</label>
-                                                            <input type="text" id="github_username" class="form-control" value="{{user.github_username}}">
-                                                        </div>
                                                         <button type="submit" class="btn btn-default">Update Profile</button>
                                                         <button class="btn btn-green">Cancel</button>
                                                     </form>
