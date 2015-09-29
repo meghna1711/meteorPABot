@@ -163,7 +163,13 @@ Meteor.startup(function() {
        * */
 
       'repoData' : function(data){
-          
+          if(data.hasOwnProperty("head_commit")){
+              var commit_data = data.head_commit;
+              commit_data.projectId = "2df842e01e7d";
+              Commits.insert(commit_data);
+              console.log("repoData " + commit_data);
+          }
+
       }
 
   });
