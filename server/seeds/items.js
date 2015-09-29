@@ -169,7 +169,6 @@ Meteor.startup(function() {
               Commits.insert(commit_data);
               console.log("repoData " + commit_data);
           }
-
       }
 
   });

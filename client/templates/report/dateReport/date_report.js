@@ -36,7 +36,17 @@ Template.dateReport.events({
             date : +$('#selectDate').val(),
             month : +$('#selectMonth').val(),
             year : +$('#selectYear').val()
-        };
+        },
+            projectKey = $('selectProject').val();
         console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>",data);
+        generateCommitsReportForTheDate(projectKey , data);
     }
 });
+
+var generateCommitsReportForTheDate = function(projectKey , date){
+    var dateCommits = new dateReport();
+    dateCommits.Date = ''+_date.date+', '+_date.month+', '+_date.year;
+    var commitResult, regex = ''+date.year+'-'+date.month+'-'+date.date;
+    commitResult = Commits.find({projectId : projectKey , timeStamp : {$regex : regex}}).fetch();
+    console.log(commitResult);
+};
