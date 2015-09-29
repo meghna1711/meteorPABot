@@ -28,3 +28,7 @@ Meteor.publish("profile" , function(){
 Meteor.publish('project' , function(){
   return Project.find({});
 });
+
+Meteor.publish('commits' , function(){
+  return Commits.find({});
+});

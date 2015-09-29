@@ -29,15 +29,15 @@ Template.dateReport.helpers({
 
 Template.dateReport.events({
 
-    'click #getDataReport' : function(e){
+    'click #getDateReport' : function(e){
         e.preventDefault();
 
         var data = {
             date : +$('#selectDate').val(),
-            month : +$('#selectMonth').val(),
+            month : $('#selectMonth').val(),
             year : +$('#selectYear').val()
         },
-            projectKey = $('selectProject').val();
+            projectKey = $('#selectProject').val();
         console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>",data);
         generateCommitsReportForTheDate(projectKey , data);
     }
@@ -45,8 +45,31 @@ Template.dateReport.events({
 
 var generateCommitsReportForTheDate = function(projectKey , date){
     var dateCommits = new dateReport();
-    dateCommits.Date = ''+_date.date+', '+_date.month+', '+_date.year;
-    var commitResult, regex = ''+date.year+'-'+date.month+'-'+date.date;
-    commitResult = Commits.find({projectId : projectKey , timeStamp : {$regex : regex}}).fetch();
+    dateCommits.Date = ''+date.date+', '+date.month+', '+date.year;
+    var commitResult, regex = new RegExp("^"+date.year+'-'+date.month+'-'+date.date+'(.*)');
+    commitResult = Commits.find({projectId : projectKey  , timestamp : {$regex : regex}}).fetch();
     console.log(commitResult);
+
+    if(commitResult){
+        dateCommits.Total = commitResult.length;
+        commitResult.forEach(function (value) {
+            var commitDate=new Date(value.timestamp);
+            var index=commitDate.getHours();
+            console.log(index);
+            dateCommits.Hour[index].Total+=1;
+            if(value.added.length>0){
+                dateCommits.Added+=1;
+                dateCommits.Hour[index].Added+=1;
+            }
+            if(value.removed.length>0){
+                dateCommits.Removed+=1;
+                dateCommits.Hour[index].Removed+=1;
+            }
+            if(value.modified.length>0){
+                dateCommits.Modified+=1;
+                dateCommits.Hour[index].Modified+=1;
+            }
+        });
+        console.log(dateCommits);
+    }
 };

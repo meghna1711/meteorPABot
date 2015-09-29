@@ -98,7 +98,10 @@ Router.route('/report/dateReport' , {
   name : 'dateReport',
   layoutTemplate : 'mainLayout',
   waitOn : function(){
-    return Meteor.subscribe('project');
+    return [
+      Meteor.subscribe('project'),
+      Meteor.subscribe('commits')
+    ];
   }
 });
 
