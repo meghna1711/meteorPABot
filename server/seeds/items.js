@@ -156,6 +156,14 @@ Meteor.startup(function() {
       'removeProject' : function(projectKey){
           Project.remove({projectKey : projectKey});
           console.log("project with Key " + projectKey + " successfully deleted ");
+      },
+
+      /**
+       * Meteor method for saving data from Github
+       * */
+
+      'repoData' : function(data){
+          
       }
 
   });

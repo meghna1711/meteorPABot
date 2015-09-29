@@ -104,6 +104,13 @@ Router.route('/report/dateReport' , {
 
 Router.route('/payload', function(){
   var eventobj = this.request.body;
+  Meteor.call('repoData' , eventobj , function(err){
+    if(err){
+      console.log("Data from github cannot be saved !!");
+    }else {
+      console.log("Data from Github saved successfully !!");
+    }
+  });
   this.response.end("Good Work Github");
   console.log(eventobj);
 }, {
