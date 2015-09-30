@@ -32,3 +32,11 @@ Meteor.publish('project' , function(){
 Meteor.publish('commits' , function(){
   return Commits.find({});
 });
+
+Meteor.publish('issues' , function(){
+  return Issues.find({});
+});
+
+Meteor.publish('comments' , function(){
+  return Comments.find({});
+})
