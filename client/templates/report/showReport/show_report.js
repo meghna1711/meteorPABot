@@ -1,4 +1,4 @@
-var dataLimit = "", barChartTabelData="";
+var dataLimit = "", barChartTabelData=[];
 
 Template.showReport.helpers({
     'project' : function(){
@@ -18,11 +18,17 @@ Template.showReport.helpers({
     },
 
     'barChartTabelData' : function(){
+        console.log("barChartTabelData >>>>>>>>>>> " + barChartTabelData);
         return barChartTabelData;
+    },
+
+    'barchart' : function(){
+        return Session.get('barchart');
     }
 });
 
 Template.showReport.rendered=function(){
+    Session.set('barchart' , false);
     var data = reportData;
     console.log(">>>>>>>>>>>>>>>>data>>>>>>>>>>>>>>>",data);
     showPieChart("#piechart", data);
@@ -199,6 +205,7 @@ var getBarChartData = function (reportData) {
     switch (reportData.Label) {
         case "YEAR":
             barChartTabelData = reportData.Month;
+            Session.set("barchart" , true);
             maxTick = 13;
             axisLabel='--------Month-------->';
                 dataLimit=maxTick-1;
@@ -214,6 +221,7 @@ var getBarChartData = function (reportData) {
 
         case "MONTH":
             barChartTabelData = reportData.Day;
+            Session.set('barchart',true);
             maxTick = reportData.noOfDays+1;
             dataLimit=maxTick-1;
             axisLabel='--------Day-------->';
@@ -229,6 +237,7 @@ var getBarChartData = function (reportData) {
 
         case "DAY":
             barChartTabelData = reportData.Hour;
+            Session.set('barchart',true);
             maxTick = 25;
             dataLimit=maxTick-1;
             axisLabel='--------Hour-Hand-------->';
