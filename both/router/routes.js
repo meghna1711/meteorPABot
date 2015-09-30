@@ -105,6 +105,20 @@ Router.route('/report/dateReport' , {
   }
 });
 
+Router.route('/report/showReport/:projectKey' , {
+  name : 'showReport',
+  layoutTemplate : 'mainLayout',
+  data : function(){
+    return Project.findOne({projectKey : this.params.projectKey});
+  },
+  waitOn : function(){
+    return [
+      Meteor.subscribe('project'),
+      Meteor.subscribe('commits')
+    ];
+  }
+});
+
 Router.route('/payload', function(){
   var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , function(err){

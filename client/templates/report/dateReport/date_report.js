@@ -40,6 +40,8 @@ Template.dateReport.events({
             projectKey = $('#selectProject').val();
         console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>",data);
         generateCommitsReportForTheDate(projectKey , data);
+
+        Router.go('showReport' , {projectKey : projectKey});
     }
 });
 
@@ -71,5 +73,6 @@ var generateCommitsReportForTheDate = function(projectKey , date){
             }
         });
         console.log(dateCommits);
+        reportService.setReportData(dateCommits);
     }
 };

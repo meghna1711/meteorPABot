@@ -1,0 +1,119 @@
+
+#piechartTable, #barchartTable {
+    margin-top: 20px;
+}
+
+#piechartTable td, th, #barchartTable td, th {
+    text-align: center;
+}
+
+#piechartTable th, #barchartTable th {
+    text-decoration: underline;
+}
+
+#piechart {
+    padding: 0px;
+    position: relative;
+    height: 150px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.reportlabel {
+    background-color: #CCCCFF;
+}
+
+.total {
+    background-color: #ffe45c;
+}
+
+.added {
+    background-color: #33CC66 ;
+}
+
+.removed {
+    background-color: #FF9999;
+}
+
+.modified {
+    background-color: #00ccff;
+}
+
+#flotbase {
+    direction: ltr;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    height: 50px;
+}
+
+#flotoverlay {
+    direction: ltr;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    height: 50px;
+}
+
+#barchart {
+    width: 90%;
+    height: 300px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#barchart > div.legend > div {
+    height: 82px !important;
+    opacity: 1 !important;
+    right: -95px;
+    top: 15px;
+    width: 125px !important;
+}
+
+.legend-barchart table {
+    height: 82px !important;
+    opacity: 1 !important;
+    right: -95px;
+    top: 15px;
+    width: 125px !important;
+    border: 1px solid #555;
+    padding: 2px;
+}
+
+#flot-tooltip {
+    font-size: 12px;
+    font-family: Verdana, Arial, sans-serif;
+    position: absolute;
+    display: none;
+    border: 2px solid;
+    padding: 2px;
+    background-color: #FFF;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+.align-center{
+    text-align: center;
+}
+.requestReport{
+    margin-top: 100px;
+}
+.dayreport{
+    width: 100px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
