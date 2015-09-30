@@ -22,11 +22,11 @@
                 <h4><strong><u>Commits For The Year:</u></strong></h4>
                 <table id="piechartTable" class="table table-condensed">
                     <tr>
-                        <th class="reportlabel"><strong>{{pieChartTabelData.Label}}</strong></th>
-                        <th class="total"><strong>TOTAL</strong></th>
-                        <th class="added"><strong>ADDED</strong></th>
-                        <th class="modified"><strong>MODIFIED</strong></th>
-                        <th class="removed"><strong>REMOVED</strong></th>
+                        <th class="reportlabel text-align-center"><strong>{{pieChartTabelData.Label}}</strong></th>
+                        <th class="total text-align-center"><strong>TOTAL</strong></th>
+                        <th class="added text-align-center"><strong>ADDED</strong></th>
+                        <th class="modified text-align-center"><strong>MODIFIED</strong></th>
+                        <th class="removed text-align-center"><strong>REMOVED</strong></th>
                     </tr>
                     <tr>
                         <td class="reportlabel">{{pieChartTabelData.Value}}</td>
@@ -47,11 +47,11 @@
                 <h4><strong><u>Commits in {{pieChartTabelData.SubLabel}} For The {{pieChartTabelData.Label}}:</u></strong></h4>
                 <table id="barchartTable" class="table table-condensed">
                     <tr>
-                        <th class="reportlabel"><strong>{{pieChartTabelData.SubLabel}}</strong></th>
-                        <th class="total"><strong>TOTAL</strong></th>
-                        <th class="added"><strong>ADDED</strong></th>
-                        <th class="modified"><strong>MODIFIED</strong></th>
-                        <th class="removed"><strong>REMOVED</strong></th>
+                        <th class="reportlabel text-align-center"><strong>{{pieChartTabelData.SubLabel}}</strong></th>
+                        <th class="total text-align-center"><strong>TOTAL</strong></th>
+                        <th class="added text-align-center"><strong>ADDED</strong></th>
+                        <th class="modified text-align-center"><strong>MODIFIED</strong></th>
+                        <th class="removed text-align-center"><strong>REMOVED</strong></th>
                     </tr>
                     {{#if barchart}}
                     {{#each barChartTabelData}}

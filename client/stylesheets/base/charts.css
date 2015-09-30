@@ -7,8 +7,8 @@
     text-align: center;
 }
 
-#piechartTable th, #barchartTable th {
-    text-decoration: underline;
+.text-align-center{
+    text-align: center;
 }
 
 #piechart {
@@ -20,22 +20,27 @@
 }
 
 .reportlabel {
+    border : 1px solid grey;
     background-color: #CCCCFF;
 }
 
 .total {
+    border : 1px solid grey;
     background-color: #ffe45c;
 }
 
 .added {
+    border : 1px solid grey;
     background-color: #33CC66 ;
 }
 
 .removed {
+    border : 1px solid grey;
     background-color: #FF9999;
 }
 
 .modified {
+    border : 1px solid grey;
     background-color: #00ccff;
 }
 
