@@ -169,6 +169,84 @@ Meteor.startup(function() {
               Commits.insert(commit_data);
               console.log("repoData " + commit_data);
           }
+          else
+          if(data.hasOwnProperty("issue")){
+              console.log(">>>>>>> server method executed for issuess !! >>>>>>>>>>>>>>>>>>>>>");
+              var issue_data = {
+                  projectId: "2df842e01e7d",
+                  action: data.action,
+                  issue: {
+                      url: data.issue.url,
+                      id: data.issue.id,
+                      number: data.issue.number,
+                      title: data.issue.title,
+                      user: {
+                          login: data.issue.user.login,
+                          id: data.issue.user.id,
+                          type: data.issue.user.type,
+                          site_admin: data.issue.user.site_admin
+                      },
+                      labels: data.issue.labels,
+                      state: data.issue.state,
+                      locked: data.issue.locked,
+                      assignee: data.issue.assignee,
+                      milestone: data.issue.milestone,
+                      comments: data.issue.comments,
+                      created_at: data.issue.created_at,
+                      updated_at: data.issue.updated_at,
+                      closed_at: data.issue.closed_at,
+                      body: data.issue.body
+                  },
+                  comment: {
+                      url: null,
+                      html_url: null,
+                      issue_url:  null,
+                      id: null,
+                      user: {
+                          login: null,
+                          id: null,
+                          type:  null,
+                          site_admin:  null
+                      },
+                      created_at: null,
+                      updated_at: null,
+                      body: null
+                  }
+              };
+
+              if(Issues.find({"issue.id" : data.issue.id }).count() === 0 ){
+                  Issues.insert(issue_data);
+                  console.log(">>>>>>>> Issue Inserted >>>>>>>>>>>");
+              }else
+              if(data.hasOwnProperty('comment')){
+                  issue_data.comment = {
+                      url: data.comment.url,
+                      html_url: data.comment.html_url,
+                      issue_url:  data.comment.issue_url,
+                      id: data.comment.id,
+                      user: {
+                          login: data.comment.user.login,
+                          id: data.comment.user.id,
+                          type:  data.comment.user.type,
+                          site_admin: data.comment.user.site_admin
+                      },
+                      created_at: data.comment.created_at,
+                      updated_at: data.comment.updated_at,
+                      body: data.comment.body
+                  };
+                  Issues.update({"issue.id" : data.issue.id } , {$set : issue_data});
+                  var comment = issue_data.comment;
+                  comment.issueId = data.issue.id;
+                  Comments.insert(comment);
+                  console.log(">>>>>>>>>>>> Comment Inserted >>>>>>>>>>");
+              } else {
+                  Issues.update({"issue.id" : data.issue.id } , {$set : {issue : issue_data.issue}});
+              }
+
+              console.log(issue_data);
+
+          }
+
       }
 
   });

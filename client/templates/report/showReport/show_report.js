@@ -18,7 +18,6 @@ Template.showReport.helpers({
     },
 
     'barChartTabelData' : function(){
-        console.log("barChartTabelData >>>>>>>>>>> " + barChartTabelData);
         return barChartTabelData;
     },
 
@@ -36,7 +35,8 @@ Template.showReport.rendered=function(){
 };
 
 /**
- * pie Chart data is prepared here
+ *
+ * Pie Chart data is prepared here
  *
  * */
 
@@ -74,6 +74,7 @@ var getPieChartData = function (reportData) {
 
 
 /**
+ *
  * Bar Chart data is prepared here
  *
  * */
