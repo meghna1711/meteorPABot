@@ -130,6 +130,17 @@ Router.route('/report/monthReport' , {
   }
 });
 
+Router.route('/report/yearReport' , {
+  name : 'yearReport',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return [
+      Meteor.subscribe('project'),
+      Meteor.subscribe('commits')
+    ];
+  }
+});
+
 Router.route('/payload', function(){
   var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , function(err){
