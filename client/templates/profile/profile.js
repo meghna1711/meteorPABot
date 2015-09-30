@@ -61,6 +61,7 @@ Template.profile.events({
 
     'change .cloudinary-fileupload' : function(e){
         var file = e.currentTarget.files;
+        console.log("change picture called");
 
         Cloudinary.upload(file, {} ,function(err , result){
             if(err){
