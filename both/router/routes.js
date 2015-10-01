@@ -141,6 +141,21 @@ Router.route('/report/yearReport' , {
   }
 });
 
+Router.route('/report/issueReport/:projectKey',{
+  name : 'issueReport',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return [
+        Meteor.subscribe('project'),
+        Meteor.subscribe('issues'),
+        Meteor.subscribe('comments')
+    ]
+  },
+  data : function(){
+    return Project.findOne({projectKey : this.params.projectKey});
+  }
+});
+
 Router.route('/payload', function(){
   var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , function(err){

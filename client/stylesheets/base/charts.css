@@ -19,6 +19,14 @@
     margin-top: 20px;
 }
 
+.piechart {
+    padding: 0px;
+    position: relative;
+    height: 150px;
+    width: 300px;
+    margin-top: 20px;
+}
+
 .reportlabel {
     border : 1px solid grey;
     background-color: #CCCCFF;
