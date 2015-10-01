@@ -90,7 +90,7 @@ var getPieChartData = function (reportData) {
 Template.piechart.rendered = function(){
     i++;
     console.log(">>>>>>>> PIE CHART TEMPLATE >>>>>>>>" + i);
-    $('.piechart div#piechartArea').each(function(index){
+    $('.piechartArea div#piechart').each(function(index){
         if(index === i) {
             $(this).addClass("piechart"+i);
             console.log("piechart class set to "+index);
