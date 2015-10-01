@@ -18,10 +18,10 @@
 
 
             {{#if showCharts}}
-                {{#each pieChartData}}
-                    <div class="row">
+                {{#each indexedArray pieChartData}}
+                    <div class="row height-280">
                         <div class="col-md-6">
-                            <h4><strong><u>Issues of the project :</u></strong></h4>
+                            <h4><strong><u>Issue {{_index}} of the project {{project.name}}:</u></strong></h4>
                             <table id="piechartTable" class="table table-condensed">
                                 <tr>
                                     <th class="reportlabel "><strong>ISSUE</strong></th>
@@ -50,7 +50,8 @@
                             </table>
                         </div>
 
-                        <div class="col-md-6 piechart">
+                        <div class="col-md-6 piechartArea">
+                            <h4><strong><u>Pie Chart Based On Comments By Users</u></strong></h4>
                             {{> piechart}}
                         </div>
                     </div>

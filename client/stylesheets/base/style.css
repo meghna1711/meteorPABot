@@ -2157,3 +2157,7 @@ input[type="checkbox"]:checked::after,
 .modal-backdrop{
     z-index : 0;
 }
+
+.height-280{
+    height : 280px;
+}
