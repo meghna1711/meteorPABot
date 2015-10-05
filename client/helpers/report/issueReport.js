@@ -1,11 +1,12 @@
 issueReport = function(){
     return {
-        Issue : '',
+        Label : 'ISSUE',
         StartDate : '',
         EndDate : '',
-        TotalComments : 0,
-        CreatedBy : '',
-        Staus : '',
+        Opened : 0,
+        Closed : 0,
+        Updated : 0,
+        Comments : 0,
         Comment : [
         ]
     }

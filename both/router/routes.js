@@ -100,6 +100,7 @@ Router.route('/report/dateReport' , {
   waitOn : function(){
     return [
       Meteor.subscribe('project'),
+      Meteor.subscribe('issues'),
       Meteor.subscribe('commits')
     ];
   }

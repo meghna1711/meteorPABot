@@ -1,4 +1,3 @@
-var dataLimit = "", barChartTabelData=[];
 
 Template.showReport.helpers({
     'project' : function(){
@@ -21,9 +20,7 @@ Template.showReport.helpers({
     'pieChartTabelData' : function() {
         return {
             Label: reportData.Label,
-            SubLabel: reportData.SubLabel,
-            StartDate: reportData.StartDate,
-            Value : reportData.Year ? reportData.Year : reportData.Month,
+            StartDate : reportData.StartDate,
             EndDate : reportData.EndDate,
             Total: reportData.Total,
             Added: reportData.Added,
@@ -32,21 +29,35 @@ Template.showReport.helpers({
         }
     },
 
-    'barChartTabelData' : function(){
-        return barChartTabelData;
+    'issueTabelData' : function(){
+        return {
+            Opened : issueData.Opened,
+            Closed : issueData.Closed,
+            Updated : issueData.Updated,
+            Comments : issueData.Comments
+
+        }
     },
 
-    'barchart' : function(){
-        return Session.get('barchart');
+    'Commits' : function(){
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        return Commits.find({projectId : this.projectKey,
+            timestamp : {
+                $gte : new Date(start_date.toISOString()),
+                $lte : new Date(end_date.toISOString())
+            }
+        } , {$sort : {timestamp : 1}});
     }
+
 });
 
 Template.showReport.rendered=function(){
     Session.set('barchart' , false);
-    var data = reportData;
-    console.log(">>>>>>>>>>>>>>>>data>>>>>>>>>>>>>>>",data);
-    showPieChart("#piechart", data);
-    showBarChart("#barchart", data);
+    var report_data = reportData, issue_data = issueData;
+    console.log(">>>>>>>>>>>>>>>>reportdata>>>>>>>>>>>>>>>",report_data);
+    showPieChart("#piechartCommit", report_data);
+    console.log(">>>>>>>>>>>>>>>>issuedata>>>>>>>>>>>>>>>",issue_data);
+    showPieChart('#piechartIssue' , issue_data);
 };
 
 /**
@@ -67,23 +78,52 @@ var showPieChart = function (pieChartId, reportData) {
     });
 };
 
-var getPieChartData = function (reportData) {
-    return  [
-        {
-            label: "Added",
-            data: reportData.Added,
-            color: '#33CC66 '
-        },
-        {
-            label: "Removed",
-            data: reportData.Removed,
-            color: '#FF9999'
-        },
-        {
-            label: "Modified",
-            data: reportData.Modified,
-            color: '#00ccff'
+var getPieChartData = function (dataResult) {
+    var colors = ["#33CC66" , '#FF9999' , '#00ccff' , "#244166" , "#A1951A" , "#FF0066" ];
+    var data = [], i=0;
+    if(dataResult.Label === "COMMIT") {
+        var commit_data = dataResult.Commit;
+        commit_data.forEach(function (value) {
+            data.push({label: value.name, data: value.commit, color: colors[i++]})
+        });
+
+        if (data.length === 0) {
+            return [{
+                label: "",
+                data: 0,
+                color: colors[0]
+            }];
         }
-    ];
+
+        else {
+            console.log(data);
+            return data;
+        }
+    }
+    else if(dataResult.Label === 'ISSUE'){
+        return [
+            {
+            label: "Comments",
+            data: dataResult.Comments,
+            color : colors[0]
+            },
+            {
+                label : "Closed",
+                data : dataResult.Closed,
+                color : colors[2]
+            },
+            {
+                label : "Updated",
+                data : dataResult.Updated,
+                color : colors[3]
+            },
+            {
+                label : "Opened",
+                data : dataResult.Opened,
+                color : colors[1]
+            }
+        ];
+
+    }
 };
 

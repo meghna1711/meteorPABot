@@ -89,7 +89,7 @@ var getPieChartData = function (reportData) {
     }
 
     else {
-        console.log(">>>>>piechar data >>>" + data);
+        console.log(">>>>>piechart data >>>" + data);
         return data;
     }
 };

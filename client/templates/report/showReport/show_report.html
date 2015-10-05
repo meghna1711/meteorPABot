@@ -49,54 +49,85 @@
                 </div>
             </div>
             <div class="row">
-                <h4><strong><u>Commits Report:</u></strong></h4>
+                <div class="col-lg-6">
+                <h4><strong><u>Commit Report:</u></strong></h4>
                 <table id="piechartTable" class="table table-condensed">
                     <tr>
-                        <th class="reportlabel text-align-center"><strong>{{pieChartTabelData.Label}}</strong></th>
                         <th class="total text-align-center"><strong>TOTAL</strong></th>
                         <th class="added text-align-center"><strong>ADDED</strong></th>
                         <th class="modified text-align-center"><strong>MODIFIED</strong></th>
                         <th class="removed text-align-center"><strong>REMOVED</strong></th>
                     </tr>
                     <tr>
-                        <td class="reportlabel">{{pieChartTabelData.Value}}</td>
                         <td class="total">{{pieChartTabelData.Total}}</td>
                         <td class="added">{{pieChartTabelData.Added}}</td>
                         <td class="modified">{{pieChartTabelData.Modified}}</td>
                         <td class="removed">{{pieChartTabelData.Removed}}</td>
                     </tr>
                 </table>
-            </div>
-            <div class="row">
-                <div id="piechart" class="col-md-push-4">
-                    <canvas id="flotbase" class="flot-base" width="100" height="63"></canvas>
-                    <canvas id="flotoverlay" class="flot-overlay" width="100" height="63"></canvas>
+                    <div class="row">
+                        <div id="piechartCommit" class="col-md-push-4 piechart">
+                            <canvas id="flotbase" class="flot-base" width="100" height="63"></canvas>
+                            <canvas id="flotoverlay" class="flot-overlay" width="100" height="63"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h4><strong><u>Issue Report:</u></strong></h4>
+                    <table id="piechartTable" class="table table-condensed">
+                        <tr>
+                            <th class="total text-align-center"><strong>OPENED</strong></th>
+                            <th class="added text-align-center"><strong>CLOSED</strong></th>
+                            <th class="modified text-align-center"><strong>UPDATED</strong></th>
+                            <th class="removed text-align-center"><strong>COMMENTS</strong></th>
+                        </tr>
+                        <tr>
+                            <td class="total">{{issueTabelData.Opened}}</td>
+                            <td class="added">{{issueTabelData.Closed}}</td>
+                            <td class="modified">{{issueTabelData.Updated}}</td>
+                            <td class="removed">{{issueTabelData.Comments}}</td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div id="piechartIssue" class="col-md-push-4 piechart">
+                            <canvas id="flotbase" class="flot-base" width="100" height="63"></canvas>
+                            <canvas id="flotoverlay" class="flot-overlay" width="100" height="63"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <h4><strong><u>Commits in {{pieChartTabelData.SubLabel}} For The {{pieChartTabelData.Label}}:</u></strong></h4>
-                <table id="barchartTable" class="table table-condensed">
+            <br><br>
+            <div class="row portlet-body">
+                <h4><strong><u>Commit Report Table:</u></strong></h4>
+                <div class="table-responsive scrollable bodycontainer">
+                <table id="commitTable" class="table table-striped table-bordered table-hover table-green table-scrollable">
+                    <thead>
                     <tr>
-                        <th class="reportlabel text-align-center"><strong>{{pieChartTabelData.SubLabel}}</strong></th>
-                        <th class="total text-align-center"><strong>TOTAL</strong></th>
-                        <th class="added text-align-center"><strong>ADDED</strong></th>
-                        <th class="modified text-align-center"><strong>MODIFIED</strong></th>
-                        <th class="removed text-align-center"><strong>REMOVED</strong></th>
+                        <th><strong>#</strong></th>
+                        <th><strong>COMMIT MESSAGE</strong></th>
+                        <th><strong>AUTHOR</strong></th>
+                        <th><strong>DATE</strong></th>
+                        <th><strong>VIEW ON GITHUB</strong></th>
+                        <th><strong>ISSUES</strong></th>
                     </tr>
-                    {{#if barchart}}
-                    {{#each barChartTabelData}}
-                    <tr>
-                        <td class="reportlabel">{{this.name}}</td>
-                        <td class="total">{{this.Total}}</td>
-                        <td class="added">{{this.Added}}</td>
-                        <td class="modified">{{this.Modified}}</td>
-                        <td class="removed">{{this.Removed}}</td>
-                    </tr>
+                    </thead>
+                    {{#each indexedArray Commits}}
+                        <tbody>
+                        <tr>
+                            <td>{{_index}}</td>
+                            <td>{{this.message}}</td>
+                            <td>{{this.author.name}}</td>
+                            <td>{{this.timestamp}}</td>
+                            <td><a href="{{this.url}}" class="btn btn-blue">VIEW</a></td>
+                            <td>5</td>
+                        </tr>
+                        </tbody>
                     {{/each}}
-                    {{/if}}
                 </table>
-                <div id="barchart"></div>
+                </div>
             </div>
+
+
         </div>
     </div>
 </template>
