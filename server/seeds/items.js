@@ -165,6 +165,7 @@ Meteor.startup(function() {
       'repoData' : function(data){
           if(data.hasOwnProperty("head_commit")){
               var commit_data = data.head_commit;
+              commit_data.timestamp = new Date(commit_data.timestamp);
               commit_data.projectId = "2df842e01e7d";
               Commits.insert(commit_data);
               console.log("repoData " + commit_data);
@@ -192,9 +193,9 @@ Meteor.startup(function() {
                       assignee: data.issue.assignee,
                       milestone: data.issue.milestone,
                       comments: data.issue.comments,
-                      created_at: data.issue.created_at,
-                      updated_at: data.issue.updated_at,
-                      closed_at: data.issue.closed_at,
+                      created_at: new Date(data.issue.created_at),
+                      updated_at: new Date(data.issue.updated_at),
+                      closed_at: new Date(data.issue.closed_at),
                       body: data.issue.body
                   },
                   comment: {
@@ -230,8 +231,8 @@ Meteor.startup(function() {
                           type:  data.comment.user.type,
                           site_admin: data.comment.user.site_admin
                       },
-                      created_at: data.comment.created_at,
-                      updated_at: data.comment.updated_at,
+                      created_at: new Date(data.comment.created_at),
+                      updated_at: new Date(data.comment.updated_at),
                       body: data.comment.body
                   };
                   Issues.update({"issue.id" : data.issue.id } , {$set : issue_data});

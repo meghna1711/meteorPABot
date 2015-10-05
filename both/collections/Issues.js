@@ -53,7 +53,7 @@ Issues = new Meteor.Collection('issues' , {
             comments: {type: Number},
             created_at: {type: Date},
             updated_at: {type: Date},
-            closed_at: {type: Object},
+            closed_at: {type: Date},
             body: {type: String}
         },
         comment: {

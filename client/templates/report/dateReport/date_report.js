@@ -48,58 +48,8 @@ Template.dateReport.events({
     }
 });
 
-var generateCommitsReport = function(projectKey , date){
-    if(date.fromMonth === date.toMonth) {
-        getCommitsReportForTheMonth(projectKey , date);
-    }
 
-    else if(date.fromYear === date.toYear){
-       getCommitsReportForTheYear(projectKey , date);
-    }
-};
-
-var getCommitsReportForTheYear = function(projectKey , date){
-    var yearCommits = new yearlyReport();
-    yearCommits.Year = date.fromYear;
-    yearCommits.StartDate = '' + date.fromDate + ', ' + date.fromMonth + ', ' + date.fromYear;
-    yearCommits.EndDate = '' + date.toDate + ', ' + date.toMonth + ', ' + date.toYear;
-    var commitsResult, startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate + 1),
-        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1);
-    commitsResult = Commits.find({
-        projectId: projectKey, timestamp: {
-            $gte: new Date(startdate.toISOString()),
-            $lte: new Date(enddate.toISOString())
-        }
-    } , {$sort : {timestamp : 1}}).fetch();
-    console.log("commit result>>>>>"+commitsResult);
-
-    if(commitsResult){
-        yearCommits.Total=commitsResult.length;
-        commitsResult.forEach(function (value) {
-            var commitDate=new Date(value.timestamp);
-            var index=commitDate.getMonth();
-            yearCommits.Month[index].Total+=1;
-            if(value.added.length>0){
-                yearCommits.Added+=1;
-                yearCommits.Month[index].Added+=1;
-            }
-            if(value.removed.length>0){
-                yearCommits.Removed+=1;
-                yearCommits.Month[index].Removed+=1;
-            }
-            if(value.modified.length>0){
-                yearCommits.Modified+=1;
-                yearCommits.Month[index].Modified+=1;
-            }
-        });
-
-        reportService.setReportData(yearCommits);
-        console.log("year commits >>>>>"+yearCommits);
-    }
-};
-
-
-var getCommitsReportForTheMonth = function(projectKey , date){
+var getCommitsReport = function(projectKey , date){
     var dateCommits = new monthlyReport();
     dateCommits.Month = ''+date.fromMonth+', '+date.fromYear;
     dateCommits.StartDate = '' + date.fromDate + ', ' + date.fromMonth + ', ' + date.fromYear;
@@ -107,12 +57,13 @@ var getCommitsReportForTheMonth = function(projectKey , date){
     dateCommits.noOfDays=new Date(date.fromYear,date.fromMonth,0).getDate();
     var commitResult, startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate + 1),
         enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1);
+    console.log("startdate>>>>"+startdate.toISOString()+">>>>EndDate >>>>"+enddate.toISOString());
     commitResult = Commits.find({
         projectId: projectKey, timestamp: {
             $gte: new Date(startdate.toISOString()),
             $lte: new Date(enddate.toISOString())
         }
-    }).fetch();
+    },{$sort : {timestamp : 1}}).fetch();
     console.log("commit Result>>>>>" + commitResult);
 
     if (commitResult) {
