@@ -2,6 +2,8 @@ yearlyReport = function () {
     return {
         Label: "YEAR",
         SubLabel: "MONTHs",
+        StartDate : '',
+        EndDate :'',
         Year: 0,
         Total: 0,
         Added: 0,

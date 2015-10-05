@@ -95,7 +95,6 @@ var getPieChartData = function (reportData) {
  * */
 
 var showBarChart = function (barChartId, reportData) {
-    console.log("showbarchart >>>>>>");
     var barChartData = getBarChartData(reportData);
     var dataSet = [
         {
@@ -210,7 +209,6 @@ var showBarChart = function (barChartId, reportData) {
 };
 
 var getBarChartData = function (reportData) {
-    console.log("get bar chart >>>>>");
     var barChartData = {},
         barChartTicks = [],
         barWidth = 0,
