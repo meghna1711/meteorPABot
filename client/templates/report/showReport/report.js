@@ -22,9 +22,7 @@ Template.showReport.helpers({
         return {
             Label: reportData.Label,
             SubLabel: reportData.SubLabel,
-            StartDate: reportData.StartDate,
-            Value : reportData.Year ? reportData.Year : reportData.Month,
-            EndDate : reportData.EndDate,
+            Value: reportData.Year ? reportData.Year : reportData.Month ? reportData.Month : reportData.Date,
             Total: reportData.Total,
             Added: reportData.Added,
             Modified: reportData.Modified,
@@ -95,7 +93,6 @@ var getPieChartData = function (reportData) {
  * */
 
 var showBarChart = function (barChartId, reportData) {
-    console.log("showbarchart >>>>>>");
     var barChartData = getBarChartData(reportData);
     var dataSet = [
         {
@@ -210,7 +207,6 @@ var showBarChart = function (barChartId, reportData) {
 };
 
 var getBarChartData = function (reportData) {
-    console.log("get bar chart >>>>>");
     var barChartData = {},
         barChartTicks = [],
         barWidth = 0,
@@ -226,7 +222,7 @@ var getBarChartData = function (reportData) {
             Session.set("barchart" , true);
             maxTick = 13;
             axisLabel='--------Month-------->';
-                dataLimit=maxTick-1;
+            dataLimit=maxTick-1;
             barWidth = 0.12;
             for (var i = 0; i < maxTick-1; i++) {
                 data1[i] = [i + 1, reportData.Month[i].Total];
@@ -243,7 +239,7 @@ var getBarChartData = function (reportData) {
             maxTick = reportData.noOfDays+1;
             dataLimit=maxTick-1;
             axisLabel='--------Day-------->';
-                barWidth = 0.04;
+            barWidth = 0.04;
             for (var i = 0; i < maxTick-1; i++) {
                 data1[i] = [i + 1, reportData.Day[i].Total];
                 data2[i] = [i + 1, reportData.Day[i].Added];
@@ -259,7 +255,7 @@ var getBarChartData = function (reportData) {
             maxTick = 25;
             dataLimit=maxTick-1;
             axisLabel='--------Hour-Hand-------->';
-                barWidth = 0.05;
+            barWidth = 0.05;
             for (var i = 0; i < maxTick-1; i++) {
                 data1[i] = [i + 1, reportData.Hour[i].Total];
                 data2[i] = [i + 1, reportData.Hour[i].Added];

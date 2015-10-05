@@ -2,7 +2,8 @@ dateReport = function () {
     return{
         Label:"DAY",
         SubLabel:"HOURs",
-        Date:'',
+        StartDate:'',
+        EndDate:'',
         Total: 0,
         Added: 0,
         Removed: 0,

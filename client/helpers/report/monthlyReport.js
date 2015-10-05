@@ -2,6 +2,8 @@ monthlyReport = function () {
     return {
         Label: "MONTH",
         SubLabel: "DAYs",
+        StartDate : '',
+        EndDate :"",
         Month:'',
         noOfDays:0,
         Total: 0,

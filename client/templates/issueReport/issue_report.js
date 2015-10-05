@@ -32,6 +32,13 @@ var generateIssueReport = function(issue){
     var newIssue = new issueReport();
     newIssue.Issue = issue.issue.title;
     newIssue.StartDate = issue.issue.created_at.substring(0,10);
+    if(issue.issue.closed_at !== null){
+        newIssue.EndDate = issue.issue.closed_at.substring(0,10);
+    }
+    else {
+        newIssue.EndDate = "Not Yet Closed";
+    }
+
     newIssue.TotalComments = issue.issue.comments;
     newIssue.Status = issue.issue.state;
     newIssue.CreatedBy = issue.issue.user.login;

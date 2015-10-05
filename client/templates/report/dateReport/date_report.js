@@ -33,9 +33,12 @@ Template.dateReport.events({
         e.preventDefault();
 
         var data = {
-            date : +$('#selectDate').val(),
-            month : $('#selectMonth').val(),
-            year : +$('#selectYear').val()
+            fromDate : +$('#selectFromDate').val(),
+            fromMonth : +$('#selectFromMonth').val(),
+            fromYear : +$('#selectFromYear').val(),
+            toDate : +$('#selectToDate').val(),
+            toMonth : +$('#selectToMonth').val(),
+            toYear : +$('#selectToYear').val()
         },
             projectKey = $('#selectProject').val();
         console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>",data);
@@ -46,33 +49,44 @@ Template.dateReport.events({
 });
 
 var generateCommitsReportForTheDate = function(projectKey , date){
-    var dateCommits = new dateReport();
-    dateCommits.Date = ''+date.date+', '+date.month+', '+date.year;
-    var commitResult, regex = new RegExp("^"+date.year+'-'+date.month+'-'+date.date+'(.*)');
-    commitResult = Commits.find({projectId : projectKey  , timestamp : {$regex : regex}}).fetch();
-    console.log(commitResult);
+    if(date.fromMonth === date.toMonth) {
+        var dateCommits = new monthlyReport();
+        dateCommits.Month = ''+date.fromMonth+', '+date.fromYear;
+        dateCommits.StartDate = '' + date.fromDate + ', ' + date.fromMonth + ', ' + date.fromYear;
+        dateCommits.EndDate = '' + date.toDate + ', ' + date.toMonth + ', ' + date.toYear;
+        dateCommits.noOfDays=new Date(date.fromYear,date.fromMonth,0).getDate();
+        var commitResult, startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate + 1),
+            enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1);
+        commitResult = Commits.find({
+            projectId: projectKey, timestamp: {
+                $gte: new Date(startdate.toISOString()),
+                $lt: new Date(enddate.toISOString())
+            }
+        }).fetch();
+        console.log("commit Result>>>>>" + commitResult);
 
-    if(commitResult){
-        dateCommits.Total = commitResult.length;
-        commitResult.forEach(function (value) {
-            var commitDate=new Date(value.timestamp);
-            var index=commitDate.getHours();
-            console.log(index);
-            dateCommits.Hour[index].Total+=1;
-            if(value.added.length>0){
-                dateCommits.Added+=1;
-                dateCommits.Hour[index].Added+=1;
-            }
-            if(value.removed.length>0){
-                dateCommits.Removed+=1;
-                dateCommits.Hour[index].Removed+=1;
-            }
-            if(value.modified.length>0){
-                dateCommits.Modified+=1;
-                dateCommits.Hour[index].Modified+=1;
-            }
-        });
-        console.log(dateCommits);
-        reportService.setReportData(dateCommits);
+        if (commitResult) {
+            dateCommits.Total = commitResult.length;
+            commitResult.forEach(function (value) {
+                var commitDate = new Date(value.timestamp);
+                var index = commitDate.getDate() - 1;
+                dateCommits.Day[index].Total += 1;
+                if (value.added.length > 0) {
+                    dateCommits.Added += 1;
+                    dateCommits.Day[index].Added += 1;
+                }
+                if (value.removed.length > 0) {
+                    dateCommits.Removed += 1;
+                    dateCommits.Day[index].Removed += 1;
+                }
+                if (value.modified.length > 0) {
+                    dateCommits.Modified += 1;
+                    dateCommits.Day[index].Modified += 1;
+                }
+            });
+
+            console.log("date commit for single month >>>>>"+dateCommits);
+            reportService.setReportData(dateCommits);
+        }
     }
 };

@@ -1,4 +1,4 @@
-<template name="showReport">
+<template name="report">
     <div id="page-wrapper">
         <div class="page-content page-content-ease-in">
             <div class="row align-center">
@@ -43,9 +43,7 @@
                     <label>Client Name:  </label>  {{project.clientName}}<br>
                 </div>
                 <div class="col-md-3 col-sm-push-1">
-                    <label>Report Data </label> <br>
-                    <label>From :  </label>  {{pieChartTabelData.StartDate}} <br>
-                    <label>Report for </label>  {{pieChartTabelData.EndDate}} <br>
+                    <label>Report for </label>  {{pieChartTabelData.Label}} : {{pieChartTabelData.Value}}
                 </div>
             </div>
             <div class="row">
@@ -84,15 +82,15 @@
                         <th class="removed text-align-center"><strong>REMOVED</strong></th>
                     </tr>
                     {{#if barchart}}
-                    {{#each barChartTabelData}}
-                    <tr>
-                        <td class="reportlabel">{{this.name}}</td>
-                        <td class="total">{{this.Total}}</td>
-                        <td class="added">{{this.Added}}</td>
-                        <td class="modified">{{this.Modified}}</td>
-                        <td class="removed">{{this.Removed}}</td>
-                    </tr>
-                    {{/each}}
+                        {{#each barChartTabelData}}
+                            <tr>
+                                <td class="reportlabel">{{this.name}}</td>
+                                <td class="total">{{this.Total}}</td>
+                                <td class="added">{{this.Added}}</td>
+                                <td class="modified">{{this.Modified}}</td>
+                                <td class="removed">{{this.Removed}}</td>
+                            </tr>
+                        {{/each}}
                     {{/if}}
                 </table>
                 <div id="barchart"></div>

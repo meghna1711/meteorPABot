@@ -6,7 +6,7 @@ Commits = new Meteor.Collection('commits' , {
        id: {type: String},
        distinct: {type: Boolean},
        message: {type: String},
-       timestamp: {type: String},
+       timestamp: {type: Date},
        url: {type: String},
        author: {
            name: {type: String},

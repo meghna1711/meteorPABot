@@ -11,6 +11,11 @@
     text-align: center;
 }
 
+.piechartArea{
+    border: 1px dashed grey;
+    padding-bottom: 10px;
+}
+
 #piechart {
     padding: 0px;
     position: relative;

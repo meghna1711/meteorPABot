@@ -50,8 +50,8 @@
                             </table>
                         </div>
 
-                        <div class="col-md-6 piechartArea">
-                            <h4><strong><u>Pie Chart Based On Comments By Users</u></strong></h4>
+                        <div class="col-md-6 piechartArea addBorder">
+                            <h5><strong>Pie Chart Based On Comments By Users</strong></h5>
                             {{> piechart}}
                         </div>
                     </div>
@@ -63,7 +63,7 @@
 </template>
 
 <template name="piechart">
-    <div id="piechart" class="col-md-push-4">
+    <div id="piechart" class="col-md-push-2">
         <canvas id="flotbase" class="flot-base" width="100" height="63"></canvas>
         <canvas id="flotoverlay" class="flot-overlay" width="100" height="63"></canvas>
     </div>
