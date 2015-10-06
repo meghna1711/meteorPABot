@@ -190,7 +190,12 @@ Meteor.startup(function() {
                       labels: data.issue.labels,
                       state: data.issue.state,
                       locked: data.issue.locked,
-                      assignee: data.issue.assignee,
+                      assignee: {
+                          login: data.issue.assignee.hasOwnProperty("login") ? data.issue.assignee.login : null,
+                          id: data.issue.assignee.hasOwnProperty("id") ? data.issue.assignee.id : null,
+                          type: data.issue.assignee.hasOwnProperty("type") ? data.issue.assignee.type : null,
+                          site_admin: data.issue.assignee.hasOwnProperty("site_admin") ? data.issue.assignee.site_admin : null
+                          },
                       milestone: data.issue.milestone,
                       comments: data.issue.comments,
                       created_at: new Date(data.issue.created_at),
