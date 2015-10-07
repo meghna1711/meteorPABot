@@ -1,30 +1,61 @@
+var start_date , end_date;
+
+Template.dateReport.rendered = function(){
+    $('#reportrange').daterangepicker({
+            startDate: moment().subtract('days', 29),
+            endDate: moment(),
+            minDate: '01/01/2012',
+            maxDate: '12/31/2017',
+            dateLimit: {
+                days: 60
+            },
+            showDropdowns: true,
+            showWeekNumbers: true,
+            timePicker: false,
+            timePickerIncrement: 1,
+            timePicker12Hour: true,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                'Last 7 Days': [moment().subtract('days', 6), moment()],
+                'Last 30 Days': [moment().subtract('days', 29), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'MM/DD/YYYY',
+            separator: ' to ',
+            locale: {
+                applyLabel: 'Submit',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom Range',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            }
+        },
+        function(start, end) {
+            console.log("Callback has been called!");
+            start_date = new Date(start);
+            end_date = new Date(end);
+            console.log(start_date  + " >>>>>> " + end_date);
+            console.log(">>>> Date >>>>>"+start_date.getDate());
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+    );
+
+    //Set the initial state of the picker label
+    $('#reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+
+};
 
 Template.dateReport.helpers({
     'project' : function(){
         return Project.find({});
-    },
-
-    'Days' : function(){
-        var days = ['01', '02', '03', '04', '05', '06',
-            '07', '08', '09', '10', '11', '12', '13', '14',
-            '15', '16', '17', '18', '19', '20', '21', '22',
-            '23', '24', '25', '26', '27', '28', '29', '30',
-            '31'];
-        return days;
-    },
-
-    'Month' : function(){
-        var month = ['01', '02', '03', '04', '05', '06',
-            '07', '08', '09', '10', '11', '12'];
-        return month;
-    },
-
-    'Year' : function(){
-        var year = [];
-        for(var i=2018 ; i>= 2000 ; i--){
-            year.push(i);
-        }
-        return year;
     }
 });
 
@@ -34,12 +65,12 @@ Template.dateReport.events({
         e.preventDefault();
 
         var data = {
-            fromDate : +$('#selectFromDate').val(),
-            fromMonth : +$('#selectFromMonth').val(),
-            fromYear : +$('#selectFromYear').val(),
-            toDate : +$('#selectToDate').val(),
-            toMonth : +$('#selectToMonth').val(),
-            toYear : +$('#selectToYear').val()
+            fromDate : +start_date.getDate(),
+            fromMonth : +start_date.getMonth() + 1,
+            fromYear : +start_date.getFullYear(),
+            toDate : +end_date.getDate(),
+            toMonth : +end_date.getMonth() + 1,
+            toYear : +end_date.getFullYear()
         },
             projectKey = $('#selectProject').val();
         console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>",data);
@@ -50,9 +81,14 @@ Template.dateReport.events({
     }
 });
 
+/**
+ *
+ * Generating pie chart data for commit report
+ *
+ * */
 
 var getCommitsReport = function(projectKey , date){
-    var dateCommits = new monthlyReport();
+    var dateCommits = new commitReport();
     dateCommits.Month = ''+date.fromMonth+', '+date.fromYear;
     dateCommits.StartDate = '' + date.fromYear + ', ' + date.fromMonth + ', ' + date.fromDate;
     dateCommits.EndDate = '' + date.toYear + ', ' + date.toMonth + ', ' + date.toDate;
@@ -99,14 +135,23 @@ var getCommitsReport = function(projectKey , date){
     }
 };
 
+
+/**
+ *
+ * Generating pie chart data for issue report
+ *
+ * */
+
 var getIssuesReport = function(projectKey , date){
     var dateIssues = new issueReport();
     dateIssues.StartDate = '' + date.fromDate + ', ' + date.fromMonth + ', ' + date.fromYear;
     dateIssues.EndDate = '' + date.toDate + ', ' + date.toMonth + ', ' + date.toYear;
-    var issueResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate + 1),
-        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1);
+    var issueResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate),
+        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate);
+    console.log("issue report >>>>>>>>>>"+startdate + ">>>>>>>>" + enddate);
     issueResult = Issues.find({
-        projectId : projectKey , "issue.created_at" : {
+        projectId : projectKey ,
+        "issue.created_at" : {
             $gte : new Date(startdate.toISOString()),
             $lte : new Date(enddate.toISOString())
         }
@@ -121,7 +166,7 @@ var getIssuesReport = function(projectKey , date){
             if(value.issue.state === 'closed'){
                 dateIssues.Closed+=1;
             }
-            if(value.issue.state === 'updated'){
+            if(value.issue.updated_at !== null){
                 dateIssues.Updated+=1;
             }
         });

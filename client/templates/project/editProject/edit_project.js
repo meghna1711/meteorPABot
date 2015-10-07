@@ -7,16 +7,6 @@ Template.editProject.rendered = function(){
 };
 
 Template.editProject.helpers({
-    'projects' : function(){
-        if(_.isEmpty(this)) {
-            return Project.find({});
-        }
-        else {
-            console.log('projects called');
-            return false;
-        }
-    },
-
     'project' : function(){
         projectKey = this.projectKey;
         return this;
@@ -32,11 +22,6 @@ Template.editProject.helpers({
 });
 
 Template.editProject.events({
-    'change #selectedProject' : function(e,t){
-        projectKey = $('#selectedProject').val();
-        console.log(projectKey);
-    },
-
     'click .addUserAndPermission' : function(e){
         e.preventDefault();
 

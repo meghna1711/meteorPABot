@@ -190,11 +190,11 @@ Meteor.startup(function() {
                       labels: data.issue.labels,
                       state: data.issue.state,
                       locked: data.issue.locked,
-                      assignee: {
-                          login: data.issue.assignee.hasOwnProperty("login") ? data.issue.assignee.login : null,
-                          id: data.issue.assignee.hasOwnProperty("id") ? data.issue.assignee.id : null,
-                          type: data.issue.assignee.hasOwnProperty("type") ? data.issue.assignee.type : null,
-                          site_admin: data.issue.assignee.hasOwnProperty("site_admin") ? data.issue.assignee.site_admin : null
+                      assignee: data.issue.assignee === null ? null : {
+                          login: data.issue.assignee.login,
+                          id:  data.issue.assignee.id,
+                          type:  data.issue.assignee.type,
+                          site_admin: data.issue.assignee.site_admin
                           },
                       milestone: data.issue.milestone,
                       comments: data.issue.comments,
@@ -246,11 +246,10 @@ Meteor.startup(function() {
                   Comments.insert(comment);
                   console.log(">>>>>>>>>>>> Comment Inserted >>>>>>>>>>");
               } else {
-                  Issues.update({"issue.id" : data.issue.id } , {$set : {issue : issue_data.issue}});
+                  Issues.update({"issue.id" : data.issue.id } , {$set : issue_data});
               }
 
               console.log(issue_data);
-
           }
 
       }

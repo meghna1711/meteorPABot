@@ -1,14 +1,7 @@
+var projectKey="";
 Template.removeProject.helpers({
-    'projects' : function(){
-        if(_.isEmpty(this)) {
-            return Project.find({});
-        }
-        else {
-            console.log('projects called');
-            return false;
-        }
-    },
     'project' : function(){
+        projectKey = this.projectKey;
         return this;
     }
 });
@@ -18,13 +11,14 @@ Template.removeProject.events({
         e.preventDefault();
         console.log("button pressed !!");
 
-        var project = $(e.target).find('#selectedProject').val();
-        Meteor.call('removeProject' , project , function(err){
+        Meteor.call('removeProject' , projectKey , function(err){
             if(err){
                 throwError("Project cannot be deleted !!");
             }else {
                 throwError("Project is successfully Deleted !!");
             }
         });
+
+        Router.go('viewProject');
     }
 });

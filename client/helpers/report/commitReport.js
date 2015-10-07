@@ -1,4 +1,4 @@
-monthlyReport = function () {
+commitReport = function () {
     return {
         StartDate : '',
         EndDate :"",

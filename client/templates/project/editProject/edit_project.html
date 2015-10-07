@@ -23,16 +23,8 @@
 
                         <form role="form" id="selectProject">
                             <div class="form-group">
-                                <select id="selectedProject" class="form-control">
-                                    {{#if projects}}
-                                        <option value="-1" selected>Select Project</option>
-                                        {{#each projects}}
-                                            <option value="{{this.projectKey}}">{{this.name}}</option>
-                                        {{/each}}
-                                    {{else}}
-                                        <option value="{{project.projectKey}}" selected>{{project.name}}</option>
-                                    {{/if}}
-                                </select>
+                                <input type="text" class="form-control" id="selectedProject" value="{{project.name}}"
+                                        placeholder="Name of project">
                             </div>
                             <div class="form-group">
                             <textarea class="form-control" id="project-description" value="{{project.description}}"

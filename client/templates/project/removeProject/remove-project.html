@@ -9,20 +9,12 @@
                     </div>
                     <form role="form" id="selectProject">
                         <div class="form-group">
-                            <select id="selectedProject" class="form-control">
-                                {{#if projects}}
-                                <option value="-1" selected>Select Project</option>
-                                    {{#each projects}}
-                                        <option value="{{this.projectKey}}">{{this.name}}</option>
-                                    {{/each}}
-                                    {{else}}
-                                    <option value="{{project.projectKey}}" selected>{{project.name}}</option>
-                                {{/if}}
-                            </select>
-                        </div>
+                            <input type="text" id="selectedProject" value="{{project.name}}"
+                                    placeholder="Project Name">
+                        </div><br><br>
 
                         <button type="submit" id="updateProject" class="btn btn-green btn-block fa fa-arrow-circle-o-right fa-lg">Delete Project</button>
-                    </form>
+                    </form><br>
                     <a class="btn btn-warning btn-block" href="{{pathFor 'dashboard'}}"> <i class="fa fa-ban fa-lg"></i> Cancel</a>
                 </div>
             </div>

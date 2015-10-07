@@ -7,6 +7,14 @@
             <div class="row">
                 <div class="col-md-4 col-md-push-1">
                     <label>Project Name: </label>  {{project.name}}<br><br>
+                    <label>Report Data: </label>
+                    <label>From :  </label>  {{pieChartTabelData.StartDate}} <br>
+                    <label>To :  </label>  {{pieChartTabelData.EndDate}} <br>
+                </div>
+                <div class="col-md-4 col-md-push-1">
+                    <label>Client Name:  </label>  {{project.clientName}}
+                </div>
+                <div class="col-md-4">
                     <div class="portlet portlet-default">
                         <div class="portlet-heading">
                             <div class="portlet-title">
@@ -14,6 +22,7 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
+
                         <div class="portlet-body">
                             <div class="table-responsive">
                                 <table class="table">
@@ -34,23 +43,14 @@
                                     {{/each}}
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-md-push-1">
-                    <label>Client Name:  </label>  {{project.clientName}}<br>
-                </div>
-                <div class="col-md-3 col-sm-push-1">
-                    <label>Report Data </label> <br>
-                    <label>From :  </label>  {{pieChartTabelData.StartDate}} <br>
-                    <label>Report for </label>  {{pieChartTabelData.EndDate}} <br>
-                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                <h4><strong><u>Commit Report:</u></strong></h4>
+                <h4>Commit Report:</h4>
                 <table id="piechartTable" class="table table-condensed">
                     <tr>
                         <th class="total text-align-center"><strong>TOTAL</strong></th>
@@ -66,14 +66,14 @@
                     </tr>
                 </table>
                     <div class="row">
-                        <div id="piechartCommit" class="col-md-push-4 piechart">
+                        <div id="piechartCommit" class="col-md-push-3 piechart">
                             <canvas id="flotbase" class="flot-base" width="100" height="63"></canvas>
                             <canvas id="flotoverlay" class="flot-overlay" width="100" height="63"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <h4><strong><u>Issue Report:</u></strong></h4>
+                    <h4>Issue Report:</h4>
                     <table id="piechartTable" class="table table-condensed">
                         <tr>
                             <th class="total text-align-center"><strong>OPENED</strong></th>
@@ -89,7 +89,7 @@
                         </tr>
                     </table>
                     <div class="row">
-                        <div id="piechartIssue" class="col-md-push-4 piechart">
+                        <div id="piechartIssue" class="col-md-push-3 piechart">
                             <canvas id="flotbase" class="flot-base" width="100" height="63"></canvas>
                             <canvas id="flotoverlay" class="flot-overlay" width="100" height="63"></canvas>
                         </div>
@@ -98,9 +98,9 @@
             </div>
             <br><br>
             <div class="row portlet-body">
-                <h4><strong><u>Commit Report Table:</u></strong></h4>
+                <h3><strong>Commit Report Table:</strong></h3>
                 <div class="table-responsive scrollable bodycontainer">
-                <table id="commitTable" class="table table-striped table-bordered table-hover table-green table-scrollable">
+                <table id="commitTable" class="table table-striped table-bordered table-hover table-blue table-scrollable">
                     <thead>
                     <tr>
                         <th><strong>#</strong></th>
@@ -108,7 +108,7 @@
                         <th><strong>AUTHOR</strong></th>
                         <th><strong>DATE</strong></th>
                         <th><strong>VIEW ON GITHUB</strong></th>
-                        <th><strong>ISSUES</strong></th>
+                        <th><strong>ISSUES LINKED</strong></th>
                     </tr>
                     </thead>
                     {{#each indexedArray Commits}}
@@ -118,16 +118,200 @@
                             <td>{{this.message}}</td>
                             <td>{{this.author.name}}</td>
                             <td>{{this.timestamp}}</td>
-                            <td><a href="{{this.url}}" class="btn btn-blue">VIEW</a></td>
-                            <td>5</td>
+                            <td><a href="{{this.url}}" class="btn btn-info btn-sm">VIEW</a></td>
+                            <td>
+                                <ul class="label-table">
+                                    {{#each this.issue}}
+                                        <li>{{this.number}} -> {{this.title}}</li>
+                                    {{/each}}
+                                </ul>
+                            </td>
                         </tr>
                         </tbody>
                     {{/each}}
                 </table>
                 </div>
             </div>
+            <br>
+
+            <center><h3><strong>ISSUE REPORT:</strong></h3></center><br>
+            <h4>Issues Opened:</h4>
+            <div class="row portlet-body">
+                <div class="table-responsive scrollable bodycontainer">
+                    <table id="openIssueTable" class="table table-striped table-bordered table-hover table-blue table-scrollable">
+                        <thead>
+                        <tr>
+                            <th><strong>#</strong></th>
+                            <th><strong>ISSUE NUMBER</strong></th>
+                            <th><strong>TITLE</strong></th>
+                            <th><strong>CREATED BY</strong></th>
+                            <th><strong>LABELS</strong></th>
+                            <th><strong>ASSIGNEE</strong></th>
+                            <th><strong>MILESTONE</strong></th>
+                            <th><strong>DATE</strong></th>
+                            <th><strong>VIEW ON GITHUB</strong></th>
+                        </tr>
+                        </thead>
+                        {{#each indexedArray OpenIssue}}
+                            <tbody>
+                            <tr>
+                                <td>{{_index}}</td>
+                                <td>#{{this.issue.number}}</td>
+                                <td>{{this.issue.title}}</td>
+                                <td>{{this.issue.user.login}}</td>
+                                <td>
+                                    <ul class="label-table">
+                                        {{#each this.issue.labels}}
+                                            <li class='label-table-data' style="background-color : #{{this.color}}">{{this.name}}</li>
+                                        {{/each}}
+                                    </ul>
+                                </td>
+                                <td>{{this.issue.assignee.login}}</td>
+                                <td>{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</td>
+                                <td>{{this.issue.created_at}}</td>
+                                <td><a href="{{this.issue.url}}" class="btn btn-info btn-sm">VIEW</a></td>
+                            </tr>
+                            </tbody>
+                        {{/each}}
+                    </table>
+                </div>
+            </div><br>
 
 
+            <h4><strong>Issues Closed:</strong></h4>
+            <div class="row portlet-body">
+                <div class="table-responsive scrollable bodycontainer">
+                    <table id="openIssueTable" class="table table-striped table-bordered table-hover table-blue table-scrollable">
+                        <thead>
+                        <tr>
+                            <th><strong>#</strong></th>
+                            <th><strong>ISSUE NUMBER</strong></th>
+                            <th><strong>TITLE</strong></th>
+                            <th><strong>CREATED BY</strong></th>
+                            <th><strong>LABELS</strong></th>
+                            <th><strong>ASSIGNEE</strong></th>
+                            <th><strong>MILESTONE</strong></th>
+                            <th><strong>CLOSING DATE</strong></th>
+                            <th><strong>VIEW ON GITHUB</strong></th>
+                        </tr>
+                        </thead>
+                        {{#each indexedArray ClosedIssue}}
+                            <tbody>
+                            <tr>
+                                <td>{{_index}}</td>
+                                <td>#{{this.issue.number}}</td>
+                                <td>{{this.issue.title}}</td>
+                                <td>{{this.issue.user.login}}</td>
+                                <td>
+                                    <ul class="label-table">
+                                        {{#each this.issue.labels}}
+                                            <li class='label-table-data' style="background-color : #{{this.color}}">{{this.name}}</li>
+                                        {{/each}}
+                                    </ul>
+                                </td>
+                                <td>{{this.issue.assignee.login}}</td>
+                                <td>{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</td>
+                                <td>{{this.issue.closed_at}}</td>
+                                <td><a href="{{this.issue.url}}" class="btn btn-info btn-sm">VIEW</a></td>
+                            </tr>
+                            </tbody>
+                        {{/each}}
+                    </table>
+                </div>
+            </div><br>
+
+            <h4><strong>Issues Updated:</strong></h4>
+            <div class="row portlet-body">
+                <div class="table-responsive scrollable bodycontainer">
+                    <table id="openIssueTable" class="table table-striped table-bordered table-hover table-blue table-scrollable">
+                        <thead>
+                        <tr>
+                            <th><strong>#</strong></th>
+                            <th><strong>ISSUE NUMBER</strong></th>
+                            <th><strong>TITLE</strong></th>
+                            <th><strong>CREATED BY</strong></th>
+                            <th><strong>LABELS</strong></th>
+                            <th><strong>ASSIGNEE</strong></th>
+                            <th><strong>MILESTONE</strong></th>
+                            <th><strong>LAST UPDATED</strong></th>
+                            <th><strong>VIEW ON GITHUB</strong></th>
+                        </tr>
+                        </thead>
+                        {{#each indexedArray UpdatedIssue}}
+                            <tbody>
+                            <tr>
+                                <td>{{_index}}</td>
+                                <td>#{{this.issue.number}}</td>
+                                <td>{{this.issue.title}}</td>
+                                <td>{{this.issue.user.login}}</td>
+                                <td>
+                                    <ul class="label-table">
+                                        {{#each this.issue.labels}}
+                                            <li class='label-table-data' style="background-color : #{{this.color}}">{{this.name}}</li>
+                                        {{/each}}
+                                    </ul>
+                                </td>
+                                <td>{{this.issue.assignee.login}}</td>
+                                <td>{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</td>
+                                <td>{{this.issue.updated_at}}</td>
+                                <td><a href="{{this.issue.url}}" class="btn btn-info btn-sm">VIEW</a></td>
+                            </tr>
+                            </tbody>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+
+            <h4>Issues Comments:</h4>
+            <div class="row portlet-body">
+                <div class="table-responsive scrollable bodycontainer">
+                    <table id="openIssueTable" class="table table-striped table-bordered table-hover table-blue table-scrollable">
+                        <thead>
+                        <tr>
+                            <th><strong>#</strong></th>
+                            <th><strong>ISSUE NUMBER</strong></th>
+                            <th><strong>TITLE</strong></th>
+                            <th><strong>CREATED BY</strong></th>
+                            <th><strong>COMMENTS</strong></th>
+                        </tr>
+                        </thead>
+                        {{#each indexedArray CommentIssue}}
+                            <tbody>
+                            <tr>
+                                <td>{{_index}}</td>
+                                <td>#{{this.issue.number}}</td>
+                                <td>{{this.issue.title}}</td>
+                                <td>{{this.issue.user.login}}</td>
+                                <td>
+                                    <table class="comment-table">
+                                    <thead>
+                                    <tr class="comment-table-heading">
+                                        <th>#</th>
+                                        <th>BODY</th>
+                                        <th>COMMENTED BY</th>
+                                        <th>DATE</th>
+                                        <th>VIEW</th>
+                                    </tr>
+                                    </thead>
+                                    {{#each indexedArray this.commentsData}}
+                                        <tbody>
+                                        <tr class="comment-table-body">
+                                            <td>{{_index}}</td>
+                                            <td>{{this.body}}</td>
+                                            <td>{{this.user.login}}</td>
+                                            <td>{{this.created_at}}</td>
+                                            <td><a href="{{this.url}}" class="btn btn-info btn-xs">VIEW</a></td>
+                                        </tr>
+                                        </tbody>
+                                    {{/each}}
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </template>

@@ -1383,6 +1383,12 @@ fieldset[disabled] .btn-dark-blue.active {
     background-color: #16a085;
 }
 
+ table.table-blue thead{
+     color: #fff;
+     text-align: center;
+     background-color: #34495E;
+ }
+
 /* Custom Modal Styles
 
            ,8.       ,8.           ,o888888o.     8 888888888o.            .8.          8 8888           d888888o.   
@@ -2160,4 +2166,34 @@ input[type="checkbox"]:checked::after,
 
 .height-280{
     height : 280px;
+}
+
+.label-table{
+    list-style-type: none;
+    align-items: center;
+    padding-left: 0px;
+}
+
+.label-table-data{
+    margin : 2px;
+    border-radius : 7px;
+    text-align: center;
+}
+
+.comment-table{
+    width : 670px;
+}
+
+.comment-table-heading > th {
+    border : 1px solid #BFBABA;
+    text-align: center;
+    background-color: #34495E;
+    color: white;
+}
+
+.comment-table-body > td {
+    border : 1px solid #BFBABA;
+    text-align: left;
+    color : black;
+    padding : 10px;
 }

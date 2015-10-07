@@ -44,15 +44,7 @@ Router.route('/project/editProject/:projectKey' , {
 /**
  * edit project when project key is not passed
  * */
-Router.route('/project/editProject' , {
-  name : 'editAnyProject',
-  template : 'editProject',
-  layoutTemplate : 'mainLayout',
-  waitOn : function(){
-    return Meteor.subscribe('project');
-  }
 
-});
 
 Router.route('/project/viewProject',{
   name : 'viewProject',
@@ -66,15 +58,6 @@ Router.route('/project/viewProject/showProject/:projectKey',{
   name : 'showProject',
   layoutTemplate : 'mainLayout',
   data : function(){return Project.findOne({projectKey : this.params.projectKey})},
-  waitOn : function(){
-    return Meteor.subscribe('project');
-  }
-});
-
-Router.route('/project/removeProject',{
-  name : 'removeAnyProject',
-  layoutTemplate : 'mainLayout',
-  template : 'removeProject',
   waitOn : function(){
     return Meteor.subscribe('project');
   }
@@ -115,47 +98,14 @@ Router.route('/report/showReport/:projectKey' , {
   waitOn : function(){
     return [
       Meteor.subscribe('project'),
+      Meteor.subscribe('issues'),
+      Meteor.subscribe('comments'),
       Meteor.subscribe('commits')
     ];
   }
 });
 
-Router.route('/report/monthReport' , {
-  name : 'monthReport',
-  layoutTemplate : 'mainLayout',
-  waitOn : function(){
-    return [
-      Meteor.subscribe('project'),
-      Meteor.subscribe('commits')
-    ];
-  }
-});
 
-Router.route('/report/yearReport' , {
-  name : 'yearReport',
-  layoutTemplate : 'mainLayout',
-  waitOn : function(){
-    return [
-      Meteor.subscribe('project'),
-      Meteor.subscribe('commits')
-    ];
-  }
-});
-
-Router.route('/report/issueReport/:projectKey',{
-  name : 'issueReport',
-  layoutTemplate : 'mainLayout',
-  waitOn : function(){
-    return [
-        Meteor.subscribe('project'),
-        Meteor.subscribe('issues'),
-        Meteor.subscribe('comments')
-    ]
-  },
-  data : function(){
-    return Project.findOne({projectKey : this.params.projectKey});
-  }
-});
 
 Router.route('/payload', function(){
   var eventobj = this.request.body;

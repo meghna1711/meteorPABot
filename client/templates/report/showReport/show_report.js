@@ -1,4 +1,3 @@
-
 Template.showReport.helpers({
     'project' : function(){
         return this;
@@ -41,12 +40,92 @@ Template.showReport.helpers({
 
     'Commits' : function(){
         var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
-        return Commits.find({projectId : this.projectKey,
+         var commit_data = Commits.find({projectId : this.projectKey,
             timestamp : {
                 $gte : new Date(start_date.toISOString()),
                 $lte : new Date(end_date.toISOString())
             }
-        } , {$sort : {timestamp : 1}});
+        } , {$sort : {timestamp : 1}}).fetch();
+
+        commit_data.forEach(function(value){
+            var issue_number = value.message.match(/#\d+/g);
+            console.log(issue_number);
+            if(issue_number){
+                value.issue = [];
+                for(var i=0 ; i<issue_number.length ; i++) {
+                    var num = +issue_number[i].match(/\d+/);
+                    console.log(num);
+                    var issues = Issues.find({"issue.number": num}).fetch()[0];
+                    value.issue.push({ number : "#"+num , title : issues.issue.title});
+                }
+            }
+        });
+        return commit_data;
+    },
+
+    'OpenIssue' : function(){
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var issues = Issues.find({
+            projectId : this.projectKey,
+            "issue.created_at" : {
+                $gte : new Date(start_date.toISOString()),
+                $lte : new Date(end_date.toISOString())
+            },
+            "issue.state" : "open"
+        } , {$sort : {"issue.created_at" : 1}});
+        console.log(issues);
+        return issues;
+    },
+
+    'ClosedIssue' : function(){
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var issues = Issues.find({
+            projectId : this.projectKey,
+            "issue.created_at" : {
+                $gte : new Date(start_date.toISOString()),
+                $lte : new Date(end_date.toISOString())
+            },
+            "issue.state" : "closed"
+        } , {$sort : {"issue.created_at" : 1}});
+        console.log(issues);
+        return issues;
+    },
+
+    'UpdatedIssue' : function(){
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var issues = Issues.find({
+            projectId : this.projectKey,
+            "issue.created_at" : {
+                $gte : new Date(start_date.toISOString()),
+                $lte : new Date(end_date.toISOString())
+            },
+            "issue.updated_at" : {$ne : null}
+        } , {$sort : {"issue.updated_at" : 1}});
+        console.log(issues);
+        return issues;
+    },
+
+    'CommentIssue' : function(){
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var issues = Issues.find({
+            projectId : this.projectKey,
+            "issue.created_at" : {
+                $gte : new Date(start_date.toISOString()),
+                $lte : new Date(end_date.toISOString())
+            },
+            "issue.comments" : {$ne : 0}
+        } , {$sort : {"issue.created_at" : 1}}).fetch();
+
+        console.log(issues);
+        issues.forEach(function(value){
+                var comments = [];
+                var comments = Comments.find({issueId : value.issue.id}).fetch();
+                value.commentsData = comments;
+
+
+        });
+        console.log(issues);
+        return issues;
     }
 
 });

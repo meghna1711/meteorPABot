@@ -36,7 +36,7 @@ Template.dashboard.rendered = function() {
             startDate: moment().subtract('days', 29),
             endDate: moment(),
             minDate: '01/01/2012',
-            maxDate: '12/31/2014',
+            maxDate: '12/31/2017',
             dateLimit: {
                 days: 60
             },
@@ -71,6 +71,7 @@ Template.dashboard.rendered = function() {
         },
         function(start, end) {
             console.log("Callback has been called!");
+            console.log(new Date(start)  + " >>>>>> " + new Date(end));
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         }
     );

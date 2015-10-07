@@ -10,56 +10,19 @@
                         <select id="selectProject" class="form-control">
                             <option value="-1" selected>Select Project</option>
                             {{#each project}}
-                            <option value={{this.projectKey}}>{{this.name}}</option>
+                                <option value={{this.projectKey}}>{{this.name}}</option>
                             {{/each}}
                         </select>
                     </div>
+                    <br>
                     <div class="form-group">
-                        <label>From :</label>
-                        <select id="selectFromDate" class="dayreport">
-                            <option value="-1" selected>DD</option>
-                            {{#each Days}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-
-                        <select id="selectFromMonth" class="dayreport">
-                            <option value="-1" selected>MM</option>
-                            {{#each Month}}
-                            <option  value='{{this}}'>{{this}}</option>
-                            {{/each}}
-                        </select>
-
-                        <select id="selectFromYear" class="dayreport">
-                            <option value="-1" selected>YYYY</option>
-                            {{#each Year}}
-                            <option value='{{this}}'>{{this}}</option>
-                            {{/each}}
-                        </select>
-                    </div><br>
-                    <div class="form-group">
-                        <label>To :</label>
-                        <select id="selectToDate" class="dayreport">
-                            <option value="-1" selected>DD</option>
-                            {{#each Days}}
-                                <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-
-                        <select id="selectToMonth" class="dayreport">
-                            <option value="-1" selected>MM</option>
-                            {{#each Month}}
-                                <option  value='{{this}}'>{{this}}</option>
-                            {{/each}}
-                        </select>
-
-                        <select id="selectToYear" class="dayreport">
-                            <option value="-1" selected>YYYY</option>
-                            {{#each Year}}
-                                <option value='{{this}}'>{{this}}</option>
-                            {{/each}}
-                        </select>
+                        <label for="selectProject">Select Date Range:</label><br>
+                        <center><div id="reportrange" class="btn btn-green btn-square date-picker">
+                            <i class="fa fa-calendar"></i>
+                            <span class="date-range"></span> <i class="fa fa-caret-down"></i>
+                        </div></center>
                     </div>
+                    <br><br>
                     <a href="#"><input type="button" id="getDateReport" value="Generate Report"
                                                   class="btn btn-info btn-block"></a>
                 </form>
