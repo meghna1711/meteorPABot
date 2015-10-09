@@ -100,12 +100,14 @@ var getCommitsReport = function(projectKey , date){
     dateCommits.EndDate = '' + date.toYear + ', ' + date.toMonth + ', ' + date.toDate;
     dateCommits.noOfDays=new Date(date.fromYear,date.fromMonth,0).getDate();
     var commitResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate + 1),
-        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1);
-    console.log("startdate>>>>"+startdate.toISOString()+">>>>EndDate >>>>"+enddate.toISOString());
+    //endDate should include 23hrs of that day
+        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1 , 23 , 0);
+    console.log("startdate>>>>"+startdate+">>>>EndDate >>>>"+enddate);
     commitResult = Commits.find({
         projectId: projectKey, timestamp: {
-            $gte: new Date(startdate.toISOString()),
-            $lte: new Date(enddate.toISOString())
+            $lte: new Date(enddate.toISOString()),
+            $gte: new Date(startdate.toISOString())
+
         }
     },{$sort : {timestamp : 1}}).fetch();
     console.log("commit Result>>>>>" + commitResult);
@@ -153,13 +155,15 @@ var getIssuesReport = function(projectKey , date){
     dateIssues.StartDate = '' + date.fromDate + ', ' + date.fromMonth + ', ' + date.fromYear;
     dateIssues.EndDate = '' + date.toDate + ', ' + date.toMonth + ', ' + date.toYear;
     var issueResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate),
-        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate);
+        //endDate should include 23hrs of that day
+        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate , 23 , 0 , 0);
     console.log("issue report >>>>>>>>>>"+startdate + ">>>>>>>>" + enddate);
     issueResult = Issues.find({
         projectId : projectKey ,
         "issue.created_at" : {
-            $gte : new Date(startdate.toISOString()),
-            $lte : new Date(enddate.toISOString())
+            $lte : new Date(enddate.toISOString()),
+            $gte : new Date(startdate.toISOString())
+
         }
     } , {$sort : {"issue.created_at" : 1}}).fetch();
     console.log("issue Result>>>>>" + issueResult);

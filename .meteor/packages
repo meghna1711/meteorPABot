@@ -64,3 +64,5 @@ gadicohen:phantomjs
 bryanmorgan:webshot
 dfischer:phantomjs
 percolate:synced-cron
+meteorhacks:ssr
+mquandalle:jade-compiler

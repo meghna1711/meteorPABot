@@ -1,20 +1,3 @@
-Template.showReport.events({
-    'click #saveAsPDF' : function(e){
-        e.preventDefault();
-
-        var path = Router.current().route.path(this);
-        console.log(path);
-
-        var text = $('div#page-wrapper').html();
-
-        Meteor.call('sendTemplate' , text , this , function(err,res){
-            if(err){
-                console.log("webshot method not executed >>>" + err);
-            }
-        });
-    }
-});
-
 Template.showReport.helpers({
     'project' : function(){
         return this;
@@ -56,11 +39,11 @@ Template.showReport.helpers({
     },
 
     'Commits' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate+ " 23:00:00");
          var commit_data = Commits.find({projectId : this.projectKey,
             timestamp : {
-                $gte : new Date(start_date.toISOString()),
-                $lte : new Date(end_date.toISOString())
+                $lte : new Date(end_date.toISOString()),
+                $gte : new Date(start_date.toISOString())
             }
         } , {$sort : {timestamp : 1}}).fetch();
 
@@ -82,12 +65,12 @@ Template.showReport.helpers({
     },
 
     'OpenIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
         var issues = Issues.find({
             projectId : this.projectKey,
             "issue.created_at" : {
-                $gte : new Date(start_date.toISOString()),
-                $lte : new Date(end_date.toISOString())
+                $lte : new Date(end_date.toISOString()),
+                $gte : new Date(start_date.toISOString())
             },
             "issue.state" : "open"
         } , {$sort : {"issue.created_at" : 1}}).fetch();
@@ -101,12 +84,12 @@ Template.showReport.helpers({
     },
 
     'ClosedIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
         var issues = Issues.find({
             projectId : this.projectKey,
-            "issue.created_at" : {
-                $gte : new Date(start_date.toISOString()),
-                $lte : new Date(end_date.toISOString())
+            "issue.closed_at" : {
+                $lte : new Date(end_date.toISOString()),
+                $gte : new Date(start_date.toISOString())
             },
             "issue.state" : "closed"
         } , {$sort : {"issue.created_at" : 1}}).fetch();
@@ -119,12 +102,12 @@ Template.showReport.helpers({
     },
 
     'UpdatedIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
         var issues = Issues.find({
             projectId : this.projectKey,
-            "issue.created_at" : {
-                $gte : new Date(start_date.toISOString()),
-                $lte : new Date(end_date.toISOString())
+            "issue.updated_at" : {
+                $lte : new Date(end_date.toISOString()),
+                $gte : new Date(start_date.toISOString())
             },
             "issue.updated_at" : {$ne : null}
         } , {$sort : {"issue.updated_at" : 1}}).fetch();
@@ -136,12 +119,13 @@ Template.showReport.helpers({
     },
 
     'CommentIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate);
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
         var issues = Issues.find({
             projectId : this.projectKey,
             "issue.created_at" : {
-                $gte : new Date(start_date.toISOString()),
-                $lte : new Date(end_date.toISOString())
+                $lte : new Date(end_date.toISOString()),
+                $gte : new Date(start_date.toISOString())
+
             },
             "issue.comments" : {$ne : 0}
         } , {$sort : {"issue.created_at" : 1}}).fetch();
