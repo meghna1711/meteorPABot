@@ -6,6 +6,7 @@ Issues = new Meteor.Collection('issues' , {
         action: {type: String},
         issue: {
             url: {type: String},
+            html_url : {type : String},
             id: {type: Number},
             number: {type: Number},
             title: {type: String},

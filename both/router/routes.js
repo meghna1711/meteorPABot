@@ -28,6 +28,11 @@ Router.route('/project/addproject' , {
   }
 });
 
+
+
+
+
+
 /**
  * edit project when project key is passed
  * */
@@ -39,6 +44,9 @@ Router.route('/project/editProject/:projectKey' , {
     return Meteor.subscribe('project');
   }
 });
+
+
+
 
 
 /**
@@ -54,6 +62,9 @@ Router.route('/project/viewProject',{
   }
 });
 
+
+
+
 Router.route('/project/viewProject/showProject/:projectKey',{
   name : 'showProject',
   layoutTemplate : 'mainLayout',
@@ -62,6 +73,9 @@ Router.route('/project/viewProject/showProject/:projectKey',{
     return Meteor.subscribe('project');
   }
 });
+
+
+
 
 Router.route('/project/removeProject/:projectKey',{
   name : 'removeProject',
@@ -74,9 +88,18 @@ Router.route('/project/removeProject/:projectKey',{
   }
 });
 
+
+
+
+
+
+
 /**
  * Routes for generating Report
  * */
+
+
+
 Router.route('/report/dateReport' , {
   name : 'dateReport',
   layoutTemplate : 'mainLayout',
@@ -88,6 +111,8 @@ Router.route('/report/dateReport' , {
     ];
   }
 });
+
+
 
 Router.route('/report/showReport/:projectKey' , {
   name : 'showReport',
@@ -107,6 +132,17 @@ Router.route('/report/showReport/:projectKey' , {
 
 
 
+
+
+
+/**
+ *
+ * Server side Routes
+ *
+ * */
+
+
+
 Router.route('/payload', function(){
   var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , function(err){
@@ -121,6 +157,10 @@ Router.route('/payload', function(){
 }, {
   where : 'server'
 });
+
+
+
+
 
 Router.plugin('ensureSignedIn', {
   only: ['dashboard']

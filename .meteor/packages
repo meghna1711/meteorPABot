@@ -55,3 +55,12 @@ spacebars
 check
 bruz:github-api
 mrt:github
+ongoworks:pdf
+meteorhacks:npm
+
+
+npm-container
+gadicohen:phantomjs
+bryanmorgan:webshot
+dfischer:phantomjs
+percolate:synced-cron

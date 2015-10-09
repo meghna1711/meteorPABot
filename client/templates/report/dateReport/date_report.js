@@ -73,11 +73,17 @@ Template.dateReport.events({
             toYear : +end_date.getFullYear()
         },
             projectKey = $('#selectProject').val();
-        console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>",data);
-        getCommitsReport(projectKey , data);
-        getIssuesReport(projectKey , data);
+        console.log(projectKey);
+        if(projectKey !== '-1') {
+            console.log(">>>>>>>>>>>>>>>date>>>>>>>>>>>>>>>", data);
+            getCommitsReport(projectKey, data);
+            getIssuesReport(projectKey, data);
 
-        Router.go('showReport' , {projectKey : projectKey});
+            Router.go('showReport', {projectKey: projectKey});
+        }
+        else {
+            throwError("Please Select a Project !!");
+        }
     }
 });
 

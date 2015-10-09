@@ -1,3 +1,20 @@
+Template.showReport.events({
+    'click #saveAsPDF' : function(e){
+        e.preventDefault();
+
+        var path = Router.current().route.path(this);
+        console.log(path);
+
+        var text = $('div#page-wrapper').html();
+
+        Meteor.call('sendTemplate' , text , this , function(err,res){
+            if(err){
+                console.log("webshot method not executed >>>" + err);
+            }
+        });
+    }
+});
+
 Template.showReport.helpers({
     'project' : function(){
         return this;
@@ -48,6 +65,7 @@ Template.showReport.helpers({
         } , {$sort : {timestamp : 1}}).fetch();
 
         commit_data.forEach(function(value){
+            value.timestamp = moment(value.timestamp).format("DD-MM-YYYY HH:MM");
             var issue_number = value.message.match(/#\d+/g);
             console.log(issue_number);
             if(issue_number){
@@ -56,7 +74,7 @@ Template.showReport.helpers({
                     var num = +issue_number[i].match(/\d+/);
                     console.log(num);
                     var issues = Issues.find({"issue.number": num}).fetch()[0];
-                    value.issue.push({ number : "#"+num , title : issues.issue.title});
+                    value.issue.push({ number : "#"+num , title : issues.issue.title , url : issues.issue.html_url});
                 }
             }
         });
@@ -72,8 +90,13 @@ Template.showReport.helpers({
                 $lte : new Date(end_date.toISOString())
             },
             "issue.state" : "open"
-        } , {$sort : {"issue.created_at" : 1}});
-        console.log(issues);
+        } , {$sort : {"issue.created_at" : 1}}).fetch();
+
+        issues.forEach(function(value){
+            value.issue.created_at = moment(value.issue.created_at).format("DD-MM-YYYY HH:MM");
+            console.log(value.issue.created_at);
+        });
+
         return issues;
     },
 
@@ -86,8 +109,12 @@ Template.showReport.helpers({
                 $lte : new Date(end_date.toISOString())
             },
             "issue.state" : "closed"
-        } , {$sort : {"issue.created_at" : 1}});
-        console.log(issues);
+        } , {$sort : {"issue.created_at" : 1}}).fetch();
+
+        issues.forEach(function(value){
+            value.issue.closed_at = moment(value.issue.closed_at).format("DD-MM-YYYY HH:MM");
+        });
+
         return issues;
     },
 
@@ -100,8 +127,11 @@ Template.showReport.helpers({
                 $lte : new Date(end_date.toISOString())
             },
             "issue.updated_at" : {$ne : null}
-        } , {$sort : {"issue.updated_at" : 1}});
-        console.log(issues);
+        } , {$sort : {"issue.updated_at" : 1}}).fetch();
+
+        issues.forEach(function(value){
+            value.issue.updated_at = moment(value.issue.updated_at).format("DD-MM-YYYY HH:MM");
+        });
         return issues;
     },
 
@@ -118,11 +148,12 @@ Template.showReport.helpers({
 
         console.log(issues);
         issues.forEach(function(value){
-                var comments = [];
-                var comments = Comments.find({issueId : value.issue.id}).fetch();
-                value.commentsData = comments;
-
-
+            var comments = [];
+            comments = Comments.find({issueId : value.issue.id}).fetch();
+            comments.forEach(function(doc){
+                doc.created_at = moment(doc.created_at).format("DD-MM-YYYY HH:MM");
+            });
+            value.commentsData = comments;
         });
         console.log(issues);
         return issues;

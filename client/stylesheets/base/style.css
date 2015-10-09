@@ -2168,6 +2168,9 @@ input[type="checkbox"]:checked::after,
     height : 280px;
 }
 
+
+/*  custom styles for report page   */
+
 .label-table{
     list-style-type: none;
     align-items: center;
@@ -2175,7 +2178,8 @@ input[type="checkbox"]:checked::after,
 }
 
 .label-table-data{
-    margin : 2px;
+    margin : 3px;
+    padding:3px;
     border-radius : 7px;
     text-align: center;
 }
@@ -2196,4 +2200,23 @@ input[type="checkbox"]:checked::after,
     text-align: left;
     color : black;
     padding : 10px;
+}
+
+.chart-data{
+    border: 1px solid #C7BEBE;
+    padding: 14px;
+}
+
+.report-heading{
+    background-color: #e0e7e8;
+    padding: 3px;
+    color : #737171;
+}
+
+.linked-issue{
+    background-color: darkgray;
+    border-radius: 2px;
+    text-align: center;
+    padding:2px;
+    margin:4px;
 }

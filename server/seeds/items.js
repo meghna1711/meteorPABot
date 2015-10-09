@@ -178,6 +178,7 @@ Meteor.startup(function() {
                   action: data.action,
                   issue: {
                       url: data.issue.url,
+                      html_url : data.issue.html_url,
                       id: data.issue.id,
                       number: data.issue.number,
                       title: data.issue.title,
@@ -252,7 +253,7 @@ Meteor.startup(function() {
               console.log(issue_data);
           }
 
-      }
+      },
 
   });
 });
