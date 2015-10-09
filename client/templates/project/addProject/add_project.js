@@ -65,7 +65,7 @@ Template.addProject.events({
                Session.set('showModal' , true);
            }
        });
-
+       
        $('#project-name').val("");
        $('#client-name').val("");
        $('#client-email').val("");
