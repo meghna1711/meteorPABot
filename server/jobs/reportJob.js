@@ -304,6 +304,7 @@ SyncedCron.add({
                 toYear : todayDate.getFullYear()
             };
 
+        console.log(projects);
         projects.forEach(function(value){
             getCommitsReport(value.projectId , date);
             getIssuesReport(value.projectId , date);
