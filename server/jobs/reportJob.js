@@ -24,7 +24,7 @@ SyncedCron.config({
 SyncedCron.add({
     name:"Sending report of the day to client",
     schedule : function(parser){
-        return parser.text("at 11:11 am every weekday");
+        return parser.text("at 6:18 pm every weekday");
     },
     job : function(intentedAt){
         console.log("preparing Data");
@@ -70,18 +70,8 @@ SyncedCron.add({
                 }
             },
 
-            'issueTabelData' : function(){
-                return {
-                    Opened : issueData.Opened,
-                    Closed : issueData.Closed,
-                    Updated : issueData.Updated,
-                    Comments : issueData.Comments
-
-                }
-            },
-
             'Commits' : function(){
-                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate+ " 23:00:00");
+                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate+ " 23:59:59");
                 var commit_data = Commits.find({projectId : projectKey,
                     timestamp : {
                         $lte : new Date(end_date.toISOString()),
@@ -99,7 +89,13 @@ SyncedCron.add({
                             var num = +issue_number[i].match(/\d+/);
                             console.log(num);
                             var issues = Issues.find({"issue.number": num}).fetch()[0];
-                            value.issue.push({ number : "#"+num , title : issues.issue.title , url : issues.issue.html_url});
+                            if(issues) {
+                                value.issue.push({
+                                    number: "#" + num,
+                                    title: issues.issue.title,
+                                    url: issues.issue.html_url
+                                });
+                            }
                         }
                     }
                 });
@@ -108,7 +104,7 @@ SyncedCron.add({
             },
 
             'OpenIssue' : function(){
-                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
                 var issues = Issues.find({
                     projectId : projectKey,
                     "issue.created_at" : {
@@ -127,7 +123,7 @@ SyncedCron.add({
             },
 
             'ClosedIssue' : function(){
-                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
                 console.log(reportData.StartDate + ">>>>>>>>>>>>" + reportData.EndDate);
                 console.log(start_date + ">>>>>" + end_date);
                 var issues = Issues.find({
@@ -148,14 +144,13 @@ SyncedCron.add({
             },
 
             'UpdatedIssue' : function(){
-                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
                 var issues = Issues.find({
                     projectId : projectKey,
                     "issue.updated_at" : {
                         $lte : new Date(end_date.toISOString()),
                         $gte : new Date(start_date.toISOString())
-                    },
-                    "issue.updated_at" : {$ne : null}
+                    }
                 } , {$sort : {"issue.updated_at" : 1}}).fetch();
 
                 issues.forEach(function(value){
@@ -165,20 +160,27 @@ SyncedCron.add({
             },
 
             'CommentIssue' : function(){
-                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+                var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
                 var issues = Issues.find({
                     projectId : projectKey,
-                    "issue.created_at" : {
+                    "issue.updated_at" : {
                         $lte : new Date(end_date.toISOString()),
                         $gte : new Date(start_date.toISOString())
 
                     },
                     "issue.comments" : {$ne : 0}
-                } , {$sort : {"issue.created_at" : 1}}).fetch();
+                } , {$sort : {"issue.updated_at" : 1}}).fetch();
 
                 issues.forEach(function(value){
                     var comments = [];
-                    comments = Comments.find({issueId : value.issue.id}).fetch();
+                    comments = Comments.find({
+                        issueId : value.issue.id,
+                        created_at : {
+                            $gte : new Date(start_date.toISOString()),
+                            $lte : new Date(end_date.toISOString())
+                        }
+                    },{$sort : {created_at : 1}}).fetch();
+
                     comments.forEach(function(doc){
                         doc.created_at = moment(doc.created_at).format("DD-MM-YYYY HH:MM");
                     });

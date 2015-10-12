@@ -99,14 +99,15 @@ var getCommitsReport = function(projectKey , date){
     dateCommits.StartDate = '' + date.fromYear + ', ' + date.fromMonth + ', ' + date.fromDate;
     dateCommits.EndDate = '' + date.toYear + ', ' + date.toMonth + ', ' + date.toDate;
     dateCommits.noOfDays=new Date(date.fromYear,date.fromMonth,0).getDate();
-    var commitResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate + 1),
+    var commitResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate ),
     //endDate should include 23hrs of that day
-        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate + 1 , 23 , 0);
+        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate , 23 , 59 , 59);
     console.log("startdate>>>>"+startdate+">>>>EndDate >>>>"+enddate);
     commitResult = Commits.find({
         projectId: projectKey, timestamp: {
-            $lte: new Date(enddate.toISOString()),
-            $gte: new Date(startdate.toISOString())
+            $gte: new Date(startdate.toISOString()),
+            $lte: new Date(enddate.toISOString())
+
 
         }
     },{$sort : {timestamp : 1}}).fetch();

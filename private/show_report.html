@@ -1,308 +1,677 @@
-<div id="page-wrapper">
-    <div class="page-content page-content-ease-in">
-        <div>
-            <h2><strong>Project Report</strong></h2>
-        </div>
-        <div>
-            <div>
-                <label>Project Name: </label>  {{project.name}}<br><br>
-                <label>Report Data: </label>
-                <label>From :  </label>  {{pieChartTabelData.StartDate}} <br>
-                <label>To :  </label>  {{pieChartTabelData.EndDate}} <br>
-            </div>
-            <div>
-                <label>Client Name:  </label>  {{project.clientName}}
-            </div>
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <h4>Team of Project</h4>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
 
-                    <div>
-                        <div>
-                            <table>
-                                <thead>
-                                <tr style="border : 1px solid black ; background-color: #35495e ; padding : 3px ; color : white">
-                                    <th>User Name</th>
-                                    <th>Permission</th>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+
+    <style type="text/css">@media only screen and (max-width:480px){body,table,td,p,a,li,blockquote{-webkit-text-size-adjust:none !important}body{width:100% !important;min-width:100% !important}td[id=bodyCell]{padding:10px !important}table.kmMobileHide{display:none !important}table[class=kmTextContentContainer]{width:100% !important}table[class=kmBoxedTextContentContainer]{width:100% !important}td[class=kmImageContent]{padding-left:0 !important;padding-right:0 !important}img[class=kmImage]{width:100% !important}td.kmMobileStretch{padding-left:0 !important;padding-right:0 !important}table[class=kmSplitContentLeftContentContainer],table[class=kmSplitContentRightContentContainer],table[class=kmColumnContainer],td[class=kmVerticalButtonBarContentOuter] table[class=kmButtonBarContent],td[class=kmVerticalButtonCollectionContentOuter] table[class=kmButtonCollectionContent],table[class=kmVerticalButton],table[class=kmVerticalButtonContent]{width:100% !important}td[class=kmButtonCollectionInner]{padding-left:9px !important;padding-right:9px !important;padding-top:9px !important;padding-bottom:0 !important;background-color:transparent !important}td[class=kmVerticalButtonIconContent],td[class=kmVerticalButtonTextContent],td[class=kmVerticalButtonContentOuter]{padding-left:0 !important;padding-right:0 !important;padding-bottom:9px !important}table[class=kmSplitContentLeftContentContainer] td[class=kmTextContent],table[class=kmSplitContentRightContentContainer] td[class=kmTextContent],table[class=kmColumnContainer] td[class=kmTextContent],table[class=kmSplitContentLeftContentContainer] td[class=kmImageContent],table[class=kmSplitContentRightContentContainer] td[class=kmImageContent]{padding-top:9px !important}td[class="rowContainer kmFloatLeft"],td[class="rowContainer kmFloatLeft firstColumn"],td[class="rowContainer kmFloatLeft lastColumn"]{float:left;clear:both;width:100% !important}table[id=templateContainer],table[class=templateRow]{max-width:600px !important;width:100% !important}h1{font-size:40px !important;line-height:130% !important}h2{font-size:32px !important;line-height:130% !important}h3{font-size:24px !important;line-height:130% !important}h4{font-size:18px !important;line-height:130% !important}td[class=kmTextContent]{font-size:14px !important;line-height:130% !important}td[class=kmTextBlockInner] td[class=kmTextContent]{padding-right:18px !important;padding-left:18px !important}table[class="kmTableBlock kmTableMobile"] td[class=kmTableBlockInner]{padding-left:9px !important;padding-right:9px !important}table[class="kmTableBlock kmTableMobile"] td[class=kmTableBlockInner] [class=kmTextContent]{font-size:14px !important;line-height:130% !important;padding-left:4px !important;padding-right:4px !important}}</style>
+</head>
+<body style="margin:0;padding:0;background-color:#E5E6EE">
+<center>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding:0;background-color:#E5E6EE;height:100%;margin:0;width:100%">
+        <tbody>
+        <tr>
+            <td align="center" id="bodyCell" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:50px;padding-left:20px;padding-bottom:20px;padding-right:20px;border-top:0;height:100%;margin:0;width:100%">
+                <table border="0" cellpadding="0" cellspacing="0" id="templateContainer" width="600" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border:0 none #aaa;background-color:#FFF;border-radius:0">
+                    <tbody>
+                    <tr>
+                        <td id="templateContainerInner" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding:0">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                <tr>
+                                    <td align="center" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="templateRow" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                            <tbody>
+                                            <tr>
+                                                <td class="rowContainer kmFloatLeft" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;padding-top:9px;padding-bottom:9px;background-color:#E5DEDE;padding-left:18px;padding-right:18px;'>
+                                                                            <p style="margin:0;padding-bottom:0;text-align: center;"><span style="color:#008080;"><strong><span style="font-family:helvetica,arial,sans-serif;"><span style="font-size:20px;">Project Report</span></span></strong></span><span style="font-family:comic sans ms,cursive;"></span></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmSplitBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmSplitBlockOuter">
+                                                        <tr>
+                                                            <td class="kmSplitBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:9px;padding-bottom:9px;background-color:#FFFFFF;padding-left:18px;padding-right:18px;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmSplitContentOuter" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmSplitContentInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmSplitContentLeftContentContainer" width="327" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                                <tbody>
+                                                                                <tr>
+                                                                                    <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left'>
+                                                                                        <p style="margin:0;padding-bottom:1em"><strong>Project Name : </strong>{{ project.name }}</p>
+                                                                                        <p style="margin:0;padding-bottom:1em"><strong>Project Client  :</strong> {{  project.clientName  }}</p>
+                                                                                        <p style="margin:0;padding-bottom:0"> </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table align="right" border="0" cellpadding="0" cellspacing="0" class="kmSplitContentRightContentContainer" width="201" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                                <tbody>
+                                                                                <tr>
+                                                                                    <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left'>
+                                                                                        <p style="margin:0;padding-bottom:1em"><strong>Report Data :  </strong></p>
+                                                                                        <p style="margin:0;padding-bottom:1em"><strong>From : </strong>{{ pieChartTabelData.StartDate }}</p>
+                                                                                        <p style="margin:0;padding-bottom:0"><strong>To : </strong>{{ pieChartTabelData.EndDate }} </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTableBlock kmTableMobile" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTableBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTableBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:9px;padding-bottom:9px;background-color:#FFF9F9;padding-left:100px;padding-right:100px;">
+
+                                                                {{#if permissionTable}}
+
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;border-color:#080707;border-width:1px;background-color:#F9FAFB;font-family:"Helvetica Neue", Arial;'>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:16px;font-weight:bold;color:#F9F8F8;padding-bottom:3px;text-align:center;padding-right:0px;padding-left:0px;padding-top:3px;background-color:#8DA3DA;font-family:"Helvetica Neue", Arial;'>
+                                                                            User Name
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:16px;font-weight:bold;color:#F9F8F8;padding-bottom:3px;text-align:center;padding-right:0px;padding-left:0px;padding-top:3px;background-color:#8DA3DA;font-family:"Helvetica Neue", Arial;'>
+                                                                            Permission
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+
+                                                                    {{#each permissionTable}}
+
+
+
+                                                                    <tr class="kmTableRow">
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;;border-top-style:solid;border-right-color:#080707;padding-bottom:0px;border-right-style:solid;padding-right:0px;padding-left:0px;padding-top:0px;border-top-color:#080707;border-top-width:1px;border-right-width:1px;'>
+                                                                            <font color="#000000">{{  this.user  }}</font>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;text-align:center;;border-top-style:solid;border-right-color:#080707;padding-bottom:0px;border-right-style:solid;padding-right:0px;padding-left:0px;padding-top:0px;border-top-color:#080707;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{ this.permission }}
+                                                                        </td>
+                                                                    </tr>
+                                                                    {{/each}}
+
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                               {{/if}}
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="kmDividerBlock" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmDividerBlockOuter">
+                                                        <tr>
+                                                            <td class="kmDividerBlockInner" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:30px;">
+                                                                <table class="kmDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr><td style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><span></span></td></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="kmDividerBlock" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmDividerBlockOuter">
+                                                        <tr>
+                                                            <td class="kmDividerBlockInner" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:20px;">
+                                                                <table class="kmDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr><td style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><span></span></td></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;background-color:#FBF8F8;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;color:#989595;padding-bottom:9px;padding-right:18px;padding-left:18px;padding-top:9px;line-height:100%;background-color:#F8F4F4;'>
+                                                                            <span style="font-size:22px;"></span>
+                                                                            <p style="margin:0;padding-bottom:0;text-align: center;"><strong style="color: rgb(128, 128, 128); font-size: 24px; line-height: 1.6em;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">Commit Table Report</span></strong></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="kmDividerBlock" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmDividerBlockOuter">
+                                                        <tr>
+                                                            <td class="kmDividerBlockInner" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:20px;">
+                                                                <table class="kmDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr><td style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><span></span></td></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTableBlock kmTableMobile" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTableBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTableBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:0px;padding-bottom:9px;padding-left:10px;padding-right:10px;">
+
+                                                                {{#if Commits}}
+
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;color:#0D0C0C;border-color:black;border-width:1px;background-color:#F9F9F9;">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:2px;text-align:center;padding-right:2px;padding-left:2px;padding-top:2px;background-color:#7B7EDA;'>
+                                                                            COMMIT MESSAGE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:2px;text-align:center;padding-right:2px;padding-left:2px;padding-top:2px;background-color:#7B7EDA;'>
+                                                                            AUTHOR
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:2px;text-align:center;padding-right:2px;padding-left:2px;padding-top:2px;background-color:#7B7EDA;'>
+                                                                            DATE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:2px;text-align:center;padding-right:2px;padding-left:2px;padding-top:2px;background-color:#7B7EDA;'>
+                                                                            VIEW ON GITHUB
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:2px;text-align:center;padding-right:2px;padding-left:2px;padding-top:2px;background-color:#7B7EDA;'>
+                                                                            ISSUES LINKED
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+
+                                                                    {{#each Commits}}
+
+
+
+                                                                    <tr class="kmTableRow">
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;;border-top-style:solid;border-right-color:#B6B4B4;padding-bottom:6px;border-right-style:solid;padding-right:6px;padding-left:6px;padding-top:6px;border-top-color:#AEACAC;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{this.message}}</span></span><span style="color:#FFFFFF;"></span><span style="color:#000000;"><span style="background-color:#FFFFFF;"></span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;;border-top-style:solid;border-right-color:#B6B4B4;padding-bottom:6px;border-right-style:solid;padding-right:6px;padding-left:6px;padding-top:6px;border-top-color:#AEACAC;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{this.author.name}}</span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;;border-top-style:solid;border-right-color:#B6B4B4;padding-bottom:6px;border-right-style:solid;padding-right:6px;padding-left:6px;padding-top:6px;border-top-color:#AEACAC;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{this.timestamp}}</span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;;border-top-style:solid;border-right-color:#B6B4B4;padding-bottom:6px;border-right-style:solid;padding-right:6px;padding-left:6px;padding-top:6px;border-top-color:#AEACAC;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><a style="font-family:helvetica neue,helvetica,arial,sans-serif; background-color: dodgerblue ; padding:3px ;
+                                                                            border-radius: 3px ; color: white">VIEW</a></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;border-top-style:solid;border-right-color:#B6B4B4;padding-bottom:6px;border-right-style:solid;padding-right:6px;padding-left:6px;padding-top:6px;border-top-color:#AEACAC;border-top-width:1px;border-right-width:1px;'>
+                                                                            <ul style="list-style-type: none">
+                                                                                {{#each this.issue}}
+                                                                                <li><span style="font-size:12px;">{{this.number}}  <a href="{{this.url}}" style="font-family:helvetica neue,helvetica,arial,sans-serif;  ">{{this.title}}</a></span></li>
+                                                                                {{/each}}
+
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    {{/each}}
+
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                                {{/if}}
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="kmDividerBlock" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmDividerBlockOuter">
+                                                        <tr>
+                                                            <td class="kmDividerBlockInner" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:30px;">
+                                                                <table class="kmDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr><td style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><span></span></td></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;padding-top:9px;padding-bottom:9px;background-color:#F0ECEC;padding-left:18px;padding-right:18px;'>
+                                                                            <em></em>
+                                                                            <h3 style='color:#222;display:block;font-family:"Helvetica Neue", Arial;font-size:24px;font-style:normal;font-weight:bold;line-height:110%;letter-spacing:normal;margin:0;margin-bottom:12px;text-align:left;text-align: center;'><span style="color:#808080;">Issue Report</span><span style="color:#808080;"></span></h3>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;padding-top:9px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
+                                                                            <span style="font-size:18px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;"><strong>Issues Opened :</strong></span></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTableBlock kmTableMobile" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTableBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTableBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:9px;padding-bottom:9px;padding-left:10px;padding-right:10px;">
+
+                                                                {{#if OpenIssue}}
+
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;font-size:12px;color:#060606;border-color:black;text-align:center;border-width:1px;font-family:"Helvetica Neue", Arial;'>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            ISSUE NUMBER
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            TITLE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            CREATED BY
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            LABELS
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            ASSIGNEE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            MILESTONE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            DATE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-weight:bold;color:#FFFFFF;padding-bottom:4px;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;'>
+                                                                            VIEW ON GITHUB
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+
+                                                                    {{#each OpenIssue}}
+
+
+
+                                                                    <tr class="kmTableRow">
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{ this.issue.number  }}</span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{ this.issue.title }}</span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-family:helvetica neue,helvetica,arial,sans-serif;"><span style="font-size:12px;">{{ this.issue.user.login  }}</span></span><span style="font-family:helvetica neue,helvetica,arial,sans-serif;"><span style="font-size:12px;"></span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <ul style="list-style-type: none">
+                                                                                {{#each this.issue.labels}}
+                                                                                <li><strong><span style="color:#FFFFFF;"><span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;"><span style="background-color: #{{this.color}}; margin : 3px ; padding : 3px ">{{ this.name }}</span></span></span></span></strong></li>
+                                                                                {{/each}}
+                                                                            </ul>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{this.issue.assignee.login}}</span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</span></span><span style="font-family:helvetica neue,helvetica,arial,sans-serif;"><span style="font-size:12px;"></span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><span style="font-family:helvetica neue,helvetica,arial,sans-serif;">{{this.issue.created_at}}</span></span>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948F8F;padding-bottom:4px;border-right-style:solid;padding-right:5px;padding-left:5px;padding-top:4px;border-top-color:#928F8F;border-top-width:1px;border-right-width:1px;'>
+                                                                            <span style="font-size:12px;"><a href="{{this.issue.url}}" style="font-family:helvetica neue,helvetica,arial,sans-serif; background-color: dodgerblue;
+                                                                            padding : 3px; color:white ; border-radius: 3px; text-decoration :none">VIEW</a></span>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    {{/each}}
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                                {{/if}}
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;padding-top:9px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
+                                                                            <h4 style='color:#222;display:block;font-family:"Helvetica Neue", Arial;font-size:18px;font-style:normal;font-weight:italic;line-height:110%;letter-spacing:normal;margin:0;margin-bottom:9px;text-align:left'>Issues Closed :</h4>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTableBlock kmTableMobile" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTableBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTableBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:9px;padding-bottom:9px;padding-left:10px;padding-right:10px;">
+                                                                {{#if ClosedIssue}}
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;font-size:12px;border-color:darkgray;text-align:center;border-width:1px;font-family:"Helvetica Neue", Arial;'>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            ISSUE NUMBER
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            TITLE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            CREATED BY
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            LABELS
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            CLOSED AT
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            VIEW ON GITHUB
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                {{#each ClosedIssue}}
+                                                                    <tr class="kmTableRow">
+
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948E8E;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#948E8E;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.number}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948E8E;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#948E8E;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.title}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948E8E;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#948E8E;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.user.login}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948E8E;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#948E8E;border-top-width:1px;border-right-width:1px;'>
+                                                                            <ul style="list-style-type: none">
+                                                                                {{#each this.issue.labels}}
+                                                                                <li><strong><span style="color:#FFFFFF;"><span style="background-color:#{{this.color}}; padding:3px ; margin:3px">{{this.name}}</span></span></strong></li>
+                                                                                {{/each}}
+                                                                            </ul>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948E8E;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#948E8E;border-top-width:1px;border-right-width:1px;'>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#948E8E;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#948E8E;border-top-width:1px;border-right-width:1px;'>
+                                                                            <a href="{{this.issue.html_url}}" style="word-wrap:break-word;color:#15C;font-weight:bold; background-color: dodgerblue;
+                                                                            padding: 3px ; border-radius: 3px  ; color :white ; text-decoration :none">VIEW</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                    </tbody>
+                                                                </table>
+                                                                    {{/if}}
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;padding-top:9px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
+                                                                            <h4 style='color:#222;display:block;font-family:"Helvetica Neue", Arial;font-size:18px;font-style:normal;font-weight:italic;line-height:110%;letter-spacing:normal;margin:0;margin-bottom:9px;text-align:left'>Issues Updated : </h4>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTableBlock kmTableMobile" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTableBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTableBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:9px;padding-bottom:9px;padding-left:10px;padding-right:10px;">
+
+                                                               {{#if UpdatedIssue}}
+
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;font-size:12px;border-color:darkgray;text-align:center;border-width:1px;font-family:"Helvetica Neue", Arial;'>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:6px;padding-left:6px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            ISSUE NUMBER
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:6px;padding-left:6px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            TITLE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:6px;padding-left:6px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            CREATED BY
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:6px;padding-left:6px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            LABELS
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:6px;padding-left:6px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            UPDATED AT
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:6px;padding-left:6px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            VIEW ON GITHUB
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+
+                                                                    {{#each UpdatedIssue}}
+
+
+
+                                                                    <tr class="kmTableRow">
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#716868;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#726D6D;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.number}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#716868;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#726D6D;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.title}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#716868;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#726D6D;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.user.login}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#716868;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#726D6D;border-top-width:1px;border-right-width:1px;'>
+                                                                            <ul style="list-style-type: none">
+                                                                                {{#each this.issue.labels}}
+                                                                                <li><strong><span style="color:#FFFFFF;"><span style="background-color:#{{this.color}}; padding:3px ; margin:3px">{{this.name}}</span></span></strong></li>
+                                                                                    {{/each}}
+                                                                            </ul>
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#716868;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#726D6D;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.updated_at}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#716868;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#726D6D;border-top-width:1px;border-right-width:1px;'>
+                                                                            <a  href="{{this.issue.html_url}}" style="word-wrap:break-word;color:#15C;text-decoration :none ;font-weight:bold;background-color: dodgerblue;padding:3px;
+                                                                            color:white">VIEW</a>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    {{/each}}
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                                   {{/if}}
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTextBlock" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTextBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTextBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTextContentContainer" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="kmTextContent" valign="top" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;padding-top:9px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
+                                                                            <h4 style='color:#222;display:block;font-family:"Helvetica Neue", Arial;font-size:18px;font-style:normal;font-weight:italic;line-height:110%;letter-spacing:normal;margin:0;margin-bottom:9px;text-align:left'>Issues Comments : </h4>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="kmTableBlock kmTableMobile" width="100%" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
+                                                        <tbody class="kmTableBlockOuter">
+                                                        <tr>
+                                                            <td class="kmTableBlockInner" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;padding-top:9px;padding-bottom:9px;padding-left:10px;padding-right:10px;">
+                                                                {{#if CommentIssue}}
+                                                                <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;font-size:12px;border-color:#696565;text-align:center;border-width:1px;font-family:"Helvetica Neue", Arial;'>
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            ISSUE NUMBER
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            TITLE
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            CREATED BY
+                                                                        </th>
+                                                                        <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                            COMMENTS
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {{#each CommentIssue}}
+                                                                    <tr class="kmTableRow">
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                            #{{this.issue.number}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.title}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                            {{this.issue.user.login}}
+                                                                        </td>
+                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+
+                                                                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="kmTable" width="100%" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;border-style:solid;font-size:12px;border-color:#696565;text-align:center;border-width:1px;font-family:"Helvetica Neue", Arial;'>
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                                        COMMENT
+                                                                                    </th>
+                                                                                    <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                                        COMMENTED BY
+                                                                                    </th>
+                                                                                    <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                                        DATE
+                                                                                    </th>
+                                                                                    <th valign="top" class="kmTextContent" style='color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;text-align:center;font-size:14px;font-weight:bold;color:#FFFFFF;padding-bottom:4px;text-align:center;padding-right:4px;padding-left:4px;padding-top:4px;background-color:#7B7EDA;font-family:"Helvetica Neue", Arial;'>
+                                                                                        VIEW ON GITHUB
+                                                                                    </th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {{#each this.commentsData}}
+                                                                                    <tr class="kmTableRow">
+                                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                                            {{this.body}}
+                                                                                        </td>
+                                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                                            {{this.user.login}}
+                                                                                        </td>
+                                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                                            {{this.created_at}}
+                                                                                        </td>
+                                                                                        <td valign="top" class="kmTextContent" style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:130%;text-align:left;border-right:none;border-bottom:none;text-align:center;font-size:12px;border-top-style:solid;border-right-color:#787070;padding-bottom:4px;border-right-style:solid;padding-right:4px;padding-left:4px;padding-top:4px;border-top-color:#787070;border-top-width:1px;border-right-width:1px;'>
+                                                                                            <a  href="{{this.html_url}}" style="word-wrap:break-word;text-decoration :none ;font-weight:bold; background-color: dodgerblue;padding: 3px; color:white">VIEW</a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                {{/each}}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                    </tbody>
+                                                                </table>
+                                                                {{/if}}
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                {{#each permissionTable}}
-                                    <tr style="padding:3px">
-                                        <td style="border : 1px solid black">{{this.user}}</td>
-                                        <td style="border : 1px solid black">{{this.permission}}</td>
-                                    </tr>
-                                {{/each}}
-                                </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <h4>Commit Report:</h4>
-                <table id="piechartTable">
-                    <tr style="background-color: #33CC66 ; padding : 3px">
-                        <th style="border : 1px solid black ; color : white"><strong>TOTAL</strong></th>
-                        <th style="border : 1px solid black; color : white"><strong>ADDED</strong></th>
-                        <th style="border : 1px solid black; color : white" ><strong>MODIFIED</strong></th>
-                        <th style="border : 1px solid black; color : white"><strong>REMOVED</strong></th>
+                        </td>
                     </tr>
-                    <tr style="padding :3px ">
-                        <td style="border : 1px solid black">{{pieChartTabelData.Total}}</td>
-                        <td style="border : 1px solid black">{{pieChartTabelData.Added}}</td>
-                        <td style="border : 1px solid black">{{pieChartTabelData.Modified}}</td>
-                        <td style="border : 1px solid black">{{pieChartTabelData.Removed}}</td>
-                    </tr>
+                    </tbody>
                 </table>
-            </div>
-            <div>
-                <h4>Issue Report:</h4>
-                <table id="piechartTable">
-                    <tr style="background-color: #33CC66 ; padding : 3px">
-                        <th style="border : 1px solid black ; color : white"><strong>OPENED</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>CLOSED</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>UPDATED</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>COMMENTS</strong></th>
-                    </tr>
-                    <tr style="padding : 3px">
-                        <td style="border : 1px solid black">{{issueTabelData.Opened}}</td>
-                        <td style="border : 1px solid black">{{issueTabelData.Closed}}</td>
-                        <td style="border : 1px solid black">{{issueTabelData.Updated}}</td>
-                        <td style="border : 1px solid black">{{issueTabelData.Comments}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br><br>
-        <div>
-            <h3><strong>Commit Report Table:</strong></h3>
-            <div>
-                <table id="commitTable">
-                    <thead>
-                    <tr style="background-color: midnightblue ; padding:3px">
-                        <th style="border : 1px solid black ; color : white"><strong>COMMIT MESSAGE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>AUTHOR</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>DATE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>VIEW ON GITHUB</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>ISSUES LINKED</strong></th>
-                    </tr>
-                    </thead>
-                    {{#each Commits}}
-                        <tbody>
-                        <tr style="padding : 3px">
-                            <td style="border : 1px solid black">{{this.message}}</td>
-                            <td style="border : 1px solid black">{{this.author.name}}</td>
-                            <td style="border : 1px solid black">{{this.timestamp}}</td>
-                            <td style="border : 1px solid black">
-                                <a href="{{this.url}}" style="border: 1px solid dodgerblue ; color: white ; background-color: dodgerblue ;
-                                border-radius: 3px">VIEW</a>
-                            </td>
-                            <td>
-                                <ul style="list-style-type: none">
-                                    {{#each this.issue}}
-                                        <li>{{this.number}} <a href="{{this.url}}"><span class=linked-issue>{{this.title}}</span></a></li><br>
-                                    {{/each}}
-                                </ul>
-                            </td>
-                        </tr>
-                        </tbody>
-                    {{/each}}
-                </table>
-            </div>
-        </div>
-        <br>
-
-        <center><h3><strong>ISSUE REPORT:</strong></h3></center><br>
-        <h4>Issues Opened:</h4>
-        <div>
-            <div>
-                <table id="openIssueTable">
-                    <thead>
-                    <tr style="background-color: midnightblue ; padding: 3px">
-
-                        <th style="border : 1px solid black ; color : white"><strong>ISSUE NUMBER</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>TITLE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>CREATED BY</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>LABELS</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>ASSIGNEE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>MILESTONE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>DATE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>VIEW ON GITHUB</strong></th>
-                    </tr>
-                    </thead>
-                    {{#each OpenIssue}}
-                        <tbody>
-                        <tr style="padding : 3px">
-
-                            <td style="border : 1px solid black">#{{this.issue.number}}</td>
-                            <td style="border : 1px solid black">{{this.issue.title}}</td>
-                            <td style="border : 1px solid black">{{this.issue.user.login}}</td>
-                            <td style="border : 1px solid black">
-                                <ul style="list-style-type: none">
-                                    {{#each this.issue.labels}}
-                                        <li  style="background-color : #{{this.color}} ; margin : 3px ; padding : 3px">{{this.name}}</li>
-                                    {{/each}}
-                                </ul>
-                            </td>
-                            <td style="border : 1px solid black">{{this.issue.assignee.login}}</td>
-                            <td style="border : 1px solid black">{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</td>
-                            <td style="border : 1px solid black">{{this.issue.created_at}}</td>
-                            <td style="border : 1px solid black">
-                                <a href="{{this.issue.url}}" style="border: 1px solid dodgerblue ; color: white ; background-color: dodgerblue ;
-                                border-radius: 3px">VIEW</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    {{/each}}
-                </table>
-            </div>
-        </div><br>
-
-
-        <h4><strong>Issues Closed:</strong></h4>
-        <div>
-            <div>
-                <table id="openIssueTable">
-                    <thead>
-                    <tr style="background-color: midnightblue ; padding: 3px">
-
-                        <th style="border : 1px solid black ; color : white"><strong>ISSUE NUMBER</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>TITLE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>CREATED BY</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>LABELS</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>ASSIGNEE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>MILESTONE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>CLOSING DATE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>VIEW ON GITHUB</strong></th>
-                    </tr>
-                    </thead>
-                    {{#each ClosedIssue}}
-                        <tbody>
-                        <tr style="padding : 3px">
-
-                            <td style="border : 1px solid black">#{{this.issue.number}}</td>
-                            <td style="border : 1px solid black">{{this.issue.title}}</td>
-                            <td style="border : 1px solid black">{{this.issue.user.login}}</td>
-                            <td style="border : 1px solid black">
-                                <ul style="list-style-type: none">
-                                    {{#each this.issue.labels}}
-                                        <li style="background-color : #{{this.color}}; margin : 3px ; padding : 3px">{{this.name}}</li>
-                                    {{/each}}
-                                </ul>
-                            </td>
-                            <td style="border : 1px solid black">{{this.issue.assignee.login}}</td>
-                            <td style="border : 1px solid black">{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</td>
-                            <td style="border : 1px solid black">{{this.issue.closed_at}}</td>
-                            <td style="border : 1px solid black"><a href="{{this.issue.url}}" style="border: 1px solid dodgerblue ; color: white ; background-color: dodgerblue ;
-                                border-radius: 3px">VIEW</a></td>
-                        </tr>
-                        </tbody>
-                    {{/each}}
-                </table>
-            </div>
-        </div><br>
-
-        <h4><strong>Issues Updated:</strong></h4>
-        <div>
-            <div>
-                <table id="openIssueTable">
-                    <thead>
-                    <tr style="background-color: midnightblue ; padding: 3px">
-
-                        <th style="border : 1px solid black ; color : white"><strong>ISSUE NUMBER</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>TITLE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>CREATED BY</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>LABELS</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>ASSIGNEE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>MILESTONE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>LAST UPDATED</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>VIEW ON GITHUB</strong></th>
-                    </tr>
-                    </thead>
-                    {{#each UpdatedIssue}}
-                        <tbody>
-                        <tr style="padding : 3px">
-
-                            <td style="border : 1px solid black">#{{this.issue.number}}</td>
-                            <td style="border : 1px solid black">{{this.issue.title}}</td>
-                            <td style="border : 1px solid black">{{this.issue.user.login}}</td>
-                            <td style="border : 1px solid black">
-                                <ul style="list-style-type: none">
-                                    {{#each this.issue.labels}}
-                                        <li style="background-color : #{{this.color}}; margin : 3px ; padding : 3px">{{this.name}}</li>
-                                    {{/each}}
-                                </ul>
-                            </td>
-                            <td style="border : 1px solid black">{{this.issue.assignee.login}}</td>
-                            <td style="border : 1px solid black">{{this.issue.milestone.title}} {{this.issue.milestone.creator}}</td>
-                            <td style="border : 1px solid black">{{this.issue.updated_at}}</td>
-                            <td style="border : 1px solid black"><a href="{{this.issue.url}}" style="border: 1px solid dodgerblue ; color: white ; background-color: dodgerblue ;
-                                border-radius: 3px">VIEW</a></td>
-                        </tr>
-                        </tbody>
-                    {{/each}}
-                </table>
-            </div>
-        </div>
-
-        <h4>Issues Comments:</h4>
-        <div>
-            <div>
-                <table id="openIssueTable" >
-                    <thead>
-                    <tr style="background-color: midnightblue ; padding: 3px;">
-
-                        <th style="border : 1px solid black ; color : white"><strong>ISSUE NUMBER</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>TITLE</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>CREATED BY</strong></th>
-                        <th style="border : 1px solid black ; color : white"><strong>COMMENTS</strong></th>
-                    </tr>
-                    </thead>
-                    {{#each CommentIssue}}
-                        <tbody>
-                        <tr style="padding : 3px">
-
-                            <td style="border : 1px solid black">#{{this.issue.number}}</td>
-                            <td style="border : 1px solid black">{{this.issue.title}}</td>
-                            <td style="border : 1px solid black">{{this.issue.user.login}}</td>
-                            <td style="border : 1px solid black">
-                                <table>
-                                    <thead>
-                                    <tr style="background-color: midnightblue">
-
-                                        <th style="border : 1px solid black ; color : white">COMMENT</th>
-                                        <th style="border : 1px solid black ; color : white">COMMENTED BY</th>
-                                        <th style="border : 1px solid black ; color : white">DATE</th>
-                                        <th style="border : 1px solid black ; color : white">VIEW</th>
-                                    </tr>
-                                    </thead>
-                                    {{#each indexedArray this.commentsData}}
-                                        <tbody>
-                                        <tr>
-
-                                            <td style="border : 1px solid black">{{this.body}}</td>
-                                            <td style="border : 1px solid black">{{this.user.login}}</td>
-                                            <td style="border : 1px solid black">{{this.created_at}}</td>
-                                            <td style="border : 1px solid black"><a href="{{this.url}}" style="border: 1px solid dodgerblue ; color: white ; background-color: dodgerblue ;
-                                border-radius: 3px ; height : 30px ; width : 35px" >VIEW</a></td>
-                                        </tr>
-                                        </tbody>
-                                    {{/each}}
-                                </table>
-                            </td>
-                        </tr>
-                        </tbody>
-                    {{/each}}
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</center>
+</body>

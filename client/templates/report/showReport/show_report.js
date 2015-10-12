@@ -39,7 +39,7 @@ Template.showReport.helpers({
     },
 
     'Commits' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate+ " 23:00:00");
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate+ " 23:59:59");
          var commit_data = Commits.find({projectId : this.projectKey,
             timestamp : {
                 $lte : new Date(end_date.toISOString()),
@@ -47,6 +47,7 @@ Template.showReport.helpers({
             }
         } , {$sort : {timestamp : 1}}).fetch();
 
+        console.log(commit_data);
         commit_data.forEach(function(value){
             value.timestamp = moment(value.timestamp).format("DD-MM-YYYY HH:MM");
             var issue_number = value.message.match(/#\d+/g);
@@ -57,15 +58,18 @@ Template.showReport.helpers({
                     var num = +issue_number[i].match(/\d+/);
                     console.log(num);
                     var issues = Issues.find({"issue.number": num}).fetch()[0];
-                    value.issue.push({ number : "#"+num , title : issues.issue.title , url : issues.issue.html_url});
+                    if(issues) {
+                        value.issue.push({number: "#" + num, title: issues.issue.title, url: issues.issue.html_url});
+                    }
                 }
             }
         });
+        console.log(commit_data);
         return commit_data;
     },
 
     'OpenIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
         var issues = Issues.find({
             projectId : this.projectKey,
             "issue.created_at" : {
@@ -84,7 +88,7 @@ Template.showReport.helpers({
     },
 
     'ClosedIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
         var issues = Issues.find({
             projectId : this.projectKey,
             "issue.closed_at" : {
@@ -102,16 +106,16 @@ Template.showReport.helpers({
     },
 
     'UpdatedIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
         var issues = Issues.find({
             projectId : this.projectKey,
             "issue.updated_at" : {
                 $lte : new Date(end_date.toISOString()),
                 $gte : new Date(start_date.toISOString())
-            },
-            "issue.updated_at" : {$ne : null}
+            }
         } , {$sort : {"issue.updated_at" : 1}}).fetch();
 
+        console.log(issues);
         issues.forEach(function(value){
             value.issue.updated_at = moment(value.issue.updated_at).format("DD-MM-YYYY HH:MM");
         });
@@ -119,27 +123,32 @@ Template.showReport.helpers({
     },
 
     'CommentIssue' : function(){
-        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:00:00");
+        var start_date = new Date(reportData.StartDate), end_date = new Date(reportData.EndDate + " 23:59:59");
         var issues = Issues.find({
             projectId : this.projectKey,
-            "issue.created_at" : {
+            "issue.updated_at" : {
                 $lte : new Date(end_date.toISOString()),
                 $gte : new Date(start_date.toISOString())
-
             },
             "issue.comments" : {$ne : 0}
-        } , {$sort : {"issue.created_at" : 1}}).fetch();
+        } , {$sort : {"issue.updated_at" : 1}}).fetch();
 
         console.log(issues);
         issues.forEach(function(value){
             var comments = [];
-            comments = Comments.find({issueId : value.issue.id}).fetch();
+            comments = Comments.find({
+                issueId : value.issue.id ,
+                created_at : {
+                    $gte : new Date(start_date.toISOString()),
+                    $lte : new Date(end_date.toISOString())
+                }
+            },{$sort : {created_at : 1}}).fetch();
             comments.forEach(function(doc){
                 doc.created_at = moment(doc.created_at).format("DD-MM-YYYY HH:MM");
             });
             value.commentsData = comments;
         });
-        console.log(issues);
+
         return issues;
     }
 
