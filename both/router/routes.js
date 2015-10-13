@@ -142,16 +142,10 @@ Router.route('/report/showReport/:projectKey' , {
  * */
 
 
-Router.route('/server', function(){
-  console.log("server Route");
-} , {where : 'server'});
 
-
-
-
-Router.route('/payload', function(){
+Router.route('/payload/settings/hooks/:id', function(){
   var eventobj = this.request.body;
-  console.log("payload route !!!!");
+  console.log("project id >>>" + this.params.id);
   Meteor.call('repoData' , eventobj , function(err){
     if(err){
       console.log("Data from github cannot be saved !!" + err);
