@@ -143,7 +143,7 @@ Router.route('/report/showReport/:projectKey' , {
 
 
 
-Router.route('/payload/:id/settings/hook ', function(){
+Router.route('/payload/settings/hook/:id ', function(){
   var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , this.params.id , function(err){
     if(err){
