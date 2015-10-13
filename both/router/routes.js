@@ -144,7 +144,6 @@ Router.route('/report/showReport/:projectKey' , {
 
 
 Router.route('/payload ', function(){
-
   console.log("server side route is called !!");
   var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , function(err){
