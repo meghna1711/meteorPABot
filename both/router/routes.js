@@ -143,9 +143,9 @@ Router.route('/report/showReport/:projectKey' , {
 
 
 
-Router.route('/payload', function(){
+Router.route('/payload/:id/settings/hook ', function(){
   var eventobj = this.request.body;
-  Meteor.call('repoData' , eventobj , function(err){
+  Meteor.call('repoData' , eventobj , this.params.id , function(err){
     if(err){
       console.log("Data from github cannot be saved !!" + err);
     }else {
@@ -154,6 +154,7 @@ Router.route('/payload', function(){
   });
   this.response.end("Good Work Github");
   console.log(eventobj);
+  console.log("project id is" + this.params.id);
 }, {
   where : 'server'
 });
