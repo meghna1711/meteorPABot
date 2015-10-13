@@ -24,7 +24,7 @@ SyncedCron.config({
 SyncedCron.add({
     name:"Sending report of the day to client",
     schedule : function(parser){
-        return parser.text("at 6:18 pm every weekday");
+        return parser.text("at 10:17 am every weekday");
     },
     job : function(intentedAt){
         console.log("preparing Data");
@@ -181,11 +181,14 @@ SyncedCron.add({
                         }
                     },{$sort : {created_at : 1}}).fetch();
 
+                    console.log("comments >>>>>>>>>" + comments);
                     comments.forEach(function(doc){
                         doc.created_at = moment(doc.created_at).format("DD-MM-YYYY HH:MM");
                     });
                     value.commentsData = comments;
                 });
+                console.log(issues);
+
                 return issues;
             }
 
