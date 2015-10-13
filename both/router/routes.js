@@ -112,6 +112,10 @@ Router.route('/report/dateReport' , {
   }
 });
 
+Router.route('/user/leave' , {
+  name : 'usersHoliday',
+  layoutTemplate : 'mainLayout'
+});
 
 
 Router.route('/report/showReport/:projectKey' , {
@@ -145,16 +149,18 @@ Router.route('/report/showReport/:projectKey' , {
 
 Router.route('/payload/settings/hooks/:id', function(){
   var eventobj = this.request.body;
-  console.log("project id >>>" + this.params.id);
-  Meteor.call('repoData' , eventobj , function(err){
+  console.log("Github sends data to project with id >>>>>>>  " + this.params.id);
+  Meteor.call('repoData' , eventobj , this.params.id , function(err){
     if(err){
       console.log("Data from github cannot be saved !!" + err);
     }else {
       console.log("Data from Github saved successfully !!");
     }
   });
+  console.log(">>>>>>>>>>> Database updated >>>>>>>>>>>>");
   this.response.end("Good Work Github");
-  console.log(eventobj);
+  this.response.end(eventobj);
+ // console.log(eventobj);
 }, {
   where : 'server'
 });

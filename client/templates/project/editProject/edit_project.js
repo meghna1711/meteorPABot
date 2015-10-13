@@ -67,8 +67,9 @@ Template.editProject.events({
     }
 });
 
+
 Template.popUpModal.helpers({
     'projectKey' : function(){
-        return projectKey + "/settings/hook"
+        return projectKey;
     }
 });

@@ -16,7 +16,10 @@ Profile = new Meteor.Collection("profile" , {
     created  : {type : Number , default : +new Date()},
     isEnabled : {type: Boolean , default : true},
     leaveRecord: [
-      {type : Date}
+      {
+        date: {type: Date},
+        reason : {type : String}
+      }
     ],
     roles : [
       {type : String}

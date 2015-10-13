@@ -162,11 +162,11 @@ Meteor.startup(function() {
        * Meteor method for saving data from Github
        * */
 
-      'repoData' : function(data){
+      'repoData' : function(data , projectKey){
           if(data.hasOwnProperty("head_commit")){
               var commit_data = data.head_commit;
               commit_data.timestamp = new Date(commit_data.timestamp);
-              commit_data.projectId = "2df842e01e7d";
+              commit_data.projectId = projectKey;
               Commits.insert(commit_data);
               console.log("repoData " + commit_data);
           }
@@ -254,6 +254,10 @@ Meteor.startup(function() {
           }
 
       },
+
+      'userLeaveRecord' : function(data , userId){
+          Profile.update({userId : userId} , {$push : {leaveRecord : { date : new Date(data.date) , reason : data.reason}}});
+      }
 
   });
 });

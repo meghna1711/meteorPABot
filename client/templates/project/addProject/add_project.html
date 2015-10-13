@@ -162,13 +162,12 @@
                     <b>Your Unique Project Hook URL</b><br>
 
                     {{#if projectData}}
-                    <p>You have to copy <b> {{projectData.projectKey}}</b> URL to your
-                        <b> {{projectData.repoUrl}} </b> Git-Repository</p>
-                        {{else}}
-                        <p>You have to copy <b> {{projectKey}}</b> URL to your
-                            <b> {{projectData.repoUrl}} </b> Git-Repository</p>
+                    <p>You have to copy <b> http://localhost:3000/payload/settings/hooks/{{projectData.projectKey}}</b> URL to settings->Webhooks & services->Add webhook->Payload URL in your
+                        <b> {{projectData.repositories.[0].reporUrl}}  </b> Git-Repository</p>
+                    {{else}}
+                        <p>You have to copy <b> http://localhost:3000/payload/settings/hooks/{{projectKey}}</b> URL to settings->Webhooks & services->Add webhook->Payload URL in your
+                            <b> </b> Git-Repository</p>
                     {{/if}}
-
                     <p class="text-warning">
                         <small>If you need any help please <a target="_blank" href="http://git-scm.com/docs/githooks.html">Click
                             Me</a> .

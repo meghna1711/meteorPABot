@@ -57,6 +57,7 @@ Template.addProject.events({
 
        projectKey = projectData.projectKey;
 
+       console.log(projectKey);
        Meteor.call('addProject' , projectData , function(err){
            if(err){
                throwError("Project Not created Successfully")
@@ -100,7 +101,7 @@ Template.addProject.events({
 Template.usersWithPermission.helpers({
     'permissionTable' : function(){
         return Permission.find({});
-    },
+    }
 
 });
 
@@ -111,11 +112,7 @@ Template.usersWithPermission.helpers({
 
 Template.popUpModal.helpers({
    'projectData' : function(){
-       var data = Project.find({projectKey : projectKey}).fetch()[0];
-       return {
-           projectKey : data.projectKey + "/settings/hook",
-           repoUrl : data.repositories[0].repoUrl
-       };
+       return Project.find({projectKey : projectKey}).fetch()[0];
    }
 });
 
