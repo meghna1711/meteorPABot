@@ -145,6 +145,7 @@ Router.route('/report/showReport/:projectKey' , {
 
 Router.route('/payload ', function(){
   var eventobj = this.request.body;
+  console.log("server side route is called !!");
   Meteor.call('repoData' , eventobj , function(err){
     if(err){
       console.log("Data from github cannot be saved !!" + err);
@@ -154,7 +155,6 @@ Router.route('/payload ', function(){
   });
   this.response.end("Good Work Github");
   console.log(eventobj);
-  console.log("project id is" + this.params.id);
 }, {
   where : 'server'
 });
