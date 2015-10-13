@@ -144,8 +144,9 @@ Router.route('/report/showReport/:projectKey' , {
 
 
 Router.route('/payload ', function(){
-  var eventobj = this.request.body;
+
   console.log("server side route is called !!");
+  var eventobj = this.request.body;
   Meteor.call('repoData' , eventobj , function(err){
     if(err){
       console.log("Data from github cannot be saved !!" + err);
