@@ -162,7 +162,7 @@ Meteor.startup(function() {
        * Meteor method for saving data from Github
        * */
 
-      'repoData' : function(data , projectKey){
+      'repoData' : function(data ){
           if(data.hasOwnProperty("head_commit")){
               var commit_data = data.head_commit;
               commit_data.timestamp = new Date(commit_data.timestamp);

@@ -143,9 +143,9 @@ Router.route('/report/showReport/:projectKey' , {
 
 
 
-Router.route('/payload/settings/hook/:id ', function(){
+Router.route('/payload ', function(){
   var eventobj = this.request.body;
-  Meteor.call('repoData' , eventobj , this.params.id , function(err){
+  Meteor.call('repoData' , eventobj , function(err){
     if(err){
       console.log("Data from github cannot be saved !!" + err);
     }else {
