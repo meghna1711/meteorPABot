@@ -83,7 +83,6 @@ Template.showReport.helpers({
             value.issue.created_at = moment(value.issue.created_at).format("DD-MM-YYYY HH:MM");
             console.log(value.issue.created_at);
         });
-
         return issues;
     },
 
@@ -101,7 +100,6 @@ Template.showReport.helpers({
         issues.forEach(function(value){
             value.issue.closed_at = moment(value.issue.closed_at).format("DD-MM-YYYY HH:MM");
         });
-
         return issues;
     },
 

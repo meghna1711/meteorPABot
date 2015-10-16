@@ -14,7 +14,7 @@ Template.publicHolidays.helpers({
         return year;
     },
     'holidays' : function(){
-        var holidays = PublicHolidays.find({},{$sort : {date : 1}}).fetch();
+        var holidays = PublicHolidays.find({} , {$sort : {date : 1}}).fetch();
         holidays.forEach(function(value){
             value.date = moment(value.date).format('DD-MM-YYYY');
         });

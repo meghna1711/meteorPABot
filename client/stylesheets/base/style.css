@@ -2220,3 +2220,9 @@ input[type="checkbox"]:checked::after,
     padding:2px;
     margin:4px;
 }
+
+#site-name{
+    margin-top: -20px;
+    color: #EBEBEF;
+    text-decoration: none;
+}

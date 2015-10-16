@@ -1,8 +1,6 @@
 Meteor.startup(function() {
-    var fs = Meteor.npmRequire('fs'),
-        path = Npm.require('path'),
-        base = path.resolve('.').split('.meteor')[0];
 
+    //Starting job when Meteor starts
     SyncedCron.start();
 
     Meteor.setTimeout(function () {
@@ -13,6 +11,11 @@ Meteor.startup(function() {
 });
 
 
+/**
+ *
+ * Cron configuration settings
+ *
+ * */
 
 SyncedCron.config({
     log : true,
@@ -21,10 +24,16 @@ SyncedCron.config({
 
 
 
+/**
+ *
+ * Adding Cron's jobs below by using add() function
+ * */
+
+
 SyncedCron.add({
     name:"Sending report of the day to client",
     schedule : function(parser){
-        return parser.text("at 10:17 am every weekday");
+        return parser.text("at 1:19 pm every weekday");
     },
     job : function(intentedAt){
         console.log("preparing Data");
@@ -199,8 +208,11 @@ SyncedCron.add({
 
         var projects = Project.find({}).fetch(),
             todayDate = new Date(),
+            holidayYesterday = PublicHolidays.find({date : new Date(todayDate.getFullYear(),todayDate.getMonth(),todayDate.getDate()-1) }).count(),
+            holidayToday = PublicHolidays.find({date : new Date(todayDate.getFullYear(),todayDate.getMonth(),todayDate.getDate())}).count(),
             date = {
-                fromDate: todayDate.getDate(),
+                fromDate: (holidayYesterday > 0) ? ((todayDate.getDay() == 1 ) ? todayDate.getDate()-3 : todayDate.getDate()-1) :
+                    ((todayDate.getDay() ==1) ? todayDate.getDate()-2 : todayDate.getDate()),
                 fromMonth: todayDate.getMonth()+1,
                 fromYear: todayDate.getFullYear(),
                 toDate: todayDate.getDate(),
@@ -208,23 +220,29 @@ SyncedCron.add({
                 toYear: todayDate.getFullYear()
             };
 
-        projects.forEach(function (value) {
-            getCommitsReport(value.projectId, date);
-            getIssuesReport(value.projectId, date);
+        console.log("holiday >>>>> " + holiday);
+        console.log(date.fromDate);
 
-            console.log("project key >>>>>>>>>>" + value.projectKey);
-            projectKey = value.projectKey;
-            console.log("project Key >>>>>>>>>>>>" + projectKey);
-            emailReport = SSR.render('showReport', {reportData: reportData});
+        //Dont send email if today is holiday
+        if( holidayToday == 0 ) {
+            projects.forEach(function (value) {
+                getCommitsReport(value.projectId, date);
+                getIssuesReport(value.projectId, date);
 
-            Email.send({
-                to: value.clientEmail,
-                from: "meghnagogna111@gmail.com",
-                subject: "Today's project Report",
-                html: emailReport
+                console.log("project key >>>>>>>>>>" + value.projectKey);
+                projectKey = value.projectKey;
+                console.log("project Key >>>>>>>>>>>>" + projectKey);
+                emailReport = SSR.render('showReport', {reportData: reportData});
+
+                Email.send({
+                    to: value.clientEmail,
+                    from: "meghnagogna111@gmail.com",
+                    subject: "Today's project Report",
+                    html: emailReport
+                });
+                console.log("email sent to client at address" + value.clientEmail);
             });
-            console.log("email sent to client at address"  + value.clientEmail);
-        });
+        }
 
     }
 });
