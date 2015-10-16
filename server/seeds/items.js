@@ -168,6 +168,7 @@ Meteor.startup(function() {
               commit_data.timestamp = new Date(commit_data.timestamp);
               commit_data.projectId = projectKey;
               Commits.insert(commit_data);
+              console.log(">>>>>>>>>>> Commit inserted !! >>>>>>>>>>>>>>>");
               console.log("repoData " + commit_data);
           }
           else
@@ -257,7 +258,10 @@ Meteor.startup(function() {
 
       'userLeaveRecord' : function(data , userId){
           Profile.update({userId : userId} , {$push : {leaveRecord : { date : new Date(data.date) , reason : data.reason}}});
-      }
+      },
 
+      'publicHolidays' : function(data){
+          PublicHolidays.insert({name : data.name , date : new Date(data.date)});
+      }
   });
 });

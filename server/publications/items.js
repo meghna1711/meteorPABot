@@ -39,4 +39,8 @@ Meteor.publish('issues' , function(){
 
 Meteor.publish('comments' , function(){
   return Comments.find({});
+});
+
+Meteor.publish('publicHolidays' , function(){
+  return PublicHolidays.find({});
 })

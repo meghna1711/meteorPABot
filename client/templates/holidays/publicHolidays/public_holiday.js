@@ -1,7 +1,7 @@
-Template.usersHoliday.helpers({
+Template.publicHolidays.helpers({
     'Date' : function(){
         return ['01' , '02','03' , '04' , '05' , '06' , '07' , '08' , '09' , '10' , '11' ,'12' , '13' , '14' ,'15' , '16' , '17' ,'18' , '19',
-        '20' , '21' ,'22','23','24','25','26','27','28','29','30','31'];
+            '20' , '21' ,'22','23','24','25','26','27','28','29','30','31'];
     },
     'Month' : function(){
         return ['00','01','02','03','04','05','06','07','08','09','10','11'];
@@ -13,32 +13,35 @@ Template.usersHoliday.helpers({
         }
         return year;
     },
-    'user' : function(){
-        return Profile.find({userId : Meteor.userId()}).fetch()[0];
+    'holidays' : function(){
+        var holidays = PublicHolidays.find({},{$sort : {date : 1}}).fetch();
+        holidays.forEach(function(value){
+            value.date = moment(value.date).format('DD-MM-YYYY');
+        });
+        return holidays;
     }
 });
 
-Template.usersHoliday.events({
+
+Template.publicHolidays.events({
     'submit form' : function(e){
         e.preventDefault();
-
         var date = +$(e.target).find('#selectDate').val(),
             month = +$(e.target).find('#selectMonth').val(),
             year = +$(e.target).find('#selectYear').val(),
             holidayData = {
-                date : new Date(year , month , date).toISOString(),
-                reason : $(e.target).find('#reason').val()
+                name : $(e.target).find('#name').val(),
+                date : new Date(year , month , date).toISOString()
             };
-        console.log(date +" "+ month + " " + year );
-        console.log(holidayData);
-        Meteor.call('userLeaveRecord' , holidayData , Meteor.userId() , function(err){
+
+        Meteor.call('publicHolidays' , holidayData , function(err){
             if(err){
-                console.log("user Leave Record not updated !!");
-            }else {
-                console.log('user leave record updated');
+                throwError("Public Holidays List cannot be updated");
+            }
+            else{
+                console.log("data updated successfully");
             }
         });
 
-        $(e.target).find('#reason').val('');
     }
 });

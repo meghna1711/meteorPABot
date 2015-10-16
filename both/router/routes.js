@@ -135,6 +135,17 @@ Router.route('/user/leave' , {
 
 
 
+Router.route('/user/publicHoliday' , {
+  name : 'publicHolidays',
+  layoutTemplate : 'mainLayout',
+  waitOn : function(){
+    return Meteor.subscribe('publicHolidays');
+  }
+});
+
+
+
+
 
 Router.route('/report/showReport/:projectKey' , {
   name : 'showReport',
