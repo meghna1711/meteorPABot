@@ -174,7 +174,7 @@ Meteor.startup(function() {
           if(data.hasOwnProperty("issue")){
               console.log(">>>>>>> server method executed for issuess !! >>>>>>>>>>>>>>>>>>>>>");
               var issue_data = {
-                  projectId: "2df842e01e7d",
+                  projectId: projectKey,
                   action: data.action,
                   issue: {
                       url: data.issue.url,

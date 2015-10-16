@@ -3,10 +3,14 @@ Router.route('/', {
   layoutTemplate : 'loginTemplate'
 });
 
+
+
 Router.route('/github-signin' ,{
   name:'githubData',
   layoutTemplate : 'loginTemplate'
 });
+
+
 
 
 Router.route('/dashboard', {
@@ -15,10 +19,16 @@ Router.route('/dashboard', {
   data : function(){return Profile.find({}) }
 });
 
+
+
+
 Router.route('/dashboard/profile', {
   name:'profile',
   layoutTemplate : 'mainLayout'
 });
+
+
+
 
 Router.route('/project/addproject' , {
   name : 'addProject',
@@ -31,11 +41,12 @@ Router.route('/project/addproject' , {
 
 
 
-
-
 /**
  * edit project when project key is passed
  * */
+
+
+
 Router.route('/project/editProject/:projectKey' , {
   name : 'editProject',
   layoutTemplate : 'mainLayout',
@@ -52,6 +63,7 @@ Router.route('/project/editProject/:projectKey' , {
 /**
  * edit project when project key is not passed
  * */
+
 
 
 Router.route('/project/viewProject',{
@@ -112,10 +124,16 @@ Router.route('/report/dateReport' , {
   }
 });
 
+
+
+
 Router.route('/user/leave' , {
   name : 'usersHoliday',
   layoutTemplate : 'mainLayout'
 });
+
+
+
 
 
 Router.route('/report/showReport/:projectKey' , {
@@ -159,7 +177,6 @@ Router.route('/payload/settings/hooks/:id', function(){
   });
   console.log(">>>>>>>>>>> Database updated >>>>>>>>>>>>");
   this.response.end("Good Work Github");
-  this.response.end(eventobj);
  // console.log(eventobj);
 }, {
   where : 'server'
