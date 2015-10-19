@@ -33,7 +33,7 @@ SyncedCron.config({
 SyncedCron.add({
     name:"Sending report of the day to client",
     schedule : function(parser){
-        return parser.text("at 1:19 pm every weekday");
+        return parser.text("at 10:00 am every weekday");
     },
     job : function(intentedAt){
         console.log("preparing Data");
@@ -43,6 +43,7 @@ SyncedCron.add({
 
         //binding html file with template name 'showReport'
         SSR.compileTemplate('showReport', Assets.getText('show_report.html') , {language : 'html'});
+
 
 
         //Template 'showReport' helpers need to be defined after SSR.compileTemplate because if declared before it will not find the html file to which i
@@ -199,16 +200,30 @@ SyncedCron.add({
                 console.log(issues);
 
                 return issues;
+            },
+
+            'usersHolidays' : function(){
+                var user = Project.find({projectKey : projectKey}).fetch()[0].permission, holidays=[];
+                for(x in user){
+                    var userHoliday = Profile.find({userId : x}).fetch()[0].leaveRecord;
+                    userHoliday.forEach(function(value){
+                        if(value.date >= new Date(reportData.StartDate) && value.date <= new Date(reportData.EndDate+" 23:59:59")){
+                            holidays.push({name : Profile.find({userId : x}).fetch()[0].given_name , date : moment(value.date).format("DD-MM-YYYY") , reason : value.reason});
+                        }
+                    });
+                }
+                return holidays;
             }
 
         });
 
+        console.log("templates binded >>>>>");
 
         var emailReport;
 
         var projects = Project.find({}).fetch(),
             todayDate = new Date(),
-            holidayYesterday = PublicHolidays.find({date : new Date(todayDate.getFullYear(),todayDate.getMonth(),todayDate.getDate()-1) }).count(),
+            holidayYesterday = PublicHolidays.find({date : new Date(todayDate.getFullYear(),todayDate.getMonth() , todayDate.getDate()-1) }).count(),
             holidayToday = PublicHolidays.find({date : new Date(todayDate.getFullYear(),todayDate.getMonth(),todayDate.getDate())}).count(),
             date = {
                 fromDate: (holidayYesterday > 0) ? ((todayDate.getDay() == 1 ) ? todayDate.getDate()-3 : todayDate.getDate()-1) :
@@ -220,7 +235,7 @@ SyncedCron.add({
                 toYear: todayDate.getFullYear()
             };
 
-        console.log("holiday >>>>> " + holiday);
+       // console.log("holiday >>>>> " + holidayToday);
         console.log(date.fromDate);
 
         //Dont send email if today is holiday
@@ -242,6 +257,9 @@ SyncedCron.add({
                 });
                 console.log("email sent to client at address" + value.clientEmail);
             });
+        }
+        else{
+            console.log(">>>>>>>>  today is a holiday  >>>>>>>>>>>>");
         }
 
     }

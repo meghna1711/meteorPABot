@@ -157,7 +157,7 @@ var getIssuesReport = function(projectKey , date){
     dateIssues.EndDate = '' + date.toDate + ', ' + date.toMonth + ', ' + date.toYear;
     var issueResult, users = [], startdate = new Date(date.fromYear, date.fromMonth - 1, date.fromDate),
         //endDate should include 23hrs of that day
-        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate , 23 , 0 , 0);
+        enddate = new Date(date.toYear, date.toMonth - 1, date.toDate , 23 , 59 , 59);
     console.log("issue report >>>>>>>>>>"+startdate + ">>>>>>>>" + enddate);
     issueResult = Issues.find({
         projectId : projectKey ,
@@ -177,7 +177,7 @@ var getIssuesReport = function(projectKey , date){
             if(value.issue.state === 'closed'){
                 dateIssues.Closed+=1;
             }
-            if(value.issue.updated_at !== null){
+            if(value.issue.updated_at != null){
                 dateIssues.Updated+=1;
             }
         });

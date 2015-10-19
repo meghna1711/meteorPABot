@@ -66,3 +66,4 @@ dfischer:phantomjs
 percolate:synced-cron
 meteorhacks:ssr
 mquandalle:jade-compiler
+http

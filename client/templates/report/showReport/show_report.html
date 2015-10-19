@@ -312,6 +312,33 @@
                     </table>
                 </div>
             </div>
+
+            <br><br>
+            <center><h3 class="report-heading"><strong>People On Leave</strong></h3></center><br>
+            <div class="row portlet-body">
+                <div class="table-responsive scrollable bodycontainer">
+                    <table id="openIssueTable" class="table table-striped table-bordered table-hover table-blue table-scrollable">
+                        <thead>
+                        <tr>
+                            <th><strong>#</strong></th>
+                            <th><strong>NAME</strong></th>
+                            <th><strong>DATE</strong></th>
+                            <th><strong>REASON</strong></th>
+                        </tr>
+                        </thead>
+                        {{#each indexedArray usersHolidays}}
+                            <tbody>
+                            <tr>
+                                <td>{{_index}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.date}}</td>
+                                <td>{{this.reason}}</td>
+                            </tr>
+                            </tbody>
+                        {{/each}}
+                    </table>
+                </div>
+                </div>
         </div>
     </div>
 </template>

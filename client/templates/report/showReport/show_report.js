@@ -47,7 +47,6 @@ Template.showReport.helpers({
             }
         } , {$sort : {timestamp : 1}}).fetch();
 
-        console.log(commit_data);
         commit_data.forEach(function(value){
             value.timestamp = moment(value.timestamp).format("DD-MM-YYYY HH:MM");
             var issue_number = value.message.match(/#\d+/g);
@@ -148,8 +147,20 @@ Template.showReport.helpers({
         });
 
         return issues;
-    }
+    },
 
+    'usersHolidays' : function(){
+        var user = Project.find({projectKey : this.projectKey}).fetch()[0].permission, holidays=[];
+        for(x in user){
+            var userHoliday = Profile.find({userId : x}).fetch()[0].leaveRecord;
+            userHoliday.forEach(function(value){
+                if(value.date >= new Date(reportData.StartDate) && value.date <= new Date(reportData.EndDate+" 23:59:59")){
+                     holidays.push({name : Profile.find({userId : x}).fetch()[0].full_name , date : moment(value.date).format("DD-MM-YYYY") , reason : value.reason});
+                }
+            });
+        }
+        return holidays;
+    }
 });
 
 Template.showReport.rendered=function(){
