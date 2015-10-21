@@ -35,7 +35,7 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 12:07 am every weekday");
+            return parser.text("at 12:15 am every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
@@ -44,6 +44,7 @@ SyncedCron.add(
 
             var GoogleSpreadsheet = Npm.require("google-spreadsheet");
             var sheet = new GoogleSpreadsheet("1buAELq9AsthbRAzOq0g3fRXKi6b9btRdcisFujK7-X4");
+            var days = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday",  "Friday" , "Saturday"];
 
             var creds = {
                 client_email: '309157398717-soocffkfmjfhhuvqsoe12jcj67av7kgf@developer.gserviceaccount.com',
@@ -71,7 +72,7 @@ SyncedCron.add(
                     console.log(err);
                 }
                 console.log(sheet);
-                sheet.addRow(1 , {Day : (new Date()).getDay() , Date : moment(new Date()).format("DD-MM-YYYY")} , function(err){
+                sheet.addRow(1 , {Day : days[(new Date()).getDay()] , Date : moment(new Date()).format("DD-MM-YYYY")} , function(err){
                     if(err){
                         console.log(err);
                     }else {
@@ -82,7 +83,8 @@ SyncedCron.add(
                     console.log(x);
                     var profile = Profile.find({userId : x}).fetch()[0];
                     console.log("running for user >>>>>>>" + profile.full_name);
-                    var commitsCount = Commits.find({projectId : projectsData.projectKey , "committer.username" : profile.github_username}).count();
+                    var commitsCount = Commits.find({projectId : projectsData.projectKey , "committer.username" : profile.github_username ,
+                    timestamp : { $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate()) }}).count();
                     var issuesOpened = Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
                         "issue.created_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
                     var issuesClosed =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
@@ -98,8 +100,8 @@ SyncedCron.add(
 
                     console.log("commits > " + commitsCount + " issues opened > "+ issuesOpened + " issues updated > " + issuesUpdated +
                     " issue closed > " + issuesClosed + ' comments > ' + comments);
-                    sheet.addRow({A : "" , B : "" , C : profile.full_name , D : commitsCount , E : issuesOpened , F : issuesUpdated ,
-                    G : issuesClosed , H : comments}, function(err){});
+                    sheet.addRow(1 , {"Day" : "" , "Date" : "" , "Author" : profile.full_name , "Total Commits" : commitsCount , "Issues Opened" : issuesOpened ,
+                        "Issues Updated" : issuesUpdated , "Issues Closed" : issuesClosed , "Comments" : comments}, function(err){});
                 }
                 }));
 
