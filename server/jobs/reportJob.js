@@ -8,6 +8,7 @@ Meteor.startup(function() {
     }, 60 * 60 * 1000);
 
 
+
 });
 
 
@@ -30,7 +31,143 @@ SyncedCron.config({
  * */
 
 
-SyncedCron.add({
+SyncedCron.add(
+    {
+        name : "Entering Data into >>>Timesheet>>>",
+        schedule : function(parser){
+            return parser.text("at 10:59 am every weekday");
+        },
+        job : function(intentedAt) {
+            console.log("Preparing Data For TimeSheet");
+            console.log(intentedAt);
+
+
+            var GoogleSpreadsheet = Npm.require("google-spreadsheet");
+            var sheet = new GoogleSpreadsheet("1buAELq9AsthbRAzOq0g3fRXKi6b9btRdcisFujK7-X4");
+
+            var creds = {
+                client_email: '309157398717-soocffkfmjfhhuvqsoe12jcj67av7kgf@developer.gserviceaccount.com',
+                private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDOvtE79g2IOJjc" +
+                "\n0SHghwLxjkDT1vEOxlGvKqv5Wsf7JCC5bqdqcKrDexmm9u4NrbDaP5PLhlRUn6cW\nrz8nMKCO+ZYXCAJy5JWFTVSRYTSziD1sq9WCoNviixlrWQ28EW1JcNYzLUsZsjcx" +
+                "\nMAwh1QKedDkmHYSYP6LWehOAdoQuIQDlVVI+JE6iBW+yTUsrWfBUTpse0eyPC6ot\nsgi5SXtfQ8rjKhenu8JFDW5PCUrlfvutkBKWQ08cPnZgxL+w5AK2G82WvufLaWOw" +
+                "\noxAFCLDbZa3uImavtZQYIpO72k15bH/hDPWoDC7fBrJma3A7ANGDB+2TxNsAdsB0\nwaoxoB1BAgMBAAECggEAZpHguIDQId8CZ7sRtZUF7tWGcBLZMV1OtTrUazeQs5Yu" +
+                "\n7hBp2rLe5XCzP1SOshaUARM9veF9ASbb/LMg/85uOcC1p+N/Y4TocWP2KtIxFUjo\nQHvXx6EKthAQomNiHwX+VEs42dcExVDXdP3DZx2I2RgMKk7Gs8oOfZ2/AyLJXSB5" +
+                "\nE/gc/SI7K6TjmO8NQ1kvsDoSH19ZoxRswooFcdofMKlvemc6s96NDC+WxTp5+Who\nG6R/2w5vjmAa/fdquLkrsTUByYepa0VS41Y8xo/bqlnTu3CX+eh9AKWT1riVacyc" +
+                "\nRBfNY4TU96GhxD1Lkrri95R8tat3pTic0CVLM9vmqQKBgQD/IWpX1q8YCBxZib6Z\n/Tti0WYngwgxqGhVAkLeokQzCfpa+W80DLTXNFvP0rxF2iUCtx+DXJk/LKGKaIDs" +
+                "\n67qLSfA3oqsp6fE4/s4vlPoGa2JSWXPF2kmYm87W32E8bLNVoJUe20vI1Cm1bM+f\n5fy5a56F+kbx/2C+WJuJAN2kEwKBgQDPczBmPvZqYOfZN/wBtR2Ja/dolwlbI8B7" +
+                "\nVTyNsOuLLFr2aPHqlq/MWkZbujFXt6MXBf41UCIQ18pTVTt82mPOW+31rPO0aM8/\nLSdX2254F7EcNGLjtR700NI+7fr2i1xqEbLlBlY6Y09NBLO0HPf0nBG9DsJCAE/1" +
+                "\nCK9KrMZb2wKBgQDLFQc4Skxv3azrXOjaXKeT3kjpdLTmCj6aREWEQDf3RJ8DIX/y\nN5cPor7ea8mv9Jf3VFsCTogxsE4aBVtyu6Vu0HklYBfNMknwa2smlvh6ean3EPtF" +
+                "\n558jmgqIIaGd3ozVwRBSUo89mhxlLOsMRZ7o3ZB+5xzn7rdMbO3JnWXP/wKBgQDJ\n/vmTtZ8vOijHhBHof7jBBNYli1va2NclwHtz5F+WZpwz70AQEqYfL4/u5UACj5dI" +
+                "\nZdd/hgWFrPkfZ5DDI8unNjBg1gV/F8clVwxGKi5I1ZjpQ8E+xC/eZi8yg3uo8U4N\nIiq1gxQXSnf/IKLysHpoPkevdV2F8tPoXoqBBfcnnQKBgCckZl4nZeDWOFNF5HEd" +
+                "\n2HCPwo/dDtDxQ9QzkfLW1EC7eRVBUfwuSdnyowj35kJ8MnIVTgMkqLiYOCRCxm6+\nmXwjtpmzgOf3xrVVunaTUHvczlN06AjcImLJMWqFIRl7Q6OIHZgMmFfiGk6MqP6+" +
+                "\nW9H5WZrW5EvdgN/M/JTSwjj8\n-----END PRIVATE KEY-----\n"
+            };
+
+            var todayDate = new Date();
+            var projectsData = Project.find({projectKey : "2df842e01e7d" }).fetch()[0];
+            console.log(projectsData);
+            sheet.useServiceAccountAuth(creds , Meteor.bindEnvironment(function(err , result){
+                if(err){
+                    console.log(err);
+                }
+                console.log(sheet);
+                sheet.addRow(1 , {Day : (new Date()).getDay() , Date : moment(new Date()).format("DD-MM-YYYY")} , function(err){
+                    if(err){
+                        console.log(err);
+                    }else {
+                        console.log("row added success fully !!!!!");
+                    }
+                });
+                for(var x in projectsData.permission){
+                    console.log(x);
+                    var profile = Profile.find({userId : x}).fetch()[0];
+                    console.log("running for user >>>>>>>" + profile.full_name);
+                    var commitsCount = Commits.find({projectId : projectsData.projectKey , "committer.username" : profile.github_username}).count();
+                    var issuesOpened = Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
+                        "issue.created_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
+                    var issuesClosed =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
+                        "issue.closed_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
+                    var issuesUpdated =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
+                        "issue.updated_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
+                    var comments = Comments.find({
+                        "user.login": profile.github_username,
+                        "created_at" : {
+                            $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())
+                        }
+                    }).count();
+
+                    console.log("commits > " + commitsCount + " issues opened > "+ issuesOpened + " issues updated > " + issuesUpdated +
+                    " issue closed > " + issuesClosed + ' comments > ' + comments);
+                    sheet.addRow({A : "" , B : "" , C : profile.full_name , D : commitsCount , E : issuesOpened , F : issuesUpdated ,
+                    G : issuesClosed , H : comments}, function(err){});
+                }
+                }));
+
+            //code for creating new spread sheet on google drive
+            /*
+            var fs = Npm.require('fs');
+            var base = process.env.PWD;
+            var file = fs.readFileSync(base + "/public/SpreadsheetTemplate.ods" , "ascii");
+
+            var google = Npm.require('googleapis');
+            var OAuth2 = google.auth.OAuth2;
+            var oauth2Client = new OAuth2("309157398717-8no7vhadttoahu67p7qijkfvg7hq3m4c.apps.googleusercontent.com",
+                "oeykpiw3OSF6dmDoS2VDN9p2", "http://localhost:3000/timesheet");
+
+            var drive = google.drive({version: 'v2', auth: oauth2Client});
+
+            var conv = Npm.require('ods2json');
+            c = new conv;
+            var json = c.convert(file, false, true);
+
+
+            var url = oauth2Client.generateAuthUrl({
+                access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
+                scope : "https://www.googleapis.com/auth/drive.file"// If you only need one scope you can pass it as string
+            });
+
+            console.log("visit url : " + url);
+
+
+
+
+
+            oauth2Client.setCredentials({
+                access_token : "ya29.EgLOZi2I4CVCmwMnCRFOUcJgCbN9d4BiAK175SeP1Y9g0piQ0QxgLCXTCmTHv0tod0-p",
+                refresh_token : '1/SnBjRPC11bGPiurQXVGHn9Tq4FXqzVfG_BRlzL5YL55IgOrJDtdun6zK6XiATCKT'
+            });
+
+            oauth2Client.refreshAccessToken(function(err, tokens) {
+                console.log("refresed tokens >>>>>>>>>");
+                console.log(tokens);
+                insertFile();
+            });
+
+
+            function insertFile() {
+                drive.files.insert({
+                    resource: {
+                        title: +new Date() + "timesheet.ods",
+                        mimeType: "application/vnd.oasis.opendocument.spreadsheet",
+                        body : json
+                    },
+                    media: {
+                        mimeType: "application/vnd.oasis.opendocument.spreadsheet",
+                        title : +new Date() + "timesheet.ods",
+                        body: json
+                    }
+                }, function (err, response) {
+                    if (err) {
+                        console.log("error while creating spreadsheet" + err);
+                    } else {
+                        console.log(">>>>>>>>>>>>>file id from google spreadsheet >>>>>>>>>>>>" + response.id);
+                    }
+                });
+            }
+            */
+        }
+    },
+    {
     name:"Sending report of the day to client",
     schedule : function(parser){
         return parser.text("at 10:00 am every weekday");

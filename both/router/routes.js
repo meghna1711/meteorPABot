@@ -195,6 +195,19 @@ Router.route('/payload/settings/hooks/:id', function(){
 
 
 
+Router.route('/timesheet',function(){
+  var code = this.request.query;
+  console.log("Code frome google drive >>>>>>>>");
+  console.log(code);
+  Meteor.call('accessToken' , code , function(err){
+    if(err){
+      console.log(err);
+    }
+  });
+  console.log("Code frome google drive >>>>>>>>");
+  console.log(code);
+}, {where : 'server'});
+
 
 
 Router.plugin('ensureSignedIn', {
