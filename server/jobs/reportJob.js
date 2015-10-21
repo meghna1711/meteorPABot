@@ -35,7 +35,7 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 12:31 am every weekday");
+            return parser.text("at 12:38 pm every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
@@ -73,13 +73,8 @@ SyncedCron.add(
                 }
                 console.log(sheet);
                 var day = days[(new Date()).getDay()], date = moment(new Date()).format("DD-MM-YYYY");
-                sheet.addRow(1 , {Day : day , Date : date} , function(err){
-                    if(err){
-                        console.log(err);
-                    }else {
-                        console.log("row added success fully !!!!!");
-                    }
-                });
+                sheet.addRow(1 , {"Day" : day , "Date" : date ,"Author" : "" , "Total Commits" : "" , "Issues Opened" : "" ,
+                    "Issues Updated" : "" , "Issues Closed" : "" , "Comments" : ""} , function(err){});
                 for(var x in projectsData.permission){
                     console.log(x);
                     var profile = Profile.find({userId : x}).fetch()[0];
