@@ -35,7 +35,7 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 12:15 am every weekday");
+            return parser.text("at 12:31 am every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
@@ -72,7 +72,8 @@ SyncedCron.add(
                     console.log(err);
                 }
                 console.log(sheet);
-                sheet.addRow(1 , {Day : days[(new Date()).getDay()] , Date : moment(new Date()).format("DD-MM-YYYY")} , function(err){
+                var day = days[(new Date()).getDay()], date = moment(new Date()).format("DD-MM-YYYY");
+                sheet.addRow(1 , {Day : day , Date : date} , function(err){
                     if(err){
                         console.log(err);
                     }else {
