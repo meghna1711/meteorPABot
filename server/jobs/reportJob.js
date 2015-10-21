@@ -35,7 +35,7 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 10:59 am every weekday");
+            return parser.text("at 12:07 am every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
