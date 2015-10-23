@@ -35,7 +35,7 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 12:38 pm every weekday");
+            return parser.text("at 12:41 am every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
@@ -48,20 +48,7 @@ SyncedCron.add(
 
             var creds = {
                 client_email: '309157398717-soocffkfmjfhhuvqsoe12jcj67av7kgf@developer.gserviceaccount.com',
-                private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDOvtE79g2IOJjc" +
-                "\n0SHghwLxjkDT1vEOxlGvKqv5Wsf7JCC5bqdqcKrDexmm9u4NrbDaP5PLhlRUn6cW\nrz8nMKCO+ZYXCAJy5JWFTVSRYTSziD1sq9WCoNviixlrWQ28EW1JcNYzLUsZsjcx" +
-                "\nMAwh1QKedDkmHYSYP6LWehOAdoQuIQDlVVI+JE6iBW+yTUsrWfBUTpse0eyPC6ot\nsgi5SXtfQ8rjKhenu8JFDW5PCUrlfvutkBKWQ08cPnZgxL+w5AK2G82WvufLaWOw" +
-                "\noxAFCLDbZa3uImavtZQYIpO72k15bH/hDPWoDC7fBrJma3A7ANGDB+2TxNsAdsB0\nwaoxoB1BAgMBAAECggEAZpHguIDQId8CZ7sRtZUF7tWGcBLZMV1OtTrUazeQs5Yu" +
-                "\n7hBp2rLe5XCzP1SOshaUARM9veF9ASbb/LMg/85uOcC1p+N/Y4TocWP2KtIxFUjo\nQHvXx6EKthAQomNiHwX+VEs42dcExVDXdP3DZx2I2RgMKk7Gs8oOfZ2/AyLJXSB5" +
-                "\nE/gc/SI7K6TjmO8NQ1kvsDoSH19ZoxRswooFcdofMKlvemc6s96NDC+WxTp5+Who\nG6R/2w5vjmAa/fdquLkrsTUByYepa0VS41Y8xo/bqlnTu3CX+eh9AKWT1riVacyc" +
-                "\nRBfNY4TU96GhxD1Lkrri95R8tat3pTic0CVLM9vmqQKBgQD/IWpX1q8YCBxZib6Z\n/Tti0WYngwgxqGhVAkLeokQzCfpa+W80DLTXNFvP0rxF2iUCtx+DXJk/LKGKaIDs" +
-                "\n67qLSfA3oqsp6fE4/s4vlPoGa2JSWXPF2kmYm87W32E8bLNVoJUe20vI1Cm1bM+f\n5fy5a56F+kbx/2C+WJuJAN2kEwKBgQDPczBmPvZqYOfZN/wBtR2Ja/dolwlbI8B7" +
-                "\nVTyNsOuLLFr2aPHqlq/MWkZbujFXt6MXBf41UCIQ18pTVTt82mPOW+31rPO0aM8/\nLSdX2254F7EcNGLjtR700NI+7fr2i1xqEbLlBlY6Y09NBLO0HPf0nBG9DsJCAE/1" +
-                "\nCK9KrMZb2wKBgQDLFQc4Skxv3azrXOjaXKeT3kjpdLTmCj6aREWEQDf3RJ8DIX/y\nN5cPor7ea8mv9Jf3VFsCTogxsE4aBVtyu6Vu0HklYBfNMknwa2smlvh6ean3EPtF" +
-                "\n558jmgqIIaGd3ozVwRBSUo89mhxlLOsMRZ7o3ZB+5xzn7rdMbO3JnWXP/wKBgQDJ\n/vmTtZ8vOijHhBHof7jBBNYli1va2NclwHtz5F+WZpwz70AQEqYfL4/u5UACj5dI" +
-                "\nZdd/hgWFrPkfZ5DDI8unNjBg1gV/F8clVwxGKi5I1ZjpQ8E+xC/eZi8yg3uo8U4N\nIiq1gxQXSnf/IKLysHpoPkevdV2F8tPoXoqBBfcnnQKBgCckZl4nZeDWOFNF5HEd" +
-                "\n2HCPwo/dDtDxQ9QzkfLW1EC7eRVBUfwuSdnyowj35kJ8MnIVTgMkqLiYOCRCxm6+\nmXwjtpmzgOf3xrVVunaTUHvczlN06AjcImLJMWqFIRl7Q6OIHZgMmFfiGk6MqP6+" +
-                "\nW9H5WZrW5EvdgN/M/JTSwjj8\n-----END PRIVATE KEY-----\n"
+                private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDXe9nK5zYw5+3s\nkEeq5knVWL4FtBJuIzjF8TE/UJq0y7vKlskf1dDVFl59KPhaSQfFe2ZOMh3v58ii\n15efv7JfEcGrDFFzt9MYNj4Vnkye1iMlH8GrnVxCRcEzeZvOX5ahasUTnzFc8VPN\nVBA5x3tLxVlfcN3SFzJ52nvkNOFHbOW3K3PvqxZLT0/p0i4DTyuyzmXdG0PXRCY7\nYozS18kkTsg/g8uqA5dyzxgMvimmJzxv0f7DPA/qLcPjnRqJ3gnPk6XrvPmQchiT\nNv2qnxSiaK9e4CUOYi3RrNHQQnOEbE2CIOJeCUdKTUpKlTuz6BFD2CIbcnUnWhig\ndITB1U8bAgMBAAECggEAS2L4/xOE0fdSNcEEUbXfftRdJoGpMP8Bjb6kDBKXDUl5\nmZbHJmwXc3Uv+Xmr6WpDXcOeNx0xfA0LFG14jlryfHAp4T2eAW3+XCod7lJDXA5u\nnT5O80tKS6U7wlZ5O+oVOMOxzvuSuYF0YBFY293+NLQGYG2MLUQQVLErRtt5NRMv\nsB9tA+R9/a1sZyfhl/MWDQd9YpDEog+Q7tOcluJ2AMzGQ8ZMPGdqhIxWYnNCBY38\nfRPVhW9gPOH5p+0+uVcyNdTbX/6WVW+27DQx8zaekngf3/PNCnqZjDXah9Cybi6o\nNlc/6JDAj2GXt4sv0GipSXpWoe7ebkpuhT+CofTHAQKBgQDt7c0UcfS5AiyevDhx\nodsYXFj+a70d/wP+wsTsM/tkgvs0i9V9sFhj5eXd4t8cp/+bDFORCEZrK51wSXT1\nOhShfSJwKbENZRWtz5+Ki6AGcCO5T9w6kBpyybIOI8xnFUhXzn/ylDdkBdpREmN8\nI7G+4kpwsMIccvypKG5C+bWSuQKBgQDn2aKl1zKAoicLs1vTm0hUXRiSBupOAi+B\ntJcRlh4rbU816BAGIRvZjsyzTJmB6FwhLQDPtB3GjOAbwQZOrx4irubsozVMPHGJ\ntyQQmrPTUf5ep7d9LlcMmLCNCLIjUDj39+Ckwk8yDIJCAVFJWUXvNWMsi61OMjYr\nOsVSBayWcwKBgQCeFohSElmRZ/Fv0w4J6opiCFIVUk7JFH16E722V9+sbB8vTc4f\ngkFotwNhx/GI39NFGQ6Zag8n/EXSquwsWFgG6NcuAXWjucuKvk56RsWgIXiLE5X3\nz3HTXVKSdJTG1WxI82suKe8X5Y+mmHpDrI/YjhD6CWggcQKR/swscjCD+QKBgQC6\n/CwP4jHJyn0BE8MwMyEvYPGq+8bF6T9VNUdNGKv2TC9BA4rA1rz2RhPTWyjGu5Zp\n7zijStlkw0MPPyqOFO+R+0skeDBI7sqGzdxZQ9tZx9wFjPAQFmqALzjcVbINhuqb\nGh/j4Q4sCCiZgSSEqmoblQwJ5hB8a0SCsuBm2Uqq/wKBgQCuCGs2HGcvfRMVusC9\nb7dgyaE1QgrJiOLJAHuU2P+S1+/d+cRJMPLSMAlpGwOLveQrJ2UA2ZepOedpT5VQ\naQuH3DE3ZHjTc8XFlZTDfR9CswQBUfAlEH/S77mkM5uoEj+wn3vkjzWFSeiNOkOr\n3eevDlYkaTOmWmPnvCD62clUaA\u003d\u003d\n-----END PRIVATE KEY-----\n"
             };
 
             var todayDate = new Date();
@@ -73,8 +60,13 @@ SyncedCron.add(
                 }
                 console.log(sheet);
                 var day = days[(new Date()).getDay()], date = moment(new Date()).format("DD-MM-YYYY");
+
                 sheet.addRow(1 , {"Day" : day , "Date" : date ,"Author" : "" , "Total Commits" : "" , "Issues Opened" : "" ,
-                    "Issues Updated" : "" , "Issues Closed" : "" , "Comments" : ""} , function(err){});
+                    "Issues Updated" : "" , "Issues Closed" : "" , "Comments" : ""} , function(err){
+                    console.log("First row added");
+                });
+
+
                 for(var x in projectsData.permission){
                     console.log(x);
                     var profile = Profile.find({userId : x}).fetch()[0];
@@ -97,78 +89,20 @@ SyncedCron.add(
                     console.log("commits > " + commitsCount + " issues opened > "+ issuesOpened + " issues updated > " + issuesUpdated +
                     " issue closed > " + issuesClosed + ' comments > ' + comments);
                     sheet.addRow(1 , {"Day" : "" , "Date" : "" , "Author" : profile.full_name , "Total Commits" : commitsCount , "Issues Opened" : issuesOpened ,
-                        "Issues Updated" : issuesUpdated , "Issues Closed" : issuesClosed , "Comments" : comments}, function(err){});
+                        "Issues Updated" : issuesUpdated , "Issues Closed" : issuesClosed , "Comments" : comments}, function(err){
+                        console.log("commits data added !!!!!");
+                    });
                 }
-                }));
 
-            //code for creating new spread sheet on google drive
-            /*
-            var fs = Npm.require('fs');
-            var base = process.env.PWD;
-            var file = fs.readFileSync(base + "/public/SpreadsheetTemplate.ods" , "ascii");
-
-            var google = Npm.require('googleapis');
-            var OAuth2 = google.auth.OAuth2;
-            var oauth2Client = new OAuth2("309157398717-8no7vhadttoahu67p7qijkfvg7hq3m4c.apps.googleusercontent.com",
-                "oeykpiw3OSF6dmDoS2VDN9p2", "http://localhost:3000/timesheet");
-
-            var drive = google.drive({version: 'v2', auth: oauth2Client});
-
-            var conv = Npm.require('ods2json');
-            c = new conv;
-            var json = c.convert(file, false, true);
+            }));
 
 
-            var url = oauth2Client.generateAuthUrl({
-                access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
-                scope : "https://www.googleapis.com/auth/drive.file"// If you only need one scope you can pass it as string
-            });
-
-            console.log("visit url : " + url);
-
-
-
-
-
-            oauth2Client.setCredentials({
-                access_token : "ya29.EgLOZi2I4CVCmwMnCRFOUcJgCbN9d4BiAK175SeP1Y9g0piQ0QxgLCXTCmTHv0tod0-p",
-                refresh_token : '1/SnBjRPC11bGPiurQXVGHn9Tq4FXqzVfG_BRlzL5YL55IgOrJDtdun6zK6XiATCKT'
-            });
-
-            oauth2Client.refreshAccessToken(function(err, tokens) {
-                console.log("refresed tokens >>>>>>>>>");
-                console.log(tokens);
-                insertFile();
-            });
-
-
-            function insertFile() {
-                drive.files.insert({
-                    resource: {
-                        title: +new Date() + "timesheet.ods",
-                        mimeType: "application/vnd.oasis.opendocument.spreadsheet",
-                        body : json
-                    },
-                    media: {
-                        mimeType: "application/vnd.oasis.opendocument.spreadsheet",
-                        title : +new Date() + "timesheet.ods",
-                        body: json
-                    }
-                }, function (err, response) {
-                    if (err) {
-                        console.log("error while creating spreadsheet" + err);
-                    } else {
-                        console.log(">>>>>>>>>>>>>file id from google spreadsheet >>>>>>>>>>>>" + response.id);
-                    }
-                });
-            }
-            */
         }
     },
     {
     name:"Sending report of the day to client",
     schedule : function(parser){
-        return parser.text("at 10:00 am every weekday");
+        return parser.text("at 1:12 pm every weekday");
     },
     job : function(intentedAt){
         console.log("preparing Data");

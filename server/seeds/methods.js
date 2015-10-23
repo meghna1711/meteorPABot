@@ -134,6 +134,124 @@ Meteor.startup(function() {
       'addProject' : function(projectData){
           Project.insert(projectData);
           console.log(projectData);
+
+          //code for creating timesheet of this project
+          var google = Npm.require('googleapis');
+          var OAuth2 = google.auth.OAuth2;
+          var oauth2Client = new OAuth2("309157398717-8no7vhadttoahu67p7qijkfvg7hq3m4c.apps.googleusercontent.com",
+              "oeykpiw3OSF6dmDoS2VDN9p2", "http://localhost:3000/timesheet");
+
+          var drive = google.drive({version: 'v2', auth: oauth2Client});
+
+          console.log("setting credentials");
+
+          oauth2Client.setCredentials({
+              access_token : "ya29.EgLOZi2I4CVCmwMnCRFOUcJgCbN9d4BiAK175SeP1Y9g0piQ0QxgLCXTCmTHv0tod0-p",
+              refresh_token : '1/SnBjRPC11bGPiurQXVGHn9Tq4FXqzVfG_BRlzL5YL55IgOrJDtdun6zK6XiATCKT'
+          });
+
+          console.log("refreshing access token ");
+          oauth2Client.refreshAccessToken(Meteor.bindEnvironment(function(err, tokens) {
+              console.log("refresed tokens >>>>>>>>>");
+              console.log(tokens);
+              insertFile();
+          }));
+
+          console.log("creating timesheet file");
+
+          function insertFile() {
+              drive.files.insert({
+                  resource: {
+                      title: projectData.name+"-timesheet",
+                      mimeType: "application/vnd.google-apps.spreadsheet"
+                  },
+                  media: {
+                      mimeType: "application/vnd.google-apps.spreadsheet",
+                      title : projectData.name+"-timesheet"
+                  }
+              }, Meteor.bindEnvironment(function (err, response) {
+                  if (err) {
+                      console.log("error while creating spreadsheet" + err);
+                  } else {
+                      console.log("file created");
+                      fileTitle = response.title;
+                      Project.update({projectKey : projectData.projectKey} , {$set : {timesheet : {id : response.id , title : response.title }}});
+                      givePermissions(response.id);
+                      // console.log(Project.find({projectKey : "2df842e01e7d"}));
+                  }
+              }));
+          }
+
+          function givePermissions(fileId){
+              console.log("file Id >>>>>>>" + fileId);
+              drive.permissions.insert({
+                  fileId : fileId,
+                  resource : {
+                      role : "writer",
+                      type : "user",
+                      value : "309157398717-soocffkfmjfhhuvqsoe12jcj67av7kgf@developer.gserviceaccount.com"
+                  }
+              }, function(err , response){
+                  if(err){
+                      console.log(err);
+                  }else {
+                      console.log("permission granted !!!");
+                  }
+              });
+              addHeaderRow();
+          }
+
+
+          function addHeaderRow(){
+              var Spreadsheet = Npm.require("edit-google-spreadsheet");
+              var sheetDetails = Project.find({projectKey : projectData.projectKey}).fetch()[0].timesheet;
+
+              console.log("creating Spreadsheet and inserting header row");
+              var creds = {
+                  client_email: '309157398717-soocffkfmjfhhuvqsoe12jcj67av7kgf@developer.gserviceaccount.com',
+                  private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDXe9nK5zYw5+3s" +
+                  "\nkEeq5knVWL4FtBJuIzjF8TE/UJq0y7vKlskf1dDVFl59KPhaSQfFe2ZOMh3v58ii\n15efv7JfEcGrDFFzt9MYNj4Vnkye1iMlH8GrnVxCRcEzeZvOX5ahasUTnzFc8VPN" +
+                  "\nVBA5x3tLxVlfcN3SFzJ52nvkNOFHbOW3K3PvqxZLT0/p0i4DTyuyzmXdG0PXRCY7\nYozS18kkTsg/g8uqA5dyzxgMvimmJzxv0f7DPA/qLcPjnRqJ3gnPk6XrvPmQchiT" +
+                  "\nNv2qnxSiaK9e4CUOYi3RrNHQQnOEbE2CIOJeCUdKTUpKlTuz6BFD2CIbcnUnWhig\ndITB1U8bAgMBAAECggEAS2L4/xOE0fdSNcEEUbXfftRdJoGpMP8Bjb6kDBKXDUl5" +
+                  "\nmZbHJmwXc3Uv+Xmr6WpDXcOeNx0xfA0LFG14jlryfHAp4T2eAW3+XCod7lJDXA5u\nnT5O80tKS6U7wlZ5O+oVOMOxzvuSuYF0YBFY293+NLQGYG2MLUQQVLErRtt5NRMv" +
+                  "\nsB9tA+R9/a1sZyfhl/MWDQd9YpDEog+Q7tOcluJ2AMzGQ8ZMPGdqhIxWYnNCBY38\nfRPVhW9gPOH5p+0+uVcyNdTbX/6WVW+27DQx8zaekngf3/PNCnqZjDXah9Cybi6o" +
+                  "\nNlc/6JDAj2GXt4sv0GipSXpWoe7ebkpuhT+CofTHAQKBgQDt7c0UcfS5AiyevDhx\nodsYXFj+a70d/wP+wsTsM/tkgvs0i9V9sFhj5eXd4t8cp/+bDFORCEZrK51wSXT1" +
+                  "\nOhShfSJwKbENZRWtz5+Ki6AGcCO5T9w6kBpyybIOI8xnFUhXzn/ylDdkBdpREmN8\nI7G+4kpwsMIccvypKG5C+bWSuQKBgQDn2aKl1zKAoicLs1vTm0hUXRiSBupOAi+B" +
+                  "\ntJcRlh4rbU816BAGIRvZjsyzTJmB6FwhLQDPtB3GjOAbwQZOrx4irubsozVMPHGJ\ntyQQmrPTUf5ep7d9LlcMmLCNCLIjUDj39+Ckwk8yDIJCAVFJWUXvNWMsi61OMjYr" +
+                  "\nOsVSBayWcwKBgQCeFohSElmRZ/Fv0w4J6opiCFIVUk7JFH16E722V9+sbB8vTc4f\ngkFotwNhx/GI39NFGQ6Zag8n/EXSquwsWFgG6NcuAXWjucuKvk56RsWgIXiLE5X3" +
+                  "\nz3HTXVKSdJTG1WxI82suKe8X5Y+mmHpDrI/YjhD6CWggcQKR/swscjCD+QKBgQC6\n/CwP4jHJyn0BE8MwMyEvYPGq+8bF6T9VNUdNGKv2TC9BA4rA1rz2RhPTWyjGu5Zp" +
+                  "\n7zijStlkw0MPPyqOFO+R+0skeDBI7sqGzdxZQ9tZx9wFjPAQFmqALzjcVbINhuqb\nGh/j4Q4sCCiZgSSEqmoblQwJ5hB8a0SCsuBm2Uqq/wKBgQCuCGs2HGcvfRMVusC9\n" +
+                  "b7dgyaE1QgrJiOLJAHuU2P+S1+/d+cRJMPLSMAlpGwOLveQrJ2UA2ZepOedpT5VQ\naQuH3DE3ZHjTc8XFlZTDfR9CswQBUfAlEH/S77mkM5uoEj+wn3vkjzWFSeiNOkOr" +
+                  "\n3eevDlYkaTOmWmPnvCD62clUaA\u003d\u003d\n-----END PRIVATE KEY-----\n"
+              };
+
+
+              Spreadsheet.load({
+                  debug : true,
+                  oauth : {
+                      email : creds.client_email,
+                      key : creds.private_key
+                  },
+                  spreadsheetId : sheetDetails.id,
+                  worksheetName : "Sheet1"
+
+              } ,function run(err , spreadsheet){
+                  if(err){
+                      console.log("error " +err);
+                  }
+                  console.log(spreadsheet);
+                  spreadsheet.add({1 : {1 : "Day" , 2 : "Date" , 3 : "Author" , 4 :"Total Commits" , 5 : "Issues Opened" , 6 : "Issues Updated" ,
+                      7 : "Issues Closed" , 8 : "Comments"}});
+
+                  spreadsheet.send(function(err){
+                      if(err){
+                          console.log("ERROR from spreadsheet" + err);
+                      }else {
+                          console.log("Header Row Created");
+                      }
+                  })
+              });
+          }
       },
 
 

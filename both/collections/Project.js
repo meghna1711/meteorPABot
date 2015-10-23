@@ -7,6 +7,10 @@ Project = new Meteor.Collection('project', {
         description: String,
             startDateTimeStamp: {type: Number, default: +new Date()},
         status: {type: String, default: "created"},
+        timesheet : {
+            id : {type : String},
+            title : {type : String}
+        },
         repositories: [
             {
                 name: String,
