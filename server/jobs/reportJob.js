@@ -35,14 +35,13 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 12:41 am every weekday");
+            return parser.text("at 2:01 pm every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
             console.log(intentedAt);
 
             var GoogleSpreadsheet = Npm.require("google-spreadsheet");
-            var sheet = new GoogleSpreadsheet("1buAELq9AsthbRAzOq0g3fRXKi6b9btRdcisFujK7-X4");
             var days = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday",  "Friday" , "Saturday"];
 
             var creds = {
@@ -51,52 +50,56 @@ SyncedCron.add(
             };
 
             var todayDate = new Date();
-            
-            var projectsData = Project.find({projectKey : "2df842e01e7d" }).fetch()[0];
-            console.log(projectsData);
-            sheet.useServiceAccountAuth(creds , Meteor.bindEnvironment(function(err , result){
-                if(err){
-                    console.log(err);
-                }
-                console.log(sheet);
-                var day = days[(new Date()).getDay()], date = moment(new Date()).format("DD-MM-YYYY");
 
-                sheet.addRow(1 , {"Day" : day , "Date" : date ,"Author" : "" , "Total Commits" : "" , "Issues Opened" : "" ,
-                    "Issues Updated" : "" , "Issues Closed" : "" , "Comments" : ""} , function(err){
-                    console.log("First row added");
-                });
-
-
-                for(var x in projectsData.permission){
-                    console.log(x);
-                    var profile = Profile.find({userId : x}).fetch()[0];
-                    console.log("running for user >>>>>>>" + profile.full_name);
-                    var commitsCount = Commits.find({projectId : projectsData.projectKey , "committer.username" : profile.github_username ,
-                    timestamp : { $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate()) }}).count();
-                    var issuesOpened = Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
-                        "issue.created_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
-                    var issuesClosed =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
-                        "issue.closed_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
-                    var issuesUpdated =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
-                        "issue.updated_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
-                    var comments = Comments.find({
-                        "user.login": profile.github_username,
-                        "created_at" : {
-                            $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())
+            var projects = Project.find({}).fetch();
+            projects.forEach(function(project){
+                var sheet = new GoogleSpreadsheet(project.timesheet.id);
+                sheet.useServiceAccountAuth(creds , Meteor.bindEnvironment(function(err , result){
+                    if(err){
+                        console.log(err);
+                    }
+                    console.log(sheet);
+                    var day = days[(new Date()).getDay()], date = moment(new Date()).format("DD-MM-YYYY");
+                    var projectsData = project;
+                    console.log("adding data to timesheet of project >>>>> " + projectsData.name);
+                    sheet.addRow(1 , {"Day" : day , "Date" : date ,"Author" : "" , "Total Commits" : "" , "Issues Opened" : "" ,
+                        "Issues Updated" : "" , "Issues Closed" : "" , "Comments" : ""} , Meteor.bindEnvironment(function(err){
+                        if(err){
+                            console.log(err);
                         }
-                    }).count();
+                        else {
+                            console.log("First row added");
+                            for(var x in projectsData.permission){
+                                console.log(x);
+                                var profile = Profile.find({userId : x}).fetch()[0];
+                                console.log("running for user >>>>>>>" + profile.full_name);
+                                var commitsCount = Commits.find({projectId : projectsData.projectKey , "committer.username" : profile.github_username ,
+                                    timestamp : { $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate()) }}).count();
+                                var issuesOpened = Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
+                                    "issue.created_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
+                                var issuesClosed =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
+                                    "issue.closed_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
+                                var issuesUpdated =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
+                                    "issue.updated_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
+                                var comments = Comments.find({
+                                    "user.login": profile.github_username,
+                                    "created_at" : {
+                                        $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())
+                                    }
+                                }).count();
 
-                    console.log("commits > " + commitsCount + " issues opened > "+ issuesOpened + " issues updated > " + issuesUpdated +
-                    " issue closed > " + issuesClosed + ' comments > ' + comments);
-                    sheet.addRow(1 , {"Day" : "" , "Date" : "" , "Author" : profile.full_name , "Total Commits" : commitsCount , "Issues Opened" : issuesOpened ,
-                        "Issues Updated" : issuesUpdated , "Issues Closed" : issuesClosed , "Comments" : comments}, function(err){
-                        console.log("commits data added !!!!!");
-                    });
-                }
-
+                                sheet.addRow(1 , {"Day" : "" , "Date" : "" , "Author" : profile.full_name , "Total Commits" : commitsCount , "Issues Opened" : issuesOpened ,
+                                    "Issues Updated" : issuesUpdated , "Issues Closed" : issuesClosed , "Comments" : comments}, function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                    console.log("commits data added !!!!!");
+                                });
+                            }
+                        }
+                    }));
             }));
-
-
+            });
         }
     },
     {
