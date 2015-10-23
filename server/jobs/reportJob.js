@@ -42,6 +42,7 @@ SyncedCron.add(
             console.log(intentedAt);
 
             var GoogleSpreadsheet = Npm.require("google-spreadsheet");
+            
             var sheet = new GoogleSpreadsheet("1buAELq9AsthbRAzOq0g3fRXKi6b9btRdcisFujK7-X4");
             var days = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday",  "Friday" , "Saturday"];
 
