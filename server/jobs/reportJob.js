@@ -42,7 +42,6 @@ SyncedCron.add(
             console.log(intentedAt);
 
             var GoogleSpreadsheet = Npm.require("google-spreadsheet");
-            
             var sheet = new GoogleSpreadsheet("1buAELq9AsthbRAzOq0g3fRXKi6b9btRdcisFujK7-X4");
             var days = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday",  "Friday" , "Saturday"];
 
@@ -52,6 +51,7 @@ SyncedCron.add(
             };
 
             var todayDate = new Date();
+            
             var projectsData = Project.find({projectKey : "2df842e01e7d" }).fetch()[0];
             console.log(projectsData);
             sheet.useServiceAccountAuth(creds , Meteor.bindEnvironment(function(err , result){
