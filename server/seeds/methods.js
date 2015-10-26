@@ -1,3 +1,9 @@
+
+/**
+ * >>>>>>>>>>>>>>>>>>>>>>>> All Meteor Methods are defined in this file >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ *
+ * */
+
 Meteor.startup(function() {
 
   if(Rooms.find().count() === 0){
@@ -26,9 +32,9 @@ Meteor.startup(function() {
 
       /**
        * Meteor method for creating profile of user
-       * @user function params currently logged user Id
-       * @account function params type of account
-       * @address function params optional for github account
+       * @params user {String} user Id of currently loggedIn user
+       * @params account {String} type of account
+       * @params address {String} optional parameter for Github accounts type only
        * */
 
 
@@ -93,8 +99,8 @@ Meteor.startup(function() {
 
       /**
        * Meteor method for reseting password of account
-       * @userId Id of currently logged user
-       * @password New password of user
+       * @params userId {String} Id of currently logged user
+       * @params password {String} New password of user
        * */
 
     'passwordReset' : function(userId , password){
@@ -108,6 +114,8 @@ Meteor.startup(function() {
 
       /**
        * Meteor method for updating profile
+       * @params userId {String} userId of user whose profile is being updated
+       * @params data {Object} updated data
        * */
 
     'profileUpdate' : function(userId, data){
@@ -117,7 +125,8 @@ Meteor.startup(function() {
 
       /**
        * Meteor method for changing profile picture of user
-       * @url url from cloudinary where images are uploaded
+       * @params userId {String} userId of user whose profile picture is changed
+       * @params url {String} url of new image uploaded at Cloudinary
        * */
 
     'changeProfilePicture' : function(userId , url){
@@ -127,7 +136,7 @@ Meteor.startup(function() {
 
       /**
        * Meteor method for adding new projects in Project Collection
-       * @projectData is object send by Client
+       * @params projectData  {Object} projects data send by Client
        *
        * */
 
@@ -226,6 +235,7 @@ Meteor.startup(function() {
               };
 
 
+              //adding header Row to newly created spreadsheet
               Spreadsheet.load({
                   debug : true,
                   oauth : {
@@ -257,8 +267,8 @@ Meteor.startup(function() {
 
       /**
        * Meteor method for updating project data
-       * @projectData params Object send by Client
-       * @projectKey params project key to be edited
+       * @params projectData {Object} project details send by Client
+       * @params projectKey {String} unique project Key of each project
        * */
 
       'updateProject' : function(projectData , projectKey){
@@ -267,14 +277,19 @@ Meteor.startup(function() {
       },
 
 
+
       /**
        * Meteor method to remove selected project
+       * @params projectKey {String} unique projectKey of each project
+       *
        * */
 
       'removeProject' : function(projectKey){
           Project.remove({projectKey : projectKey});
           console.log("project with Key " + projectKey + " successfully deleted ");
       },
+
+
 
       /**
        * Meteor method for saving data from Github
@@ -374,10 +389,24 @@ Meteor.startup(function() {
 
       },
 
+
+      /**
+       * Meteor method for adding users Leave to their profile
+       * @params data {Object} contains date and reason for leave
+       * @params userId  {String} unique userId of each user
+       *
+       * */
       'userLeaveRecord' : function(data , userId){
           Profile.update({userId : userId} , {$push : {leaveRecord : { date : new Date(data.date) , reason : data.reason}}});
       },
 
+
+
+      /**
+       * Meteor method for adding  Public Holidays in publicHolidays Database
+       * @params data {Object} contains date and description of holiday
+       *
+       * */
       'publicHolidays' : function(data){
           PublicHolidays.insert({name : data.name , date : new Date(data.date)});
       }

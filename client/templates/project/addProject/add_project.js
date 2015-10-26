@@ -14,7 +14,7 @@ Template.addProject.rendered = function(){
 
 
 /**
- * Helpers of addPRoject Template
+ * Helpers of addProject Template
  * */
 
 

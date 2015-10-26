@@ -4,13 +4,10 @@ Router.route('/', {
 });
 
 
-
 Router.route('/github-signin' ,{
   name:'githubData',
   layoutTemplate : 'loginTemplate'
 });
-
-
 
 
 Router.route('/dashboard', {
@@ -20,14 +17,10 @@ Router.route('/dashboard', {
 });
 
 
-
-
 Router.route('/dashboard/profile', {
   name:'profile',
   layoutTemplate : 'mainLayout'
 });
-
-
 
 
 Router.route('/project/addproject' , {
@@ -39,12 +32,9 @@ Router.route('/project/addproject' , {
 });
 
 
-
-
 /**
  * edit project when project key is passed
  * */
-
 
 
 Router.route('/project/editProject/:projectKey' , {
@@ -58,12 +48,9 @@ Router.route('/project/editProject/:projectKey' , {
 
 
 
-
-
 /**
  * edit project when project key is not passed
  * */
-
 
 
 Router.route('/project/viewProject',{
@@ -75,8 +62,6 @@ Router.route('/project/viewProject',{
 });
 
 
-
-
 Router.route('/project/viewProject/showProject/:projectKey',{
   name : 'showProject',
   layoutTemplate : 'mainLayout',
@@ -85,8 +70,6 @@ Router.route('/project/viewProject/showProject/:projectKey',{
     return Meteor.subscribe('project');
   }
 });
-
-
 
 
 Router.route('/project/removeProject/:projectKey',{
@@ -102,15 +85,9 @@ Router.route('/project/removeProject/:projectKey',{
 
 
 
-
-
-
-
 /**
  * Routes for generating Report
  * */
-
-
 
 Router.route('/report/dateReport' , {
   name : 'dateReport',
@@ -125,14 +102,10 @@ Router.route('/report/dateReport' , {
 });
 
 
-
-
 Router.route('/user/leave' , {
   name : 'usersHoliday',
   layoutTemplate : 'mainLayout'
 });
-
-
 
 
 Router.route('/user/publicHoliday' , {
@@ -142,9 +115,6 @@ Router.route('/user/publicHoliday' , {
     return Meteor.subscribe('publicHolidays');
   }
 });
-
-
-
 
 
 Router.route('/report/showReport/:projectKey' , {
@@ -164,16 +134,11 @@ Router.route('/report/showReport/:projectKey' , {
 });
 
 
-
-
-
-
 /**
  *
  * Server side Routes
  *
  * */
-
 
 
 Router.route('/payload/settings/hooks/:id', function(){
@@ -195,16 +160,21 @@ Router.route('/payload/settings/hooks/:id', function(){
 
 
 
+/**
+ * Server Route for getting access_token and refresh_token from google
+ * >"http://localhost:3000/timesheet" is listed in redirect_url of google
+ * */
+
 Router.route('/timesheet',function(){
   var code = this.request.query;
-  console.log("Code frome google drive >>>>>>>>");
+  console.log("Code from google drive >>>>>>>>");
   console.log(code);
   Meteor.call('accessToken' , code , function(err){
     if(err){
       console.log(err);
     }
   });
-  console.log("Code frome google drive >>>>>>>>");
+  console.log("Code from google drive >>>>>>>>");
   console.log(code);
 }, {where : 'server'});
 
