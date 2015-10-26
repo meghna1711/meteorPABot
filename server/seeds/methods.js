@@ -153,7 +153,7 @@ Meteor.startup(function() {
           console.log("refreshing access token ");
           oauth2Client.refreshAccessToken(Meteor.bindEnvironment(function(err, tokens) {
               console.log("refresed tokens >>>>>>>>>");
-              console.log(tokens);
+             // console.log(tokens);
               insertFile();
           }));
 
@@ -239,7 +239,7 @@ Meteor.startup(function() {
                   if(err){
                       console.log("error " +err);
                   }
-                  console.log(spreadsheet);
+                 // console.log(spreadsheet);
                   spreadsheet.add({1 : {1 : "Day" , 2 : "Date" , 3 : "Author" , 4 :"Total Commits" , 5 : "Issues Opened" , 6 : "Issues Updated" ,
                       7 : "Issues Closed" , 8 : "Comments"}});
 

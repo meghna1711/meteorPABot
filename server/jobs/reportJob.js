@@ -35,7 +35,7 @@ SyncedCron.add(
     {
         name : "Entering Data into >>>Timesheet>>>",
         schedule : function(parser){
-            return parser.text("at 2:01 pm every weekday");
+            return parser.text("at 2:48 pm every weekday");
         },
         job : function(intentedAt) {
             console.log("Preparing Data For TimeSheet");
@@ -46,7 +46,32 @@ SyncedCron.add(
 
             var creds = {
                 client_email: '309157398717-soocffkfmjfhhuvqsoe12jcj67av7kgf@developer.gserviceaccount.com',
-                private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDXe9nK5zYw5+3s\nkEeq5knVWL4FtBJuIzjF8TE/UJq0y7vKlskf1dDVFl59KPhaSQfFe2ZOMh3v58ii\n15efv7JfEcGrDFFzt9MYNj4Vnkye1iMlH8GrnVxCRcEzeZvOX5ahasUTnzFc8VPN\nVBA5x3tLxVlfcN3SFzJ52nvkNOFHbOW3K3PvqxZLT0/p0i4DTyuyzmXdG0PXRCY7\nYozS18kkTsg/g8uqA5dyzxgMvimmJzxv0f7DPA/qLcPjnRqJ3gnPk6XrvPmQchiT\nNv2qnxSiaK9e4CUOYi3RrNHQQnOEbE2CIOJeCUdKTUpKlTuz6BFD2CIbcnUnWhig\ndITB1U8bAgMBAAECggEAS2L4/xOE0fdSNcEEUbXfftRdJoGpMP8Bjb6kDBKXDUl5\nmZbHJmwXc3Uv+Xmr6WpDXcOeNx0xfA0LFG14jlryfHAp4T2eAW3+XCod7lJDXA5u\nnT5O80tKS6U7wlZ5O+oVOMOxzvuSuYF0YBFY293+NLQGYG2MLUQQVLErRtt5NRMv\nsB9tA+R9/a1sZyfhl/MWDQd9YpDEog+Q7tOcluJ2AMzGQ8ZMPGdqhIxWYnNCBY38\nfRPVhW9gPOH5p+0+uVcyNdTbX/6WVW+27DQx8zaekngf3/PNCnqZjDXah9Cybi6o\nNlc/6JDAj2GXt4sv0GipSXpWoe7ebkpuhT+CofTHAQKBgQDt7c0UcfS5AiyevDhx\nodsYXFj+a70d/wP+wsTsM/tkgvs0i9V9sFhj5eXd4t8cp/+bDFORCEZrK51wSXT1\nOhShfSJwKbENZRWtz5+Ki6AGcCO5T9w6kBpyybIOI8xnFUhXzn/ylDdkBdpREmN8\nI7G+4kpwsMIccvypKG5C+bWSuQKBgQDn2aKl1zKAoicLs1vTm0hUXRiSBupOAi+B\ntJcRlh4rbU816BAGIRvZjsyzTJmB6FwhLQDPtB3GjOAbwQZOrx4irubsozVMPHGJ\ntyQQmrPTUf5ep7d9LlcMmLCNCLIjUDj39+Ckwk8yDIJCAVFJWUXvNWMsi61OMjYr\nOsVSBayWcwKBgQCeFohSElmRZ/Fv0w4J6opiCFIVUk7JFH16E722V9+sbB8vTc4f\ngkFotwNhx/GI39NFGQ6Zag8n/EXSquwsWFgG6NcuAXWjucuKvk56RsWgIXiLE5X3\nz3HTXVKSdJTG1WxI82suKe8X5Y+mmHpDrI/YjhD6CWggcQKR/swscjCD+QKBgQC6\n/CwP4jHJyn0BE8MwMyEvYPGq+8bF6T9VNUdNGKv2TC9BA4rA1rz2RhPTWyjGu5Zp\n7zijStlkw0MPPyqOFO+R+0skeDBI7sqGzdxZQ9tZx9wFjPAQFmqALzjcVbINhuqb\nGh/j4Q4sCCiZgSSEqmoblQwJ5hB8a0SCsuBm2Uqq/wKBgQCuCGs2HGcvfRMVusC9\nb7dgyaE1QgrJiOLJAHuU2P+S1+/d+cRJMPLSMAlpGwOLveQrJ2UA2ZepOedpT5VQ\naQuH3DE3ZHjTc8XFlZTDfR9CswQBUfAlEH/S77mkM5uoEj+wn3vkjzWFSeiNOkOr\n3eevDlYkaTOmWmPnvCD62clUaA\u003d\u003d\n-----END PRIVATE KEY-----\n"
+                private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDXe9nK5zYw5+3s" +
+                "\nkEeq5knVWL4FtBJuIzjF8TE/UJq0y7vKlskf1dDVFl59KPhaSQfFe2ZOMh3v58ii" +
+                "\n15efv7JfEcGrDFFzt9MYNj4Vnkye1iMlH8GrnVxCRcEzeZvOX5ahasUTnzFc8VPN" +
+                "\nVBA5x3tLxVlfcN3SFzJ52nvkNOFHbOW3K3PvqxZLT0/p0i4DTyuyzmXdG0PXRCY7" +
+                "\nYozS18kkTsg/g8uqA5dyzxgMvimmJzxv0f7DPA/qLcPjnRqJ3gnPk6XrvPmQchiT" +
+                "\nNv2qnxSiaK9e4CUOYi3RrNHQQnOEbE2CIOJeCUdKTUpKlTuz6BFD2CIbcnUnWhig" +
+                "\ndITB1U8bAgMBAAECggEAS2L4/xOE0fdSNcEEUbXfftRdJoGpMP8Bjb6kDBKXDUl5" +
+                "\nmZbHJmwXc3Uv+Xmr6WpDXcOeNx0xfA0LFG14jlryfHAp4T2eAW3+XCod7lJDXA5u" +
+                "\nnT5O80tKS6U7wlZ5O+oVOMOxzvuSuYF0YBFY293+NLQGYG2MLUQQVLErRtt5NRMv" +
+                "\nsB9tA+R9/a1sZyfhl/MWDQd9YpDEog+Q7tOcluJ2AMzGQ8ZMPGdqhIxWYnNCBY38" +
+                "\nfRPVhW9gPOH5p+0+uVcyNdTbX/6WVW+27DQx8zaekngf3/PNCnqZjDXah9Cybi6o" +
+                "\nNlc/6JDAj2GXt4sv0GipSXpWoe7ebkpuhT+CofTHAQKBgQDt7c0UcfS5AiyevDhx" +
+                "\nodsYXFj+a70d/wP+wsTsM/tkgvs0i9V9sFhj5eXd4t8cp/+bDFORCEZrK51wSXT1" +
+                "\nOhShfSJwKbENZRWtz5+Ki6AGcCO5T9w6kBpyybIOI8xnFUhXzn/ylDdkBdpREmN8\n" +
+                "I7G+4kpwsMIccvypKG5C+bWSuQKBgQDn2aKl1zKAoicLs1vTm0hUXRiSBupOAi+B" +
+                "\ntJcRlh4rbU816BAGIRvZjsyzTJmB6FwhLQDPtB3GjOAbwQZOrx4irubsozVMPHGJ" +
+                "\ntyQQmrPTUf5ep7d9LlcMmLCNCLIjUDj39+Ckwk8yDIJCAVFJWUXvNWMsi61OMjYr" +
+                "\nOsVSBayWcwKBgQCeFohSElmRZ/Fv0w4J6opiCFIVUk7JFH16E722V9+sbB8vTc4f" +
+                "\ngkFotwNhx/GI39NFGQ6Zag8n/EXSquwsWFgG6NcuAXWjucuKvk56RsWgIXiLE5X3" +
+                "\nz3HTXVKSdJTG1WxI82suKe8X5Y+mmHpDrI/YjhD6CWggcQKR/swscjCD+QKBgQC6\n" +
+                "/CwP4jHJyn0BE8MwMyEvYPGq+8bF6T9VNUdNGKv2TC9BA4rA1rz2RhPTWyjGu5Zp" +
+                "\n7zijStlkw0MPPyqOFO+R+0skeDBI7sqGzdxZQ9tZx9wFjPAQFmqALzjcVbINhuqb" +
+                "\nGh/j4Q4sCCiZgSSEqmoblQwJ5hB8a0SCsuBm2Uqq/wKBgQCuCGs2HGcvfRMVusC9" +
+                "\nb7dgyaE1QgrJiOLJAHuU2P+S1+/d+cRJMPLSMAlpGwOLveQrJ2UA2ZepOedpT5VQ" +
+                "\naQuH3DE3ZHjTc8XFlZTDfR9CswQBUfAlEH/S77mkM5uoEj+wn3vkjzWFSeiNOkOr\n3eevDlYkaTOmWmPnvCD62clUaA\u003d\u003d" +
+                "\n-----END PRIVATE KEY-----\n"
             };
 
             var todayDate = new Date();
@@ -62,8 +87,17 @@ SyncedCron.add(
                     var day = days[(new Date()).getDay()], date = moment(new Date()).format("DD-MM-YYYY");
                     var projectsData = project;
                     console.log("adding data to timesheet of project >>>>> " + projectsData.name);
-                    sheet.addRow(1 , {"Day" : day , "Date" : date ,"Author" : "" , "Total Commits" : "" , "Issues Opened" : "" ,
-                        "Issues Updated" : "" , "Issues Closed" : "" , "Comments" : ""} , Meteor.bindEnvironment(function(err){
+                    sheet.addRow(1 ,
+                        {
+                            "Day" : day ,
+                            "Date" : date ,
+                            "Author" : "---------------------" ,
+                            "Total Commits" : "---------------------" ,
+                            "Issues Opened" : "---------------------" ,
+                            "Issues Updated" : "---------------------" ,
+                            "Issues Closed" : "---------------------" ,
+                            "Comments" : "---------------------"
+                        } , Meteor.bindEnvironment(function(err){
                         if(err){
                             console.log(err);
                         }
@@ -72,29 +106,68 @@ SyncedCron.add(
                             for(var x in projectsData.permission){
                                 console.log(x);
                                 var profile = Profile.find({userId : x}).fetch()[0];
-                                console.log("running for user >>>>>>>" + profile.full_name);
-                                var commitsCount = Commits.find({projectId : projectsData.projectKey , "committer.username" : profile.github_username ,
-                                    timestamp : { $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate()) }}).count();
-                                var issuesOpened = Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
-                                    "issue.created_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
-                                var issuesClosed =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
-                                    "issue.closed_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
-                                var issuesUpdated =Issues.find({projectId : projectsData.projectKey , "issue.user.login" : profile.github_username ,
-                                    "issue.updated_at" : {$gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())}}).count();
-                                var comments = Comments.find({
-                                    "user.login": profile.github_username,
-                                    "created_at" : {
-                                        $gte : new Date(todayDate.getFullYear() , todayDate.getMonth() , todayDate.getDate())
-                                    }
-                                }).count();
+                                var onLeave = Profile.find({userId : x , leaveRecord : {$gte : new Date(todayDate)}}).fetch()[0];
+                                if(onLeave){
+                                    console.log(profile.full_name + " is on leave today");
+                                    sheet.addRow(1 ,
+                                        {
+                                            "Day" : "" ,
+                                            "Date" : "" ,
+                                            "Author" : profile.full_name ,
+                                            "Total Commits" : "" ,
+                                            "Issues Opened" : "ON" ,
+                                            "Issues Updated" : "LEAVE",
+                                            "Issues Closed" : "" ,
+                                            "Comments" : ""
+                                        }, function(err){
+                                        if(err){
+                                            console.log(err);
+                                        }
+                                        console.log("commits data added !!!!!");
+                                    });
 
-                                sheet.addRow(1 , {"Day" : "" , "Date" : "" , "Author" : profile.full_name , "Total Commits" : commitsCount , "Issues Opened" : issuesOpened ,
-                                    "Issues Updated" : issuesUpdated , "Issues Closed" : issuesClosed , "Comments" : comments}, function(err){
-                                    if(err){
-                                        console.log(err);
-                                    }
-                                    console.log("commits data added !!!!!");
-                                });
+                                }else {
+                                    console.log("running for user >>>>>>>" + profile.full_name);
+                                    var commitsCount = Commits.find({
+                                        projectId: projectsData.projectKey,
+                                        "committer.username": profile.github_username,
+                                        timestamp: {$gte: new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate())}
+                                    }).count();
+                                    var issuesOpened = Issues.find({
+                                        projectId: projectsData.projectKey, "issue.user.login": profile.github_username,
+                                        "issue.created_at": {$gte: new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate())}
+                                    }).count();
+                                    var issuesClosed = Issues.find({
+                                        projectId: projectsData.projectKey, "issue.user.login": profile.github_username,
+                                        "issue.closed_at": {$gte: new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate())}
+                                    }).count();
+                                    var issuesUpdated = Issues.find({
+                                        projectId: projectsData.projectKey, "issue.user.login": profile.github_username,
+                                        "issue.updated_at": {$gte: new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate())}
+                                    }).count();
+                                    var comments = Comments.find({
+                                        "user.login": profile.github_username,
+                                        "created_at": {
+                                            $gte: new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate())
+                                        }
+                                    }).count();
+
+                                    sheet.addRow(1, {
+                                        "Day": "",
+                                        "Date": "",
+                                        "Author": profile.full_name,
+                                        "Total Commits": commitsCount,
+                                        "Issues Opened": issuesOpened,
+                                        "Issues Updated": issuesUpdated,
+                                        "Issues Closed": issuesClosed,
+                                        "Comments": comments
+                                    }, function (err) {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                        console.log("commits data added !!!!!");
+                                    });
+                                }
                             }
                         }
                     }));
