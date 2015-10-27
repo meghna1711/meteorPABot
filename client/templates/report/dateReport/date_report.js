@@ -161,26 +161,54 @@ var getIssuesReport = function(projectKey , date){
     console.log("issue report >>>>>>>>>>"+startdate + ">>>>>>>>" + enddate);
     issueResult = Issues.find({
         projectId : projectKey ,
-        "issue.created_at" : {
+        "issue.updated_at" : {
             $lte : new Date(enddate.toISOString()),
             $gte : new Date(startdate.toISOString())
 
         }
-    } , {$sort : {"issue.created_at" : 1}}).fetch();
+    } , {$sort : {"issue.updated_at" : 1}}).fetch();
     console.log("issue Result>>>>>" + issueResult);
     if(issueResult){
-        issueResult.forEach(function(value){
-            dateIssues.Comments+=value.issue.comments;
-            if(value.issue.state === 'open'){
-                dateIssues.Opened+=1;
+       dateIssues.Opened = Issues.find({
+           projectId : projectKey,
+           "issue.created_at" : {
+               $lte : new Date(enddate.toISOString()),
+               $gte : new Date(startdate.toISOString())
+           }
+       }).count();
+        dateIssues.Closed = Issues.find({
+            projectId : projectKey,
+            "issue.closed_at" : {
+                $lte : new Date(enddate.toISOString()),
+                $gte : new Date(startdate.toISOString())
             }
-            if(value.issue.state === 'closed'){
-                dateIssues.Closed+=1;
+        }).count();
+        dateIssues.Updated = Issues.find({
+            projectId : projectKey,
+            "issue.updated_at" : {
+                $lte : new Date(enddate.toISOString()),
+                $gte : new Date(startdate.toISOString())
             }
-            if(value.issue.updated_at != null){
-                dateIssues.Updated+=1;
-            }
-        });
+        }).count();
+        var issues = Issues.find({
+            projectId : this.projectKey,
+            "issue.updated_at" : {
+                $lte : new Date(enddate.toISOString()),
+                $gte : new Date(startdate.toISOString())
+            },
+            "issue.comments" : {$ne : 0}
+        } , {$sort : {"issue.updated_at" : 1}}).fetch();
+
+        dateIssues.Comments = 0;
+        issues.forEach(function(issue){
+            dateIssues.Comments += Comments.find({
+                issueId : issue.issue.id ,
+                created_at : {
+                    $gte : new Date(startdate.toISOString()),
+                    $lte : new Date(enddate.toISOString())
+                }
+            }).count();
+        })
     }
     console.log("issues report >>>>>" + dateIssues);
     issueService.setIssueData(dateIssues);
